@@ -306,3 +306,15 @@ html {
     gap: 12px;
   }
 }
+
+#back-to-top {
+  color: var(--paper);
+  background: transparent;
+  border: 1px solid #839a9f;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.footer-bottom {
+  align-items: center;
+}

@@ -150,6 +150,11 @@ html {
   padding: 0 0 8px;
   margin-top: 20px;
 }
+.footer-contact .footer-cta:hover,
+.footer-contact .footer-cta:focus-visible {
+  text-decoration: none;
+  border-color: white;
+}
 .footer-bottom {
   display: flex;
   flex-wrap: wrap;

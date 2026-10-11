@@ -8,8 +8,12 @@ Bun.serve({
     const markdown =
       request.headers.get("accept")?.includes("text/markdown") &&
       /^\/(services|about|approach|contact|brand|privacy)?\/?$/.test(pathname);
-    if (markdown)
-      pathname = `/content/${pathname.replaceAll("/", "") || "home"}.md`;
+    if (
+      /^\/(services|about|approach|contact|brand|privacy)?\/?$/.test(pathname)
+    )
+      pathname = markdown
+        ? `/content/${pathname.replaceAll("/", "") || "home"}.md`
+        : `/pages/${pathname.replaceAll("/", "") || "home"}.html`;
     const path = resolve(
       root,
       `.${pathname.endsWith("/") ? `${pathname}index.html` : pathname}`,

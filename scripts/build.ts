@@ -20,8 +20,10 @@ const pages = [
   ["privacy", "Privacy", privacy],
 ];
 for (const [path, title, content] of pages) {
-  await mkdir(`dist/${path}`, { recursive: true });
-  await Bun.write(`dist/${path}/index.html`, layout(title, content, path));
+  await Bun.write(
+    `dist/pages/${path || "home"}.html`,
+    layout(title, content, path),
+  );
 }
 await writeCrawlFiles(pages);
 await Bun.write(

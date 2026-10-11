@@ -63,6 +63,14 @@
         }
       ],
       "destination": "/content/:page.md"
+    },
+    {
+      "source": "/",
+      "destination": "/pages/home.html"
+    },
+    {
+      "source": "/:page(services|about|approach|contact|brand|privacy)/",
+      "destination": "/pages/:page.html"
     }
   ]
 }

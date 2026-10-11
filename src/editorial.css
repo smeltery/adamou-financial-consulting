@@ -119,3 +119,59 @@
 .faq details p {
   margin-top: 12px;
 }
+
+.tool-spotlight {
+  padding: 72px 0;
+  background: #e8ede5;
+  margin-bottom: 50px;
+}
+.tool-spotlight > .wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.tool-spotlight .button {
+  margin-top: 14px;
+}
+.tool-preview {
+  background: var(--paper);
+  padding: 32px;
+}
+.tool-preview ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.tool-preview li {
+  display: flex;
+  gap: 22px;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--line);
+}
+.tool-preview li:last-child {
+  border: 0;
+  padding-bottom: 0;
+}
+.tool-preview li > span {
+  font:
+    24px Georgia,
+    serif;
+  color: var(--muted);
+}
+.tool-preview p:not(.eyebrow) {
+  font-size: 13px;
+  margin: 5px 0 0;
+}
+@media (max-width: 700px) {
+  .tool-spotlight {
+    padding-block: 48px;
+  }
+  .tool-spotlight > .wrap {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .tool-preview {
+    padding: 24px;
+  }
+}

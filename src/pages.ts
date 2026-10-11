@@ -16,7 +16,7 @@ export const aboutPage =
     "Meet your coach.<br><em>Matt Adamou.</em>",
     "The person behind Adamou Financial Consulting.",
   ) +
-  about +
+  about.replace('class="about"', 'class="about about-page"') +
   testimonial +
   `<section class="wrap section prose"><h2>Your goals lead the conversation.</h2><p>Afin’s approach centers on customized financial strategies aligned with your goals. From a practical budget to a debt payoff plan, the work starts with understanding what matters to you.</p><p>The aim is a long-term partnership focused on your financial growth, with support for individuals, couples, and small businesses.</p><a class="button" href="/contact/">Connect with Matt</a></section>`;
 export const approachPage =

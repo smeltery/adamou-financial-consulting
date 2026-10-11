@@ -246,3 +246,23 @@
 .testimonial figcaption span {
   color: var(--muted);
 }
+
+.about-page .about-grid {
+  grid-template-columns: minmax(220px, 320px) 1fr;
+  gap: 64px;
+}
+.about-page .portrait {
+  max-width: 320px;
+}
+.about-page {
+  padding-block: 55px;
+}
+@media (max-width: 700px) {
+  .about-page .about-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .about-page .portrait {
+    max-width: 240px;
+  }
+}

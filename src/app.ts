@@ -51,7 +51,7 @@ if (form) {
   get("#delivery-note").textContent = FORMSPREE_ENDPOINT
     ? "Your inquiry will be sent to Matt through Formspree."
     : "This form prepares an email introduction. Review it, then send it from your email app.";
-  if (FORMSPREE_ENDPOINT) submit.textContent = "Send my introduction ↗";
+  if (FORMSPREE_ENDPOINT) submit.textContent = "Send my introduction";
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (!form.reportValidity()) return;
@@ -87,7 +87,7 @@ if (form) {
       draft();
     } finally {
       submit.disabled = false;
-      submit.textContent = "Send my introduction ↗";
+      submit.textContent = "Send my introduction";
       status.focus();
     }
   });

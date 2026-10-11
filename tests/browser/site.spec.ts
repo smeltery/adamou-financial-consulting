@@ -64,3 +64,34 @@ test("mobile navigation opens and closes after choosing a section", async ({
   ).toBeHidden();
   await expect(page).toHaveURL(/#services$/);
 });
+
+test("navigation pins only after its height without moving page content", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const header = page.locator(".site-header");
+  const height = await header.evaluate(
+    (element) => element.getBoundingClientRect().height,
+  );
+  const mainTop = await page
+    .locator("main")
+    .evaluate((element) => element.getBoundingClientRect().top + scrollY);
+  await page.evaluate(
+    (y) => window.scrollTo({ top: y, behavior: "instant" }),
+    height - 1,
+  );
+  await expect(header).not.toHaveClass(/is-pinned/);
+  await page.evaluate(
+    (y) => window.scrollTo({ top: y, behavior: "instant" }),
+    height + 1,
+  );
+  await expect(header).toHaveClass(/is-pinned/);
+  await expect(header).toHaveCSS("position", "fixed");
+  expect(
+    await page
+      .locator("main")
+      .evaluate((element) => element.getBoundingClientRect().top + scrollY),
+  ).toBe(mainTop);
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+  await expect(header).not.toHaveClass(/is-pinned/);
+});

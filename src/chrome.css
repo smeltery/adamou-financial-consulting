@@ -4,6 +4,19 @@
   position: relative;
   z-index: 2;
 }
+.site-header.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(247, 244, 235, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 4px 24px rgba(23, 61, 75, 0.06);
+}
+html {
+  scroll-padding-top: 115px;
+}
 .header-inner {
   min-height: 94px;
   display: flex;

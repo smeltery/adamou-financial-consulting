@@ -12,6 +12,19 @@ if (!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {
 }
 import { introduction, sendInquiry } from "./intake";
 declare const FORMSPREE_ENDPOINT: string;
+const header = document.querySelector<HTMLElement>(".site-header")!;
+const headerSpace = document.querySelector<HTMLElement>(".header-space")!;
+let headerHeight = header.offsetHeight;
+const updateHeader = () =>
+  header.classList.toggle("is-pinned", window.scrollY > headerHeight);
+const measureHeader = () => {
+  headerHeight = header.offsetHeight;
+  headerSpace.style.height = `${headerHeight}px`;
+  updateHeader();
+};
+new ResizeObserver(measureHeader).observe(header);
+window.addEventListener("scroll", updateHeader, { passive: true });
+measureHeader();
 const menu = document.querySelector<HTMLDetailsElement>(".mobile-menu");
 menu?.querySelectorAll("a").forEach((link) =>
   link.addEventListener("click", () => {

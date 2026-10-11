@@ -6,12 +6,12 @@ export const linkedIcon =
 export function layout(title: string, content: string, active = "") {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Personal financial coaching with Matt Adamou. Build a budget, make a debt payoff plan, and move toward your goals."><meta name="theme-color" content="#204f60"><title>${title} | Afin</title><link rel="icon" href="/assets/afin-mark.svg" type="image/svg+xml"><link rel="stylesheet" href="/styles.css"></head><body>
   <a class="skip" href="#main">Skip to content</a>
-  <header class="site-header"><div class="wrap header-inner">
+  <div class="header-space"><header class="site-header"><div class="wrap header-inner">
     <a class="logo" href="/" aria-label="Afin home"><img src="/assets/afin-mark.svg" width="76" height="38" alt="Afin mountain mark"></a>
     <nav class="desktop-nav" aria-label="Main navigation"><a href="/#services">Services</a><a href="/#about">About Matt</a><a href="/#process">Our approach</a><a href="/brand/" ${active === "brand" ? 'aria-current="page"' : ""}>Brand</a></nav>
     <a class="button nav-cta" href="/contact/">Contact Matt</a>
     <details class="mobile-menu"><summary aria-label="Open navigation menu"><span></span><span></span><span></span></summary><nav aria-label="Mobile navigation"><a href="/#services">Services</a><a href="/#about">About Matt</a><a href="/#process">Our approach</a><a href="/brand/">Brand resources</a><a href="/contact/">Start a conversation</a></nav></details>
-  </div></header>
+  </div></header></div>
   <main id="main">${content}</main><footer class="site-footer"><div class="wrap">
   <div class="footer-grid"><div class="footer-brand"><a href="/" aria-label="Afin home"><img src="/assets/afin-mark.svg" width="80" height="40" alt="Afin mountain mark"></a><p class="footer-name">Adamou Financial<br>Consulting</p><p>Personal guidance.<br>A clearer path forward.</p><div class="social-links"><a href="${linkedin}" aria-label="Matt Adamou on LinkedIn">${linkedIcon}</a><a href="https://www.instagram.com/adamoufinancial.consulting/" aria-label="Afin on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a></div></div>
   <nav aria-label="Footer services"><h2>HOW WE HELP</h2><a href="/contact/?goal=budget">Budgeting</a><a href="/contact/?goal=debt">Debt payoff planning</a><a href="/contact/?goal=goals">Financial goals</a><a href="/#services">Small-business support</a></nav>

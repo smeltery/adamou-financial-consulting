@@ -1,6 +1,7 @@
 import { inject } from "@vercel/analytics";
 if (!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {
   inject({
+    mode: "production",
     beforeSend: (event) => {
       const url = new URL(event.url);
       url.search = "";

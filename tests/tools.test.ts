@@ -50,3 +50,25 @@ test("currency formatting follows the selected region without conversion", () =>
   expect(moneyFormat("ja-JP").resolvedOptions().maximumFractionDigits).toBe(0);
   expect(moneyFormat("unknown").resolvedOptions().currency).toBe("USD");
 });
+
+import { compoundGrowth, loanPayment, futureCost } from "../src/tools/math";
+test("growth models month-end deposits and zero growth or time", () => {
+  expect(compoundGrowth(1000, 100, 0, 1)).toEqual({
+    balance: 2200,
+    contributed: 2200,
+    growth: 0,
+  });
+  expect(compoundGrowth(1000, 100, 12, 1).balance).toBeCloseTo(2395.075331, 4);
+  expect(compoundGrowth(1000, 100, 5, 0).balance).toBe(1000);
+});
+test("loan payments handle zero interest, zero principal, and invalid term", () => {
+  expect(loanPayment(1200, 0, 1)?.payment).toBe(100);
+  expect(loanPayment(20000, 6, 5)?.payment).toBeCloseTo(386.65603, 4);
+  expect(loanPayment(0, 6, 5)?.payment).toBe(0);
+  expect(loanPayment(1200, 6, 0)).toBeNull();
+});
+test("inflation compounds annually and preserves zero-rate costs", () => {
+  expect(futureCost(1000, 3, 10)).toBeCloseTo(1343.916379, 4);
+  expect(futureCost(1000, 0, 10)).toBe(1000);
+  expect(futureCost(1000, 3, 0)).toBe(1000);
+});

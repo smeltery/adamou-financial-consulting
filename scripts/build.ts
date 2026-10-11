@@ -46,6 +46,7 @@ await Bun.write(
         "forms",
         "responsive",
         "chrome",
+        "search",
         "editorial",
         "tools/styles",
       ].map((name) => Bun.file(`src/${name}.css`).text()),

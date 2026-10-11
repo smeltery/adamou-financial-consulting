@@ -1,3 +1,5 @@
+import { setupSearch } from "./search";
+setupSearch();
 import { setupTools } from "./tools/client";
 setupTools();
 import { celebrate } from "./celebrate";

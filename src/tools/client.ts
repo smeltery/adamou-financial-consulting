@@ -5,12 +5,9 @@ import {
   debtPayoff,
   netWorth,
 } from "./math";
-const dollars = (value: number) =>
-  new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 2,
-  }).format(value);
+import { moneyFormat } from "./currencies";
+let currencyFormatter = moneyFormat();
+const money = (value: number) => currencyFormatter.format(value);
 function result(id: string, v: Record<string, number>) {
   if (id === "budget") {
     const { spending, remaining } = monthlyBudget(v.income, [
@@ -20,17 +17,17 @@ function result(id: string, v: Record<string, number>) {
       v.other,
     ]);
     return [
-      dollars(remaining),
+      money(remaining),
       remaining < 0 ? "Monthly shortfall" : "Unallocated each month",
-      `${dollars(spending)} allocated from ${dollars(v.income)} take-home income.`,
+      `${money(spending)} allocated from ${money(v.income)} take-home income.`,
     ];
   }
   if (id === "emergency") {
     const { target, gap } = emergencyFund(v.expenses, v.months, v.saved);
     return [
-      dollars(target),
+      money(target),
       "Your selected cash-buffer target",
-      `${dollars(gap)} still to save. ${v.expenses > 0 ? (v.saved / v.expenses).toFixed(1) + " months currently covered." : "Enter essential expenses to estimate current coverage."}`,
+      `${money(gap)} still to save. ${v.expenses > 0 ? (v.saved / v.expenses).toFixed(1) + " months currently covered." : "Enter essential expenses to estimate current coverage."}`,
     ];
   }
   if (id === "savings") {
@@ -42,7 +39,7 @@ function result(id: string, v: Record<string, number>) {
         : "Estimated time to your goal",
       months === null
         ? "Add a monthly contribution greater than zero to reach the remaining goal."
-        : `${dollars(gap)} left to contribute. Interest is not included.`,
+        : `${money(gap)} left to contribute. Interest is not included.`,
     ];
   }
   if (id === "debt") {
@@ -51,7 +48,7 @@ function result(id: string, v: Record<string, number>) {
       ? [
           `${payoff.months} months`,
           "Estimated time to pay off",
-          `${dollars(payoff.interest)} in interest · ${dollars(payoff.total)} total paid.`,
+          `${money(payoff.interest)} in interest · ${money(payoff.total)} total paid.`,
         ]
       : [
           "Payment needs a closer look",
@@ -60,12 +57,23 @@ function result(id: string, v: Record<string, number>) {
         ];
   }
   return [
-    dollars(netWorth([v.cash, v.investments, v.property], [v.loans, v.cards])),
+    money(netWorth([v.cash, v.investments, v.property], [v.loans, v.cards])),
     "Estimated net worth",
-    `${dollars(v.cash + v.investments + v.property)} in assets − ${dollars(v.loans + v.cards)} in debts. A snapshot, not a measure of your worth as a person.`,
+    `${money(v.cash + v.investments + v.property)} in assets − ${money(v.loans + v.cards)} in debts. A snapshot, not a measure of your worth as a person.`,
   ];
 }
 export function setupTools() {
+  const currency = document.querySelector<HTMLSelectElement>("#tool-currency");
+  currency?.addEventListener("change", () => {
+    currencyFormatter = moneyFormat(currency.value);
+    const { currency: code } = currencyFormatter.resolvedOptions();
+    document.querySelectorAll("[data-currency-unit]").forEach((label) => {
+      label.textContent = `(${code})`;
+    });
+    document
+      .querySelectorAll("[data-calculator]")
+      .forEach((form) => form.dispatchEvent(new Event("input")));
+  });
   const forms = document.querySelectorAll<HTMLFormElement>("[data-calculator]");
   forms.forEach((form) => {
     form

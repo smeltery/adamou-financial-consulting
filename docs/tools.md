@@ -2,7 +2,9 @@
 
 Open `/tools/` and choose a calculator. Replace the example values with your own
 estimates. Results update immediately; **Reset example** restores the defaults.
-All currency amounts are USD. Inputs stay in memory in the browser and are not
+Choose a country and currency to change units and result formatting. This does
+not convert amounts or fetch exchange rates. Use the selected currency for every
+input; switching preserves the numbers you entered. Inputs stay in memory in the browser and are not
 saved, sent to Matt, or included in analytics. Reloading clears your changes.
 
 | Tool           | Method                                                     | Assumptions                                                      |

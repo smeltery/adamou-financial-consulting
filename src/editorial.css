@@ -102,3 +102,20 @@
     padding-inline: 20px;
   }
 }
+
+.faq.section {
+  padding-block: 48px;
+}
+.faq .eyebrow {
+  margin-bottom: 14px;
+}
+.faq h2 {
+  font-size: clamp(32px, 3vw, 44px);
+  margin-bottom: 18px;
+}
+.faq details {
+  padding-block: 16px;
+}
+.faq details p {
+  margin-top: 12px;
+}

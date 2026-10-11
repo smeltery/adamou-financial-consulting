@@ -42,3 +42,11 @@ test("net worth supports negative balances", () => {
   expect(netWorth([10000, 25000, 18000], [12000, 3000])).toBe(38000);
   expect(netWorth([10], [100])).toBe(-90);
 });
+
+import { moneyFormat } from "../src/tools/currencies";
+test("currency formatting follows the selected region without conversion", () => {
+  expect(moneyFormat("en-GB").format(1100)).toBe("£1,100.00");
+  expect(moneyFormat("de-DE").format(1100)).toContain("1.100,00");
+  expect(moneyFormat("ja-JP").resolvedOptions().maximumFractionDigits).toBe(0);
+  expect(moneyFormat("unknown").resolvedOptions().currency).toBe("USD");
+});

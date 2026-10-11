@@ -149,3 +149,18 @@
   height: 22px;
   accent-color: #e7c78c;
 }
+
+.currency-picker {
+  max-width: 390px;
+  margin: 0 0 24px auto;
+}
+.currency-picker select {
+  border-radius: 24px;
+  padding: 13px 38px 13px 20px;
+  background-position: right 18px center;
+}
+.currency-picker > span {
+  display: block;
+  margin-top: 8px;
+  line-height: 1.5;
+}

@@ -30,3 +30,26 @@ test("five calculators update, validate, and reset without sending inputs", asyn
   await expect(result).toContainText("$38,000.00");
   expect(requests).toEqual([]);
 });
+
+test("currency selection updates units and every result without changing inputs", async ({
+  page,
+}) => {
+  await page.goto("/tools/");
+  await page.getByLabel("Country and currency").selectOption("en-GB");
+  await expect(page.locator(".calculator:visible .tool-result")).toContainText(
+    "£1,100.00",
+  );
+  await expect(page.getByLabel("Monthly take-home income (GBP)")).toHaveValue(
+    "4500",
+  );
+  await page
+    .getByRole("button", { name: "Emergency fund", exact: true })
+    .click();
+  await expect(page.locator(".calculator:visible .tool-result")).toContainText(
+    "£8,400.00",
+  );
+  await page.getByLabel("Country and currency").selectOption("de-DE");
+  await expect(page.locator(".calculator:visible .tool-result")).toContainText(
+    "8.400,00",
+  );
+});

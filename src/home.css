@@ -286,17 +286,6 @@
   border-top: 1px solid var(--line);
   padding-top: 8px;
 }
-.faq {
-  border-top: 1px solid var(--line);
-}
-.faq summary {
-  cursor: pointer;
-  font-size: 18px;
-}
-.faq details p {
-  max-width: 760px;
-  margin: 20px 0 0;
-}
 .about-page .text-link svg {
   width: 16px;
   vertical-align: middle;

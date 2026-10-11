@@ -17,7 +17,7 @@ const variants: Record<string, string> = {
 const chapter = (label: string, title: string, content: string) =>
   `<section class="wrap section editorial chapter-${variants[label] || "split"}"><div><p class="eyebrow">${label}</p><h2>${title}</h2></div><div class="chapter-copy">${content}</div></section>`;
 const faq = (items: string[][]) =>
-  `<section class="wrap section faq"><div class="faq-heading"><p class="eyebrow">A FEW THINGS YOU MAY BE WONDERING</p><h2>Good questions.<br>Clear answers.</h2></div><div class="faq-items">${items.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join("")}</div></section>`;
+  `<section class="wrap section faq"><div class="faq-heading"><p class="eyebrow">A FEW THINGS YOU MAY BE WONDERING</p><h2>Good questions.<br>Clear answers.</h2></div><div class="faq-items">${items.map(([q, a]) => `<details name="afin-faq"><summary>${q}<span class="faq-toggle" aria-hidden="true"></span></summary><p>${a}</p></details>`).join("")}</div></section>`;
 export const servicesPage =
   intro(
     "FINANCIAL COACHING",

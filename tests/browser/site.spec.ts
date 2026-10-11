@@ -147,3 +147,19 @@ test("agents can discover and read every page without JavaScript", async ({
     "Contact workflow",
   );
 });
+
+test("FAQ supports keyboard navigation and keeps one answer open", async ({
+  page,
+}) => {
+  await page.goto("/approach/");
+  const rows = page.locator(".faq details");
+  await rows.nth(0).locator("summary").focus();
+  await page.keyboard.press("Enter");
+  await expect(rows.nth(0)).toHaveAttribute("open", "");
+  await expect(rows.nth(0).locator("p")).toBeVisible();
+  await rows.nth(1).locator("summary").click();
+  await expect(rows.nth(1)).toHaveAttribute("open", "");
+  await expect(rows.nth(0)).not.toHaveAttribute("open", "");
+  await page.keyboard.press("Space");
+  await expect(rows.nth(1)).not.toHaveAttribute("open", "");
+});

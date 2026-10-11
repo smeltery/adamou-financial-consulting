@@ -267,3 +267,53 @@
     max-width: 240px;
   }
 }
+
+.editorial {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 80px;
+  border-top: 1px solid var(--line);
+}
+.chapter-copy {
+  max-width: 620px;
+}
+.chapter-copy li {
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+.chapter-copy ul {
+  padding-left: 20px;
+  margin-bottom: 28px;
+}
+.chapter-copy h3 {
+  margin-top: 28px;
+}
+.reading-cards article + article {
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+}
+.faq {
+  border-top: 1px solid var(--line);
+}
+.faq details {
+  border-bottom: 1px solid var(--line);
+  padding: 24px 0;
+}
+.faq summary {
+  cursor: pointer;
+  font-size: 18px;
+}
+.faq details p {
+  max-width: 760px;
+  margin: 20px 0 0;
+}
+.about-page .text-link svg {
+  width: 16px;
+  vertical-align: middle;
+}
+@media (max-width: 700px) {
+  .editorial {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}

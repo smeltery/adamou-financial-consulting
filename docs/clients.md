@@ -4,6 +4,13 @@ Afin is Adamou Financial Consulting, Matt Adamou’s financial coaching practice
 Matt helps individuals, couples, and small businesses with personalized budgets,
 debt payoff plans, and financial goals.
 
+## Explore Afin
+
+- `/services/`: budgeting, debt payoff planning, financial goals, and service FAQs.
+- `/about/`: Matt, the working relationship, and a client testimonial.
+- `/approach/`: the introduction, first conversation, preparation, and next steps.
+- `/brand/`: logo downloads, color, typography, voice, and usage guidance.
+
 ## Start a conversation
 
 Choose **Find your next step** on the homepage, or open `/contact/`.

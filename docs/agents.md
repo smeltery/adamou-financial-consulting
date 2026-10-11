@@ -10,7 +10,8 @@ Open Graph metadata, and JSON-LD organization and page data.
 - `/content/home.md` and matching page names expose Markdown generated from
   the same HTML content, avoiding a separately maintained copy.
 - `Accept: text/markdown` requests return Markdown on canonical page routes;
-  responses vary by `Accept` to keep shared caches correct.
+  responses vary by `Accept` to keep shared caches correct. Missing routes return
+  HTTP 404 with a Markdown recovery message when requested by an agent.
 
 The site declares the `business` category for [Is Agentic](https://is-agentic.com/).
 Run `bunx is-agentic adamou-financial-consulting.vercel.app` after deployment to

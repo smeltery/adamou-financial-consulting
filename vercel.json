@@ -4,46 +4,27 @@
   "installCommand": "bun install --frozen-lockfile",
   "buildCommand": "bun run build",
   "outputDirectory": "dist",
-  "trailingSlash": true,
-  "headers": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "Permissions-Policy",
-          "value": "camera=(), microphone=(), geolocation=()"
-        },
-        {
-          "key": "Vary",
-          "value": "Accept"
-        }
-      ]
+      "src": "/(.*)",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "X-Frame-Options": "DENY",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+        "Vary": "Accept"
+      },
+      "continue": true
     },
     {
-      "source": "/content/(.*)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/markdown; charset=utf-8"
-        }
-      ]
-    }
-  ],
-  "rewrites": [
+      "src": "/(services|about|approach|contact|brand|privacy)",
+      "headers": {
+        "Location": "/$1/"
+      },
+      "status": 308
+    },
     {
-      "source": "/",
+      "src": "/",
       "has": [
         {
           "type": "header",
@@ -51,10 +32,13 @@
           "value": ".*text/markdown.*"
         }
       ],
-      "destination": "/content/home.md"
+      "dest": "/content/home.md",
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8"
+      }
     },
     {
-      "source": "/:page(services|about|approach|contact|brand|privacy)/",
+      "src": "/(services|about|approach|contact|brand|privacy)/",
       "has": [
         {
           "type": "header",
@@ -62,15 +46,48 @@
           "value": ".*text/markdown.*"
         }
       ],
-      "destination": "/content/:page.md"
+      "dest": "/content/$1.md",
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8"
+      }
     },
     {
-      "source": "/",
-      "destination": "/pages/home.html"
+      "src": "/",
+      "dest": "/pages/home.html"
     },
     {
-      "source": "/:page(services|about|approach|contact|brand|privacy)/",
-      "destination": "/pages/:page.html"
+      "src": "/(services|about|approach|contact|brand|privacy)/",
+      "dest": "/pages/$1.html"
+    },
+    {
+      "src": "/content/(.*)",
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8"
+      },
+      "continue": true
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": ".*text/markdown.*"
+        }
+      ],
+      "status": 404,
+      "dest": "/content/not-found.md",
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8"
+      }
+    },
+    {
+      "src": "/(.*)",
+      "status": 404,
+      "dest": "/404.html"
     }
   ]
 }

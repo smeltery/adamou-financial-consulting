@@ -118,6 +118,12 @@ test("email CTA stays readable on hover", async ({ page }) => {
 test("agents can discover and read every page without JavaScript", async ({
   request,
 }) => {
+  const missing = await request.get("/missing-page", {
+    headers: { Accept: "text/markdown" },
+  });
+  expect(missing.status()).toBe(404);
+  expect(missing.headers()["content-type"]).toContain("text/markdown");
+  expect(await missing.text()).toContain("llms.txt");
   const sitemap = await request.get("/sitemap.xml");
   const urls = [...(await sitemap.text()).matchAll(/<loc>(.*?)<\/loc>/g)];
   expect(urls).toHaveLength(7);

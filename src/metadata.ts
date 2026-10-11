@@ -26,6 +26,13 @@ export function metadata(title: string, path: string) {
         "@id": `${siteUrl}/#organization`,
         name: "Adamou Financial Consulting",
         alternateName: "Afin",
+        description: descriptions[""],
+        contactPoint: {
+          "@type": "ContactPoint",
+          email,
+          telephone: "+1-203-770-6522",
+          contactType: "client inquiries",
+        },
         url: siteUrl,
         logo: `${siteUrl}/assets/afin-mark.svg`,
         email,

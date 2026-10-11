@@ -5,9 +5,7 @@ Bun.serve({
   hostname: "127.0.0.1",
   async fetch(request) {
     let pathname = decodeURIComponent(new URL(request.url).pathname);
-    const markdown =
-      request.headers.get("accept")?.includes("text/markdown") &&
-      /^\/(services|about|approach|contact|brand|privacy)?\/?$/.test(pathname);
+    const markdown = request.headers.get("accept")?.includes("text/markdown");
     if (
       /^\/(services|about|approach|contact|brand|privacy)?\/?$/.test(pathname)
     )
@@ -30,10 +28,18 @@ Bun.serve({
             : {}),
         },
       });
-    return new Response(Bun.file(`${root}/404.html`), {
-      status: 404,
-      headers: { "Content-Type": "text/html" },
-    });
+    return new Response(
+      Bun.file(`${root}/${markdown ? "content/not-found.md" : "404.html"}`),
+      {
+        status: 404,
+        headers: {
+          "Content-Type": markdown
+            ? "text/markdown; charset=utf-8"
+            : "text/html",
+          Vary: "Accept",
+        },
+      },
+    );
   },
 });
 console.log("Afin preview: http://localhost:3000");

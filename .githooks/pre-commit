@@ -1,0 +1,3 @@
+#!/bin/sh
+set -eu
+flox activate -- ./scripts/check.sh

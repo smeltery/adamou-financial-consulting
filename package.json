@@ -1,0 +1,26 @@
+{
+  "name": "adamou-financial-consulting",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun run build && bun scripts/serve.ts",
+    "build": "bun scripts/build.ts",
+    "format": "prettier --write .",
+    "check": "prettier --check . && bunx markdownlint-cli2 && bun scripts/validate.ts && bunx --bun tsc && bun test tests/intake.test.ts && bun run build && bunx --bun playwright test",
+    "hooks": "git config core.hooksPath .githooks"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.64.0",
+    "@types/bun": "1.3.11",
+    "happy-dom": "20.14.6",
+    "markdownlint-cli2": "0.18.1",
+    "mermaid": "12.1.0",
+    "prettier": "3.6.2",
+    "typescript": "7.0.2"
+  },
+  "dependencies": {
+    "@vercel/analytics": "2.0.1"
+  }
+}

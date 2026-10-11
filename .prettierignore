@@ -1,0 +1,7 @@
+bun.lock
+.flox/
+dist/
+node_modules/
+LICENSE
+test-results/
+playwright-report/

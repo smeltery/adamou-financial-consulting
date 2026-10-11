@@ -21,11 +21,18 @@
 .tools-heading aside span {
   font-size: 12px;
 }
+.tool-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 28px;
+}
 .tool-picker {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 28px;
+  margin: 0;
 }
 .tool-picker button {
   background: transparent;
@@ -125,6 +132,7 @@
   margin-top: 20px;
 }
 @media (max-width: 700px) {
+  .tool-controls,
   .tools-heading,
   .calculator form,
   .tool-guide .reading-cards {
@@ -151,8 +159,7 @@
 }
 
 .currency-picker {
-  max-width: 390px;
-  margin: 0 0 24px auto;
+  margin: 0;
 }
 .currency-picker select {
   border-radius: 24px;

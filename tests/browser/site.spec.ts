@@ -45,3 +45,22 @@ test("intake validates, reveals business fields, and prepares an unsent draft", 
     page.getByRole("link", { name: "Open email draft" }),
   ).toHaveAttribute("href", /^mailto:madamou@afin-consulting.com/);
 });
+
+test("mobile navigation opens and closes after choosing a section", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  await page.getByLabel("Open navigation menu").click();
+  await expect(
+    page.getByRole("navigation", { name: "Mobile navigation" }),
+  ).toBeVisible();
+  await page
+    .getByRole("navigation", { name: "Mobile navigation" })
+    .getByRole("link", { name: "Services", exact: true })
+    .click();
+  await expect(
+    page.getByRole("navigation", { name: "Mobile navigation" }),
+  ).toBeHidden();
+  await expect(page).toHaveURL(/#services$/);
+});

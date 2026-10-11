@@ -28,7 +28,7 @@ await Bun.write(
   "dist/styles.css",
   (
     await Promise.all(
-      ["base", "home", "forms", "responsive"].map((name) =>
+      ["base", "home", "forms", "responsive", "chrome"].map((name) =>
         Bun.file(`src/${name}.css`).text(),
       ),
     )

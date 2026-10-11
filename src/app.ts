@@ -11,6 +11,18 @@ if (!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {
 }
 import { introduction, sendInquiry } from "./intake";
 declare const FORMSPREE_ENDPOINT: string;
+const menu = document.querySelector<HTMLDetailsElement>(".mobile-menu");
+menu?.querySelectorAll("a").forEach((link) =>
+  link.addEventListener("click", () => {
+    menu.open = false;
+  }),
+);
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && menu?.open) {
+    menu.open = false;
+    menu.querySelector("summary")?.focus();
+  }
+});
 const form = document.querySelector<HTMLFormElement>("#intake");
 if (form) {
   const get = <T extends HTMLElement>(selector: string) =>

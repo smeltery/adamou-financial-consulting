@@ -93,30 +93,7 @@ hr {
   width: min(1240px, calc(100% - 112px));
   margin: auto;
 }
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 120px;
-  border-bottom: 1px solid var(--line);
-  gap: 24px;
-}
-.logo {
-  display: flex;
-}
-.header nav {
-  display: flex;
-  gap: 36px;
-  margin-left: auto;
-  margin-right: 28px;
-}
-.header nav a {
-  font-size: 14px;
-  text-decoration: none;
-}
-.header nav a[aria-current] {
-  text-decoration: underline;
-}
+
 .button {
   display: inline-flex;
   gap: 32px;

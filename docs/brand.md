@@ -15,7 +15,9 @@ Georgia headlines and system sans-serif body text need no external font requests
 Use clear, personal, practical language. Avoid pressure, jargon, invented
 credentials, and promises of specific financial outcomes.
 
-The mountain illustration is native SVG. Matt’s provided portrait appears in
+The hero uses a locally hosted Unsplash photograph of a mountain path by
+[Valentin](https://unsplash.com/photos/winding-path-through-a-green-mountain-valley-MIfIDLi_PIE),
+free under the [Unsplash License](https://unsplash.com/license). The logo stays SVG. Matt’s provided portrait appears in
 the About section. The LinkedIn icon accompanies the profile link; it does not
 imply an affiliation or endorsement.
 

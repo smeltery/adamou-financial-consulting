@@ -1,5 +1,5 @@
 import { closing, testimonial } from "./sections";
-import { linkedin, linkedIcon } from "./identity";
+import { linkedin, linkedIcon, instagram, instagramIcon } from "./identity";
 const intro = (eyebrow: string, title: string, description: string) =>
   `<section class="wrap contact-heading"><p class="eyebrow">${eyebrow}</p><h1>${title}</h1><p class="lead">${description}</p></section>`;
 const variants: Record<string, string> = {
@@ -17,7 +17,7 @@ const variants: Record<string, string> = {
 const chapter = (label: string, title: string, content: string) =>
   `<section class="wrap section editorial chapter-${variants[label] || "split"}"><div><p class="eyebrow">${label}</p><h2>${title}</h2></div><div class="chapter-copy">${content}</div></section>`;
 const faq = (items: string[][]) =>
-  `<section class="wrap section faq"><p class="eyebrow">A FEW THINGS YOU MAY BE WONDERING</p><h2>Good questions.<br>Clear answers.</h2>${items.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join("")}</section>`;
+  `<section class="wrap section faq"><div class="faq-heading"><p class="eyebrow">A FEW THINGS YOU MAY BE WONDERING</p><h2>Good questions.<br>Clear answers.</h2></div><div class="faq-items">${items.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join("")}</div></section>`;
 export const servicesPage =
   intro(
     "FINANCIAL COACHING",
@@ -65,7 +65,7 @@ export const aboutPage =
     "A person in your corner.<br><em>Meet Matt Adamou.</em>",
     "Financial coaching built around your goals, your circumstances, and a clearer way forward.",
   ) +
-  `<section class="about about-page"><div class="wrap about-grid"><div class="portrait"><img src="/assets/matt-adamou.jpg" width="751" height="751" alt="Matt Adamou smiling"><span>MATT ADAMOU / FINANCIAL COACH</span></div><div><p class="eyebrow">THE PERSON BEHIND AFIN</p><h2>Personal guidance<br>starts with a person.</h2><p class="lead">Matt is the financial coach behind Adamou Financial Consulting.</p><p>He helps individuals, couples, and small businesses with customized financial strategies, personalized budgets, and debt payoff planning. Afin’s focus is a long-term partnership around your goals and financial growth.</p><a class="text-link" href="${linkedin}">${linkedIcon} View Matt’s LinkedIn profile</a></div></div></section>` +
+  `<section class="about about-page"><div class="wrap about-grid"><div class="portrait"><img src="/assets/matt-adamou.jpg" width="751" height="751" alt="Matt Adamou smiling"><span>MATT ADAMOU / FINANCIAL COACH</span></div><div><p class="eyebrow">THE PERSON BEHIND AFIN</p><h2>Personal guidance<br>starts with a person.</h2><p class="lead">Matt is the financial coach behind Adamou Financial Consulting.</p><p>He helps individuals, couples, and small businesses with customized financial strategies, personalized budgets, and debt payoff planning. Afin’s focus is a long-term partnership around your goals and financial growth.</p><div class="inline-links"><a href="${linkedin}">${linkedIcon} LinkedIn</a><a href="${instagram}">${instagramIcon} Afin on Instagram</a></div></div></div></section>` +
   chapter(
     "WHAT AFIN STANDS FOR",
     "Your life sets<br>the direction.",

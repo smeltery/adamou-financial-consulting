@@ -108,9 +108,6 @@
   border-bottom: 1px solid var(--sage);
   padding-bottom: 6px;
 }
-.services a span {
-  margin-left: 12px;
-}
 .about {
   background: #e8ede5;
   padding: 90px 0;
@@ -120,9 +117,6 @@
   grid-template-columns: 0.9fr 1fr;
   gap: 100px;
   align-items: center;
-}
-.portrait {
-  position: relative;
 }
 .portrait img {
   height: auto;
@@ -294,10 +288,6 @@
 }
 .faq {
   border-top: 1px solid var(--line);
-}
-.faq details {
-  border-bottom: 1px solid var(--line);
-  padding: 24px 0;
 }
 .faq summary {
   cursor: pointer;

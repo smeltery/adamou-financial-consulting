@@ -24,3 +24,9 @@ imply an affiliation or endorsement.
 Services and contact details come from the supplied business cards. LinkedIn
 was behind a sign-in wall, so no additional biography or credentials were
 inferred from it.
+
+The 1200 × 630 social card is `/assets/afin-social.png`. Rebuild the editable SVG
+and PNG with `bun scripts/social.ts` after changing the brand design.
+
+Social brand icons use [Font Awesome Free](https://fontawesome.com/license/free)
+(CC BY 4.0); their marks identify linked profiles, not endorsements.

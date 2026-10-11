@@ -112,7 +112,7 @@ input[type="checkbox"] {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 .consent input {
   margin-top: 2px;
@@ -184,14 +184,10 @@ blockquote {
 
 select {
   appearance: none;
-  min-height: 48px;
   padding-right: 30px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='%23204f60'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
-}
-.consent {
-  flex-wrap: nowrap;
 }
 .consent span {
   font-size: 13px;

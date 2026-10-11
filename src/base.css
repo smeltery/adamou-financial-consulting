@@ -15,7 +15,6 @@
 }
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 30px;
 }
 body {
   margin: 0;
@@ -23,9 +22,6 @@ body {
 a {
   color: inherit;
   text-underline-offset: 5px;
-}
-a:hover {
-  color: inherit;
 }
 button,
 input,
@@ -113,11 +109,6 @@ hr {
 }
 .button span {
   font-size: 22px;
-}
-.button.small {
-  padding: 13px 20px;
-  font-size: 13px;
-  gap: 25px;
 }
 .button:disabled {
   opacity: 0.65;

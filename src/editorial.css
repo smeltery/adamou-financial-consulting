@@ -104,7 +104,10 @@
 }
 
 .faq.section {
-  padding-block: 48px;
+  padding-block: 32px;
+  display: grid;
+  grid-template-columns: 0.85fr 1.3fr;
+  gap: 48px;
 }
 .faq .eyebrow {
   margin-bottom: 14px;
@@ -114,7 +117,17 @@
   margin-bottom: 18px;
 }
 .faq details {
-  padding-block: 16px;
+  padding-block: 12px;
+}
+.faq details:first-child {
+  padding-top: 0;
+}
+@media (max-width: 700px) {
+  .faq.section {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding-block: 28px;
+  }
 }
 .faq details p {
   margin-top: 12px;

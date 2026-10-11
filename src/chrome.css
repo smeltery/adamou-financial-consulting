@@ -45,7 +45,6 @@ html {
 .nav-cta {
   font-size: 13px;
   padding: 12px 20px;
-  gap: 22px;
   margin-left: 10px;
 }
 .mobile-menu {
@@ -122,7 +121,6 @@ html {
 }
 .site-footer a:hover {
   color: white;
-  text-decoration: none;
 }
 .social-links {
   display: flex;
@@ -137,8 +135,6 @@ html {
   border: 1px solid #68818a;
 }
 .social-links svg {
-  width: 16px;
-  height: 16px;
   margin: 0;
 }
 .footer-contact p {
@@ -151,10 +147,10 @@ html {
 }
 .footer-contact .footer-cta:hover,
 .footer-contact .footer-cta:focus-visible {
-  text-decoration: none;
   border-color: white;
 }
 .footer-bottom {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
   gap: 25px;
@@ -202,7 +198,6 @@ html {
     margin-left: auto;
     padding: 10px 13px;
     font-size: 12px;
-    gap: 12px;
   }
   .mobile-menu {
     display: block;
@@ -314,7 +309,4 @@ html {
   padding: 10px 16px;
   cursor: pointer;
   font-size: 12px;
-}
-.footer-bottom {
-  align-items: center;
 }

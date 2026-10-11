@@ -1,0 +1,104 @@
+.chapter-panel {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 64px;
+  margin-block: 30px;
+  border: 0;
+}
+.chapter-panel .button {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
+}
+.chapter-panel .lead {
+  color: #d6e0dd;
+}
+.chapter-panel .text-link {
+  border-color: #b2c5c6;
+}
+.chapter-reverse {
+  grid-template-columns: 1.15fr 1fr;
+  background: #e8ede5;
+  padding: 64px;
+  border: 0;
+  margin-block: 30px;
+}
+.chapter-reverse > div:first-child {
+  order: 2;
+}
+.chapter-reverse > div:last-child {
+  order: 1;
+}
+.chapter-cards {
+  display: block;
+}
+.chapter-cards .chapter-copy {
+  max-width: none;
+}
+.chapter-cards .reading-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 35px;
+}
+.chapter-cards .reading-cards article {
+  border: 1px solid var(--line);
+  padding: 28px;
+  background: var(--white);
+}
+.chapter-cards .reading-cards article:nth-child(2) {
+  background: #e8ede5;
+}
+.chapter-cards .reading-cards h3 {
+  margin-top: 0;
+}
+.chapter-statement {
+  display: block;
+  text-align: center;
+  max-width: 860px;
+  border: 0;
+}
+.chapter-statement h2 {
+  font-size: clamp(40px, 5vw, 70px);
+}
+.chapter-statement .chapter-copy {
+  margin: auto;
+}
+.chapter-statement .lead {
+  font-size: 24px;
+}
+.chapter-checklist .chapter-copy ul {
+  list-style: none;
+  padding: 0;
+}
+.chapter-checklist .chapter-copy li {
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0 16px 28px;
+  position: relative;
+}
+.chapter-checklist .chapter-copy li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+}
+.testimonial {
+  background: #e8ede5;
+  padding-inline: 40px;
+}
+@media (max-width: 700px) {
+  .chapter-panel,
+  .chapter-reverse {
+    padding: 36px 24px;
+  }
+  .chapter-reverse,
+  .chapter-cards .reading-cards {
+    grid-template-columns: 1fr;
+  }
+  .chapter-reverse > div:first-child,
+  .chapter-reverse > div:last-child {
+    order: initial;
+  }
+  .testimonial {
+    padding-inline: 20px;
+  }
+}

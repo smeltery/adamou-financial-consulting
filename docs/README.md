@@ -8,3 +8,5 @@
 - [Releases](releases.md): automatic tags and downloadable builds.
 
 - [Agent discovery](agents.md): crawlable pages and machine-readable content.
+
+- [Financial tools](tools.md): calculator methods, assumptions, and privacy.

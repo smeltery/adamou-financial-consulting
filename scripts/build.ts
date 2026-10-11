@@ -2,6 +2,7 @@ import { cp, mkdir, rm } from "node:fs/promises";
 import { layout } from "../src/layout";
 import { servicesPage, aboutPage, approachPage } from "../src/pages";
 import { writeCrawlFiles } from "./crawl";
+import { toolsPage } from "../src/tools/catalog";
 import { home } from "../src/home";
 import { contact } from "../src/contact";
 import { brand, privacy } from "../src/brand";
@@ -15,6 +16,7 @@ const pages = [
   ["services", "Financial coaching services", servicesPage],
   ["about", "Meet Matt Adamou", aboutPage],
   ["approach", "Our approach to financial coaching", approachPage],
+  ["tools", "Financial tools and calculators", toolsPage],
   ["contact", "Start a conversation", contact],
   ["brand", "Brand resources", brand],
   ["privacy", "Privacy", privacy],
@@ -38,9 +40,15 @@ await Bun.write(
   "dist/styles.css",
   (
     await Promise.all(
-      ["base", "home", "forms", "responsive", "chrome"].map((name) =>
-        Bun.file(`src/${name}.css`).text(),
-      ),
+      [
+        "base",
+        "home",
+        "forms",
+        "responsive",
+        "chrome",
+        "editorial",
+        "tools/styles",
+      ].map((name) => Bun.file(`src/${name}.css`).text()),
     )
   ).join("\n"),
 );

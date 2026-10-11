@@ -7,7 +7,9 @@ Bun.serve({
     let pathname = decodeURIComponent(new URL(request.url).pathname);
     const markdown = request.headers.get("accept")?.includes("text/markdown");
     if (
-      /^\/(services|about|approach|contact|brand|privacy)?\/?$/.test(pathname)
+      /^\/(services|about|approach|contact|brand|privacy|tools)?\/?$/.test(
+        pathname,
+      )
     )
       pathname = markdown
         ? `/content/${pathname.replaceAll("/", "") || "home"}.md`

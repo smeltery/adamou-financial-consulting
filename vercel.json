@@ -17,7 +17,7 @@
       "continue": true
     },
     {
-      "src": "/(services|about|approach|contact|brand|privacy)",
+      "src": "/(services|about|approach|contact|brand|privacy|tools)",
       "headers": {
         "Location": "/$1/"
       },
@@ -38,7 +38,7 @@
       }
     },
     {
-      "src": "/(services|about|approach|contact|brand|privacy)/",
+      "src": "/(services|about|approach|contact|brand|privacy|tools)/",
       "has": [
         {
           "type": "header",
@@ -56,7 +56,7 @@
       "dest": "/pages/home.html"
     },
     {
-      "src": "/(services|about|approach|contact|brand|privacy)/",
+      "src": "/(services|about|approach|contact|brand|privacy|tools)/",
       "dest": "/pages/$1.html"
     },
     {

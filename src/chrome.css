@@ -186,7 +186,7 @@ html {
     gap: 38px 60px;
   }
 }
-@media (max-width: 700px) {
+@media (max-width: 900px) {
   .header-inner {
     min-height: 80px;
     gap: 18px;

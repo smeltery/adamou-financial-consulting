@@ -10,6 +10,8 @@ export const descriptions: Record<string, string> = {
     "Learn how Afin coaching starts: share your goals, connect with Matt, and agree on the next steps.",
   contact:
     "Introduce yourself to Matt Adamou. Share your financial goals, priorities, and preferred way to connect.",
+  tools:
+    "Free financial calculators from Afin: monthly budgets, emergency funds, savings goals, debt payoff, and net worth. Your numbers stay in your browser.",
   brand:
     "Download Afin’s standalone mountain SVG logo and explore the brand’s colors, typography, and voice.",
   privacy: "How Afin handles inquiry information and Vercel Web Analytics.",

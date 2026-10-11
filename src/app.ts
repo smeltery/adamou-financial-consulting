@@ -1,3 +1,5 @@
+import { setupTools } from "./tools/client";
+setupTools();
 import { celebrate } from "./celebrate";
 import { inject } from "@vercel/analytics";
 if (!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {

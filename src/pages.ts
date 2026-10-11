@@ -2,8 +2,20 @@ import { closing, testimonial } from "./sections";
 import { linkedin, linkedIcon } from "./identity";
 const intro = (eyebrow: string, title: string, description: string) =>
   `<section class="wrap contact-heading"><p class="eyebrow">${eyebrow}</p><h1>${title}</h1><p class="lead">${description}</p></section>`;
+const variants: Record<string, string> = {
+  "02 / DEBT PAYOFF PLANNING": "panel",
+  "03 / FINANCIAL GOALS": "reverse",
+  "WHO IT’S FOR": "cards",
+  "WHAT AFIN STANDS FOR": "statement",
+  "THE WORKING RELATIONSHIP": "cards",
+  "GET TO KNOW THE FIT": "panel",
+  "01 / YOUR INTRODUCTION": "panel",
+  "02 / THE FIRST CONVERSATION": "checklist",
+  "03 / AGREEING ON A DIRECTION": "statement",
+  "PREPARING WITHOUT OVERTHINKING": "cards",
+};
 const chapter = (label: string, title: string, content: string) =>
-  `<section class="wrap section editorial"><div><p class="eyebrow">${label}</p><h2>${title}</h2></div><div class="chapter-copy">${content}</div></section>`;
+  `<section class="wrap section editorial chapter-${variants[label] || "split"}"><div><p class="eyebrow">${label}</p><h2>${title}</h2></div><div class="chapter-copy">${content}</div></section>`;
 const faq = (items: string[][]) =>
   `<section class="wrap section faq"><p class="eyebrow">A FEW THINGS YOU MAY BE WONDERING</p><h2>Good questions.<br>Clear answers.</h2>${items.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join("")}</section>`;
 export const servicesPage =

@@ -1,0 +1,151 @@
+.tools-heading {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.tools-heading aside {
+  background: #e8ede5;
+  padding: 36px;
+  border-left: 3px solid var(--sage);
+}
+.tools-heading aside strong {
+  font:
+    32px Georgia,
+    serif;
+}
+.tools-heading aside p {
+  font-size: 14px;
+  margin-top: 18px;
+}
+.tools-heading aside span {
+  font-size: 12px;
+}
+.tool-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.tool-picker button {
+  background: transparent;
+  border: 1px solid #a7b6b3;
+  padding: 14px 20px;
+  color: var(--ink);
+  cursor: pointer;
+}
+.tool-picker button[aria-pressed="true"] {
+  background: var(--ink);
+  color: white;
+  border-color: var(--ink);
+}
+.calculator {
+  border: 1px solid var(--line);
+  background: var(--white);
+  padding: 40px;
+}
+.tool-intro h2 {
+  font-size: 38px;
+  margin-bottom: 16px;
+}
+.tool-intro .eyebrow {
+  margin-bottom: 15px;
+}
+.calculator form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  margin-top: 32px;
+  align-items: start;
+}
+.tool-fields label {
+  margin-bottom: 18px;
+}
+.tool-fields input {
+  background: var(--paper);
+}
+.tool-result {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 40px;
+  position: sticky;
+  top: 120px;
+}
+.tool-result strong {
+  display: block;
+  font:
+    clamp(32px, 4vw, 54px) / 1.1 Georgia,
+    serif;
+  overflow-wrap: anywhere;
+  margin: 24px 0;
+}
+.tool-result p {
+  font-size: 14px;
+}
+.reset-tool {
+  display: block;
+  border: 0;
+  border-bottom: 1px solid var(--sage);
+  background: transparent;
+  color: var(--ink);
+  padding: 8px 0;
+  margin-top: 16px;
+  cursor: pointer;
+}
+.tool-method {
+  border-top: 1px solid var(--line);
+  margin-top: 36px;
+  padding-top: 24px;
+}
+.tool-method summary {
+  cursor: pointer;
+}
+.tool-method p {
+  font-size: 14px;
+  max-width: 800px;
+  margin-top: 18px;
+}
+.tool-guide .reading-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin: 36px 0;
+}
+.tool-guide article + article {
+  border: 0;
+  padding: 0;
+}
+.tool-guide article > span {
+  font:
+    36px Georgia,
+    serif;
+  color: var(--muted);
+}
+.tool-guide article h3 {
+  margin-top: 20px;
+}
+@media (max-width: 700px) {
+  .tools-heading,
+  .calculator form,
+  .tool-guide .reading-cards {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .calculator {
+    padding: 24px 20px;
+  }
+  .tool-result {
+    position: static;
+    padding: 28px;
+  }
+  .tool-picker button {
+    padding: 12px;
+    font-size: 13px;
+  }
+}
+
+.tool-result meter {
+  width: 100%;
+  height: 22px;
+  accent-color: #e7c78c;
+}

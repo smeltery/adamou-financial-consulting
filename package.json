@@ -7,7 +7,7 @@
     "dev": "bun run build && bun scripts/serve.ts",
     "build": "bun scripts/build.ts",
     "format": "prettier --write .",
-    "check": "prettier --check . && bunx markdownlint-cli2 && bun scripts/validate.ts && bunx --bun tsc && bun test tests/intake.test.ts && bun run build && bunx --bun playwright test",
+    "check": "prettier --check . && bunx markdownlint-cli2 && bun scripts/validate.ts && bunx --bun tsc && bun test tests/*.test.ts && bun run build && bunx --bun playwright test",
     "hooks": "git config core.hooksPath .githooks"
   },
   "devDependencies": {

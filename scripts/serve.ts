@@ -4,7 +4,12 @@ Bun.serve({
   port: Number(process.env.PORT || 3000),
   hostname: "127.0.0.1",
   async fetch(request) {
-    const pathname = decodeURIComponent(new URL(request.url).pathname);
+    let pathname = decodeURIComponent(new URL(request.url).pathname);
+    const markdown =
+      request.headers.get("accept")?.includes("text/markdown") &&
+      /^\/(services|about|approach|contact|brand|privacy)?\/?$/.test(pathname);
+    if (markdown)
+      pathname = `/content/${pathname.replaceAll("/", "") || "home"}.md`;
     const path = resolve(
       root,
       `.${pathname.endsWith("/") ? `${pathname}index.html` : pathname}`,
@@ -12,7 +17,15 @@ Bun.serve({
     if (!path.startsWith(root + sep))
       return new Response("Forbidden", { status: 403 });
     const file = Bun.file(path);
-    if (await file.exists()) return new Response(file);
+    if (await file.exists())
+      return new Response(file, {
+        headers: {
+          Vary: "Accept",
+          ...(pathname.endsWith(".md")
+            ? { "Content-Type": "text/markdown; charset=utf-8" }
+            : {}),
+        },
+      });
     return new Response(Bun.file(`${root}/404.html`), {
       status: 404,
       headers: { "Content-Type": "text/html" },

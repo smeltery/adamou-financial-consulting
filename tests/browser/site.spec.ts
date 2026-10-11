@@ -1,6 +1,14 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-for (const path of ["/", "/brand/", "/contact/", "/privacy/"]) {
+for (const path of [
+  "/",
+  "/services/",
+  "/about/",
+  "/approach/",
+  "/brand/",
+  "/contact/",
+  "/privacy/",
+]) {
   test(`${path} is accessible and fits the viewport`, async ({ page }) => {
     await page.goto(path);
     await expect(page.locator("h1")).toHaveCount(1);
@@ -46,7 +54,7 @@ test("intake validates, reveals business fields, and prepares an unsent draft", 
   ).toHaveAttribute("href", /^mailto:madamou@afin-consulting.com/);
 });
 
-test("mobile navigation opens and closes after choosing a section", async ({
+test("mobile navigation opens and navigates to a dedicated page", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
@@ -62,7 +70,7 @@ test("mobile navigation opens and closes after choosing a section", async ({
   await expect(
     page.getByRole("navigation", { name: "Mobile navigation" }),
   ).toBeHidden();
-  await expect(page).toHaveURL(/#services$/);
+  await expect(page).toHaveURL(/\/services\/$/);
 });
 
 test("navigation pins only after its height without moving page content", async ({
@@ -105,4 +113,30 @@ test("email CTA stays readable on hover", async ({ page }) => {
     .withRules(["color-contrast"])
     .analyze();
   expect(audit.violations).toEqual([]);
+});
+
+test("agents can discover and read every page without JavaScript", async ({
+  request,
+}) => {
+  const sitemap = await request.get("/sitemap.xml");
+  const urls = [...(await sitemap.text()).matchAll(/<loc>(.*?)<\/loc>/g)];
+  expect(urls).toHaveLength(7);
+  for (const [, url] of urls) {
+    const path = new URL(url).pathname;
+    const response = await request.get(path, {
+      headers: { Accept: "text/markdown" },
+    });
+    expect(response.headers()["content-type"]).toContain("text/markdown");
+    expect(await response.text()).toContain("Source:");
+    const html = await (await request.get(path)).text();
+    expect(html).toContain(`rel="canonical" href="${url}"`);
+    expect(
+      JSON.parse(html.match(/application\/ld\+json">(.*?)<\/script>/)![1])[
+        "@graph"
+      ],
+    ).toHaveLength(3);
+  }
+  expect(await (await request.get("/llms.txt")).text()).toContain(
+    "Contact workflow",
+  );
 });

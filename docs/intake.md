@@ -4,7 +4,9 @@
 
 Without `FORMSPREE_ENDPOINT`, the form prepares an email draft for the visitor
 to review and send. It never displays a sent confirmation for that draft.
-No inquiry is stored by this application.
+No inquiry is stored by this application. A confirmed Formspree success launches
+a confetti celebration; email drafts and failed submissions do not. Visitors
+who prefer reduced motion see the confirmation without animation.
 
 ## Enable Formspree
 

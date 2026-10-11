@@ -205,7 +205,6 @@
 .cta .direct:hover,
 .cta .direct:focus-visible {
   color: white;
-  text-decoration-thickness: 2px;
 }
 .direct {
   display: block;
@@ -224,4 +223,26 @@
 }
 .skip:focus {
   top: 10px;
+}
+
+.testimonial {
+  text-align: center;
+}
+.testimonial figure {
+  max-width: 820px;
+  margin: 36px auto 0;
+}
+.testimonial blockquote {
+  margin: 0;
+  font:
+    clamp(22px, 2.5vw, 32px) / 1.6 Georgia,
+    serif;
+}
+.testimonial figcaption {
+  display: grid;
+  gap: 4px;
+  font-size: 14px;
+}
+.testimonial figcaption span {
+  color: var(--muted);
 }

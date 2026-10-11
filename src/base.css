@@ -25,7 +25,7 @@ a {
   text-underline-offset: 5px;
 }
 a:hover {
-  color: #487568;
+  color: inherit;
 }
 button,
 input,
@@ -106,10 +106,9 @@ hr {
   border: 1px solid var(--ink);
   font-size: 15px;
   cursor: pointer;
-  transition: background 0.2s;
 }
 .button:hover {
-  background: #346777;
+  background: #173d4b;
   color: white;
 }
 .button span {

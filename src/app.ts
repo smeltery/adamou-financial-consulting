@@ -1,3 +1,4 @@
+import { celebrate } from "./celebrate";
 import { inject } from "@vercel/analytics";
 if (!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {
   inject({
@@ -95,6 +96,11 @@ if (form) {
       get("#email-fallback").hidden = true;
       status.textContent =
         "Thank you. Your inquiry was sent to Matt. He’ll follow up using your contact details.";
+      try {
+        celebrate();
+      } catch (error) {
+        console.error("Confetti could not start", error);
+      }
     } catch {
       status.textContent =
         "We couldn’t confirm delivery. Your details are still here. Try again, or use the email draft below. If you already received confirmation, avoid sending twice.";

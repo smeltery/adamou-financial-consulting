@@ -6,3 +6,5 @@
 - [Deployment and analytics](deployment.md): Vercel setup and privacy.
 - [Development](development.md): Flox, checks, budgets, and architecture.
 - [Releases](releases.md): automatic tags and downloadable builds.
+
+- [Agent discovery](agents.md): crawlable pages and machine-readable content.

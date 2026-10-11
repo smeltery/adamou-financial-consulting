@@ -39,7 +39,6 @@ html {
   padding: 14px 0;
   border-bottom: 1px solid transparent;
 }
-.desktop-nav a:hover,
 .desktop-nav a[aria-current] {
   border-color: var(--ink);
 }
@@ -123,7 +122,7 @@ html {
 }
 .site-footer a:hover {
   color: white;
-  text-decoration: underline;
+  text-decoration: none;
 }
 .social-links {
   display: flex;

@@ -95,3 +95,14 @@ test("navigation pins only after its height without moving page content", async 
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
   await expect(header).not.toHaveClass(/is-pinned/);
 });
+
+test("email CTA stays readable on hover", async ({ page }) => {
+  await page.goto("/");
+  const link = page.getByRole("link", { name: "Or email Matt directly" });
+  await link.hover();
+  const audit = await new AxeBuilder({ page })
+    .include(".cta")
+    .withRules(["color-contrast"])
+    .analyze();
+  expect(audit.violations).toEqual([]);
+});

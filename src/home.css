@@ -199,6 +199,14 @@
   background: var(--paper);
   color: var(--ink);
 }
+.cta .direct {
+  color: var(--paper);
+}
+.cta .direct:hover,
+.cta .direct:focus-visible {
+  color: white;
+  text-decoration-thickness: 2px;
+}
 .direct {
   display: block;
   width: fit-content;

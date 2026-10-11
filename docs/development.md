@@ -13,6 +13,10 @@ Flox pins Bun and supplies Git and actionlint. Its activation hook sets
 `core.hooksPath` to `.githooks`; the pre-commit hook runs the same check command
 as CI inside Flox. `flox services start preview` is an alternative preview entry.
 
+CI uses GitHub-hosted Ubuntu by default. Set the repository variable
+`CI_RUNNER=blacksmith-2vcpu-ubuntu-2404` when Blacksmith is enabled for the repo.
+The first Blacksmith run remained queued without a runner assignment.
+
 The development server binds to localhost on port 3000. Re-run the build after
 editing files; it intentionally has no framework or watcher.
 

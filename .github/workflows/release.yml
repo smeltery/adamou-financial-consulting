@@ -17,7 +17,7 @@ env:
   RELEASE_TAG: ${{ github.event.inputs.tag || github.ref_name }}
 jobs:
   publish:
-    runs-on: blacksmith-2vcpu-ubuntu-2404
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-24.04' }}
     timeout-minutes: 20
     steps:
       - uses: step-security/harden-runner@ab7a9404c0f3da075243ca237b5fac12c98deaa5

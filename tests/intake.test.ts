@@ -19,7 +19,7 @@ describe("client inquiry delivery", () => {
     data.set("_gotcha", "hidden");
     data.set("notes", "");
     expect(introduction(data)).toBe(
-      "name: Example Client\ngoals: Building a budget\ngoals: Paying down debt",
+      "Name: Example Client\nGoal: Building a budget\nGoal: Paying down debt",
     );
   });
   test("only reports success after Formspree accepts the request", async () => {

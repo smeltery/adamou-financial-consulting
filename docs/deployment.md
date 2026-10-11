@@ -2,7 +2,8 @@
 
 ## Vercel
 
-Import `smeltery/adamou-financial-consulting` into Vercel. The checked-in
+The public `smeltery/adamou-financial-consulting` repository is connected to Vercel.
+The site is available at [adamou-financial-consulting.vercel.app](https://adamou-financial-consulting.vercel.app/). The checked-in
 `vercel.json` uses Bun, builds with `bun run build`, and serves `dist/`.
 No application server or database is required. Connect the GitHub repository
 for automatic previews and production deployments from `main`.

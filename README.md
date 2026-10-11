@@ -7,6 +7,8 @@
 [![Flox](https://img.shields.io/badge/Flox-reproducible-6C4CE4)](https://flox.dev)
 [![License](https://img.shields.io/badge/license-PolyForm_Shield-blue)](LICENSE)
 
+[Visit Afin](https://adamou-financial-consulting.vercel.app/) · [Documentation](docs/README.md)
+
 A lean website for Matt Adamou’s financial coaching practice: clear service
 introductions, a personal About section, a downloadable SVG brand mark, and a
 detailed client intake. Static HTML, CSS, and TypeScript built with Bun;

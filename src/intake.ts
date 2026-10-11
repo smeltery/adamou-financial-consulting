@@ -17,12 +17,30 @@ export function validateEndpoint(endpoint: string) {
   }
   return endpoint;
 }
+const fieldLabels: Record<string, string> = {
+  name: "Name",
+  email: "Email",
+  phone: "Phone",
+  contactPreference: "Preferred contact",
+  clientType: "Coaching for",
+  business: "Business",
+  location: "Location / time zone",
+  goals: "Goal",
+  priority: "Top priority",
+  budget: "Budgeting approach",
+  debt: "Debt focus",
+  timeline: "Timing",
+  experience: "Previous coaching",
+  notes: "Additional context",
+  availability: "Availability",
+  consent: "Permission to respond",
+};
 export function introduction(data: FormData) {
   return [...data.entries()]
     .filter(([key, value]) => !key.startsWith("_") && String(value).trim())
     .map(
       ([key, value]) =>
-        `${key}: ${key === "goals" ? goalLabels[String(value)] || value : value}`,
+        `${fieldLabels[key] || key}: ${key === "goals" ? goalLabels[String(value)] || value : key === "consent" ? "Yes" : value}`,
     )
     .join("\n");
 }

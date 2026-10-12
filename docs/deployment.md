@@ -13,8 +13,9 @@ Add a custom domain in Vercel and follow the DNS records it provides.
 
 ## Web Analytics
 
-The shared browser entry includes `@vercel/analytics`. Enable **Web Analytics**
-in the Vercel project dashboard, then redeploy and visit the site. Confirm page
+The shared browser entry includes `@vercel/analytics`, and Web Analytics is
+enabled for the connected Vercel project. For a fresh project, enable
+**Web Analytics** in its dashboard, then redeploy and visit the site. Confirm page
 views in the dashboard; an SDK installation alone does not verify collection.
 
 Analytics is disabled on localhost. Query strings and fragments are removed

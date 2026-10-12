@@ -7,13 +7,15 @@
     "dev": "bun run build && bun scripts/serve.ts",
     "build": "bun scripts/build.ts",
     "format": "prettier --write .",
-    "check": "prettier --check . && bunx markdownlint-cli2 && bun scripts/validate.ts && bunx --bun tsc && bun test tests/intake.test.ts && bun run build && bunx --bun playwright test",
+    "check": "prettier --check . && bunx markdownlint-cli2 && bun scripts/validate.ts && bunx --bun tsc && bun test tests/*.test.ts && bun run build && bunx --bun playwright test",
     "hooks": "git config core.hooksPath .githooks"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",
+    "@fortawesome/free-brands-svg-icons": "7.3.1",
     "@playwright/test": "1.64.0",
     "@types/bun": "1.3.11",
+    "@types/canvas-confetti": "^1.9.0",
     "happy-dom": "20.14.6",
     "markdownlint-cli2": "0.18.1",
     "mermaid": "12.1.0",
@@ -21,6 +23,7 @@
     "typescript": "7.0.2"
   },
   "dependencies": {
-    "@vercel/analytics": "2.0.1"
+    "@vercel/analytics": "2.0.1",
+    "canvas-confetti": "^1.9.4"
   }
 }

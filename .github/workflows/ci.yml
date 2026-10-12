@@ -22,4 +22,4 @@ jobs:
         with:
           version: 1.18.1
       - name: Check in locked Flox environment
-        run: flox activate -- bash -c 'bun install --frozen-lockfile && bunx --bun playwright install --with-deps chromium && ./scripts/check.sh'
+        run: flox activate -- bash -c 'bun install --frozen-lockfile && bunx --bun playwright install --with-deps --only-shell chromium && ./scripts/check.sh'

@@ -15,9 +15,13 @@ export default defineConfig({
     {
       name: "isolated-vite-cache",
       hooks: {
-        "astro:config:setup": ({ command, updateConfig }) => {
+        "astro:config:setup": ({ command, config, updateConfig }) => {
           // Checks and builds must not replace a running dev server's React cache.
-          updateConfig({ vite: { cacheDir: `node_modules/.vite-${command}` } });
+          updateConfig({
+            vite: {
+              cacheDir: `node_modules/.vite-${command}-${config.server.port}`,
+            },
+          });
         },
       },
     },

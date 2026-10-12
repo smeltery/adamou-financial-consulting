@@ -42,7 +42,9 @@ import { pages } from "../site/navigation";
           "Tools",
           calculators.map((tool) => [
             tool.title,
-            `/tools/#tool-${tool.id}`,
+            Astro.url.pathname === "/tools/"
+              ? `/tools/#tool-${tool.id}`
+              : `/tools/${tool.slug}/`,
             tool.question,
           ]),
         ],

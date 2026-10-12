@@ -127,7 +127,7 @@ test("agents can discover and read every page without JavaScript", async ({
   expect(await missing.text()).toContain("llms.txt");
   const sitemap = await request.get("/sitemap.xml");
   const urls = [...(await sitemap.text()).matchAll(/<loc>(.*?)<\/loc>/g)];
-  expect(urls).toHaveLength(8);
+  expect(urls).toHaveLength(16);
   for (const [, url] of urls) {
     const path = new URL(url).pathname;
     const response = await request.get(path, {

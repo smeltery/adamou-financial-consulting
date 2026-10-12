@@ -14,7 +14,7 @@
 [Visit Afin](https://adamou-financial-consulting.vercel.app/) · [Documentation](docs/README.md)
 
 A lean website for Matt Adamou’s financial coaching practice: clear service
-pages, eight private financial calculators, a downloadable SVG brand mark, and a
+pages, eight private financial calculators with dedicated guides, a downloadable SVG brand mark, and a
 detailed client intake. Agent-readable Markdown, sitemap, and structured data. Astro pages with a React calculator island, managed with Bun;
 Vercel hosting and Web Analytics; optional Formspree delivery.
 
@@ -25,7 +25,7 @@ bunx --bun playwright install chromium
 bun run dev
 ```
 
-Open `http://localhost:3000`. Run `bun run check` for the same quality checks used
+Open `http://localhost:3000`. Run `./scripts/check.sh` (with Docker running) for the same quality checks used
 by the pre-commit hook and CI. Flox installs the hook on activation.
 
 See [the documentation](docs/README.md) for client guidance, brand resources,

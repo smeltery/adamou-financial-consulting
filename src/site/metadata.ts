@@ -2,6 +2,12 @@ import { calculators } from "../tools/catalog";
 import { email, linkedin, instagram } from "./identity";
 export const siteUrl = "https://adamou-financial-consulting.vercel.app";
 export const descriptions: Record<string, string> = {
+  ...Object.fromEntries(
+    calculators.map((tool) => [
+      `tools/${tool.slug}`,
+      `${tool.question} Use Afin’s free ${tool.title.toLowerCase()} calculator, review a worked example, and explore the assumptions. No account needed.`,
+    ]),
+  ),
   "": "Personal financial coaching with Matt Adamou. Build a budget, make a debt payoff plan, and move toward your goals.",
   services:
     "Explore Afin’s personalized budgeting, debt payoff planning, and financial goal coaching for individuals, couples, and small businesses.",
@@ -97,7 +103,7 @@ export function metadata(title: string, path: string) {
                   "@type": "ListItem",
                   position: index + 1,
                   name: tool.title,
-                  url: `${siteUrl}/tools/#tool-${tool.id}`,
+                  url: `${siteUrl}/tools/${tool.slug}/`,
                 })),
               },
             }

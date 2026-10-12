@@ -23,7 +23,7 @@ test("search supports shortcuts, filtering, keyboard links, and focus restoratio
   await input.fill("compound");
   await page.keyboard.press("ArrowDown");
   await page.keyboard.press("Enter");
-  await expect(page).toHaveURL(/tools\/#tool-growth$/);
+  await expect(page).toHaveURL(/tools\/compound-growth\/$/);
   await expect(page.locator(".calculator:visible h2")).toHaveText(
     "Compound growth",
   );

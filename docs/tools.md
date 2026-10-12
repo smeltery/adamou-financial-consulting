@@ -53,3 +53,12 @@ The formulas live in `src/tools/math.ts`, field definitions in `catalog.ts`, res
 explanations in `results.ts`, and the React interface in `CalculatorSuite.tsx`. Unit tests cover zero values, shortfalls,
 rounding, interest, and impossible payoff scenarios. Browser tests cover all
 eight tools, resets, invalid inputs, and the absence of network requests.
+
+## Dedicated guides
+
+Every calculator has a shareable `/tools/<name>/` page with a worked USD example,
+assumptions, and a link to discuss next steps with Matt. The library links to all
+eight guides. Search outside the workspace opens these pages; within `/tools/`,
+switching calculators preserves your current inputs. Existing `#tool-…` links
+continue to work. Reloading or moving to another page resets inputs; financial
+values are never included in a shared URL or a contact link.

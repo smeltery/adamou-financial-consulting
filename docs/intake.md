@@ -38,8 +38,5 @@ allowed domains in the provider dashboard.
 The site follows Formspree’s [JavaScript submission guidance](https://help.formspree.io/articles/building-your-form/submit-forms-with-javascript-ajax/).
 Automated tests mock the provider; they do not contact Matt or prove inbox delivery.
 
-A separate, lighter welcome animation runs once per browser on a first visit.
-It uses only the local `afin:welcomed` flag, respects reduced motion, and skips
-animation if storage is unavailable, the tab is hidden, or a dialog is open.
-This welcome is independent of inquiry delivery; only the larger submission
-celebration indicates a confirmed send. Clearing site data resets the welcome.
+Confetti is reserved for confirmed direct submissions. It respects reduced-motion
+preferences; arriving on the site or preparing an email draft does not trigger it.

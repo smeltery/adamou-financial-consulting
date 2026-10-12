@@ -1,13 +1,12 @@
 import { inject } from "@vercel/analytics";
 
-import { celebrate, welcomeVisitor } from "./celebrate";
+import { celebrate } from "./celebrate";
 import { introduction, sendInquiry } from "./intake";
 import { setupSearch } from "./search";
 
 declare const FORMSPREE_ENDPOINT: string;
 
 setupSearch();
-welcomeVisitor();
 
 if (!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {
   inject({

@@ -21,8 +21,9 @@ import "../tools/styles.css";
 interface Props {
   title: string;
   active?: string;
+  path?: string;
 }
-const { title, active = "" } = Astro.props;
+const { title, active = "", path = active } = Astro.props;
 ---
 
 <!doctype html>
@@ -30,7 +31,7 @@ const { title, active = "" } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <Fragment set:html={metadata(title, active)} />
+    <Fragment set:html={metadata(title, path)} />
     <meta name="theme-color" content="#204f60" />
     <title>{title} | Afin</title>
     <link rel="icon" href="/assets/afin-favicon.svg" type="image/svg+xml" />

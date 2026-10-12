@@ -113,9 +113,12 @@ function CalculatorForm({
   );
 }
 
-export default function CalculatorSuite() {
+export default function CalculatorSuite({ toolId }: { toolId?: string }) {
+  const available = toolId
+    ? calculators.filter((tool) => tool.id === toolId)
+    : calculators;
   const [locale, setLocale] = useState("en-US");
-  const [selected, setSelected] = useState("budget");
+  const [selected, setSelected] = useState(toolId || "budget");
 
   const [ready, setReady] = useState(false);
 
@@ -124,16 +127,16 @@ export default function CalculatorSuite() {
     const select = () => {
       const requested = location.hash.replace("#tool-", "");
       setSelected(
-        calculators.some((tool) => tool.id === requested)
+        !toolId && calculators.some((tool) => tool.id === requested)
           ? requested
-          : "budget",
+          : toolId || "budget",
       );
     };
     select();
     setReady(true);
     window.addEventListener("hashchange", select);
     return () => window.removeEventListener("hashchange", select);
-  }, []);
+  }, [toolId]);
 
   const title =
     calculators.find((tool) => tool.id === selected)?.title || "Monthly budget";
@@ -203,7 +206,7 @@ export default function CalculatorSuite() {
           assumptions are available below.
         </p>
       </noscript>
-      {calculators.map((tool) => (
+      {available.map((tool) => (
         <article
           key={tool.id}
           className="calculator"
@@ -214,6 +217,11 @@ export default function CalculatorSuite() {
             <p className="eyebrow">EXPLORE YOUR NUMBERS</p>
             <h2>{tool.title}</h2>
             <p>{tool.question}</p>
+            {!toolId && (
+              <a className="text-link" href={`/tools/${tool.slug}/`}>
+                Open this calculator’s guide
+              </a>
+            )}
           </div>
           <CalculatorForm tool={tool} locale={locale} ready={ready} />
           <details className="tool-method" open>

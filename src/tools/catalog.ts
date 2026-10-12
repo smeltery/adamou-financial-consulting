@@ -2,6 +2,8 @@ type Field = [name: string, label: string, example: number, unit?: string];
 export const calculators: {
   id: string;
   title: string;
+  slug: string;
+  guide: string;
   question: string;
   fields: Field[];
   formula: string;
@@ -9,6 +11,9 @@ export const calculators: {
 }[] = [
   {
     id: "budget",
+    slug: "monthly-budget",
+    guide:
+      "Start with a typical month, including irregular bills divided across the year. A positive result is money still to assign; a shortfall means the listed commitments exceed take-home income. Try changing one category before changing several.",
     title: "Monthly budget",
     question: "See what’s left after your monthly commitments.",
     fields: [
@@ -24,6 +29,9 @@ export const calculators: {
   },
   {
     id: "emergency",
+    slug: "emergency-fund",
+    guide:
+      "Use essential expenses rather than your total income. Compare different coverage periods, then review the gap between your chosen target and current cash savings. The example coverage is a starting value, not a recommendation.",
     title: "Emergency fund",
     question: "Explore the cash buffer that matches your chosen coverage.",
     fields: [
@@ -37,6 +45,9 @@ export const calculators: {
   },
   {
     id: "savings",
+    slug: "savings-goal",
+    guide:
+      "Choose one goal and count only savings assigned to it. Compare a contribution you can sustain with a higher or lower amount. This estimate counts full monthly contributions and does not assume interest.",
     title: "Savings goal",
     question: "Estimate how many monthly contributions reach your goal.",
     fields: [
@@ -50,6 +61,9 @@ export const calculators: {
   },
   {
     id: "debt",
+    slug: "debt-payoff",
+    guide:
+      "Enter one balance and its APR. Compare a payment your budget supports with a slightly higher payment. If payments do not cover interest, the calculator will explain why this model cannot produce a payoff date.",
     title: "Debt payoff",
     question:
       "Compare what a fixed monthly payment could mean for one balance.",
@@ -64,6 +78,9 @@ export const calculators: {
   },
   {
     id: "networth",
+    slug: "net-worth",
+    guide:
+      "Use a consistent date for your estimates. Include the value of a property and its outstanding mortgage separately, and avoid counting an account twice. A net-worth total is a snapshot, not a measure of available spending money.",
     title: "Net worth",
     question: "Put what you own and what you owe in one snapshot.",
     fields: [
@@ -78,6 +95,9 @@ export const calculators: {
   },
   {
     id: "growth",
+    slug: "compound-growth",
+    guide:
+      "Separate the money you contribute from hypothetical growth. Try different time horizons and rates, including zero, to see how strongly the assumption affects the result. A smooth projected balance does not describe real market fluctuations.",
     title: "Compound growth",
     question: "Explore how regular contributions could grow over time.",
     fields: [
@@ -92,6 +112,9 @@ export const calculators: {
   },
   {
     id: "loan",
+    slug: "loan-payment",
+    guide:
+      "Use the amount borrowed, a fixed interest rate, and the repayment term. Compare the monthly payment and total interest together. Budget separately for fees, insurance, or other costs this estimate does not include.",
     title: "Loan payment",
     question:
       "Estimate the monthly principal and interest for a fixed-rate loan.",
@@ -106,6 +129,9 @@ export const calculators: {
   },
   {
     id: "inflation",
+    slug: "inflation",
+    guide:
+      "Start with the cost of a specific expense today. Change the time horizon or assumed rate to explore possible future costs. This is a constant-rate scenario, not a prediction of prices in your country.",
     title: "Inflation",
     question: "See how a steady rise in prices could change a future expense.",
     fields: [

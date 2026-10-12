@@ -9,7 +9,8 @@
     "format": "prettier --write .",
     "check": "prettier --check . && bunx markdownlint-cli2 && bun scripts/validate.ts && astro check && tsc && bun test tests/*.test.ts && bun run build && bunx --bun playwright test",
     "hooks": "git config core.hooksPath .githooks",
-    "preview": "bun scripts/serve.ts"
+    "preview": "bun scripts/serve.ts",
+    "check:visual": "sh scripts/visual.sh"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",

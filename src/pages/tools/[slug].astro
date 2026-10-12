@@ -1,0 +1,87 @@
+---
+import Layout from "../../layouts/SiteLayout.astro";
+import { calculators } from "../../tools/catalog";
+import CalculatorSuite from "../../tools/CalculatorSuite";
+import { result } from "../../tools/results";
+import { moneyFormat } from "../../tools/currencies";
+
+export function getStaticPaths() {
+  return calculators.map((tool) => ({
+    params: { slug: tool.slug },
+    props: { tool },
+  }));
+}
+const { tool } = Astro.props;
+const values = Object.fromEntries(
+  tool.fields.map(([name, , value]) => [name, value]),
+);
+const [amount, label, detail] = result(tool.id, values, moneyFormat("en-US"));
+const goal =
+  tool.id === "budget" ? "budget" : tool.id === "debt" ? "debt" : "goals";
+---
+
+<Layout
+  title={`${tool.title} calculator`}
+  active="tools"
+  path={`tools/${tool.slug}`}
+>
+  <section class="wrap contact-heading calculator-heading">
+    <a class="text-link" href="/tools/">
+      All financial tools
+    </a>
+    <p class="eyebrow">THE AFIN TOOLKIT</p>
+    <h1>{tool.title} calculator</h1>
+    <p class="lead">{tool.question}</p>
+    <p class="micro">
+      Private calculations in your browser. No account required.
+    </p>
+  </section>
+  <CalculatorSuite toolId={tool.id} client:load />
+  <section class="wrap section calculator-guide" aria-label="Calculator guide">
+    <div>
+      <p class="eyebrow">MAKE THE RESULT USEFUL</p>
+      <h2>What to look for.</h2>
+      <p>{tool.guide}</p>
+      <a class="text-link" href={`/contact/?goal=${goal}`}>
+        Discuss your next step with Matt
+      </a>
+      <p class="micro">
+        Your calculator inputs are not included in your inquiry.
+      </p>
+    </div>
+    <aside>
+      <p class="eyebrow">WORKED EXAMPLE · USD</p>
+      <h3>
+        {label}: {amount}
+      </h3>
+      <dl>
+        {tool.fields.map(([, name, value, unit]) => (
+          <div>
+            <dt>{name}</dt>
+            <dd>
+              {unit ? `${value} ${unit}` : moneyFormat("en-US").format(value)}
+            </dd>
+          </div>
+        ))}
+      </dl>
+      <p>{detail}</p>
+      <p class="micro">
+        The example matches the starting inputs. It is an illustration, not a
+        recommendation.
+      </p>
+    </aside>
+  </section>
+  <section class="wrap section">
+    <p class="eyebrow">KEEP EXPLORING</p>
+    <h2>Another question to work through?</h2>
+    <nav class="calculator-links" aria-label="Other calculators">
+      {calculators
+        .filter((other) => other.id !== tool.id)
+        .map((other) => (
+          <a class="text-link" href={`/tools/${other.slug}/`}>
+            {other.title}
+          </a>
+        ))}
+    </nav>
+  </section>
+</Layout>

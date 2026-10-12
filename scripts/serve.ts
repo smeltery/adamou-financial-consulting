@@ -1,4 +1,4 @@
-import { siteUrl } from "../src/site/metadata";
+import { siteUrl, descriptions } from "../src/site/metadata";
 import { resolve, sep } from "node:path";
 const root = resolve("dist");
 Bun.serve({
@@ -16,25 +16,23 @@ Bun.serve({
           Location: buildPage[1] === "home" ? "/" : `/${buildPage[1]}/`,
         },
       });
-    if (
-      /^\/(services|about|approach|contact|brand|privacy|tools)$/.test(pathname)
-    )
+    const page = pathname.replace(/^\/|\/$/g, "");
+    const knownPage = Object.hasOwn(descriptions, page);
+    if (knownPage && pathname !== "/" && !pathname.endsWith("/"))
       return new Response(null, {
         status: 308,
         headers: { Location: `${pathname}/` },
       });
     const markdown = request.headers.get("accept")?.includes("text/markdown");
-    if (
-      /^\/(services|about|approach|contact|brand|privacy|tools)?\/?$/.test(
-        pathname,
-      )
-    )
+    if (knownPage)
       pathname = markdown
-        ? `/content/${pathname.replaceAll("/", "") || "home"}.md`
-        : `${pathname.endsWith("/") ? pathname : `${pathname}/`}index.html`;
-    const documentName = pathname.match(
-      /^\/content\/(home|services|about|approach|contact|brand|privacy|tools)\.md$/,
-    )?.[1];
+        ? `/content/${page || "home"}.md`
+        : `${pathname}index.html`;
+    const match = pathname.match(/^\/content\/(.+)\.md$/)?.[1];
+    const documentName =
+      match && Object.hasOwn(descriptions, match === "home" ? "" : match)
+        ? match
+        : null;
     const canonical = documentName
       ? `${siteUrl}/${documentName === "home" ? "" : `${documentName}/`}`
       : null;

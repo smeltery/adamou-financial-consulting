@@ -4,6 +4,7 @@ import { uiIcon } from "../site/identity";
 import Closing from "../components/sections/Closing.astro";
 
 import Layout from "../layouts/SiteLayout.astro";
+import { calculators } from "../tools/catalog";
 import CalculatorSuite from "../tools/CalculatorSuite";
 ---
 
@@ -76,6 +77,19 @@ import CalculatorSuite from "../tools/CalculatorSuite";
       These educational estimates aren’t personalized financial advice. Review
       the assumptions before using a result for a decision.
     </p>
+  </section>
+  <section class="wrap section">
+    <p class="eyebrow">THE FULL LIBRARY</p>
+    <h2>A tool for the question in front of you.</h2>
+    <div class="calculator-library">
+      {calculators.map((tool) => (
+        <a href={`/tools/${tool.slug}/`}>
+          <h3>{tool.title}</h3>
+          <p>{tool.question}</p>
+          <span class="text-link">Calculator and guide</span>
+        </a>
+      ))}
+    </div>
   </section>
   <Closing />
 </Layout>

@@ -85,6 +85,7 @@
   left: 0;
 }
 .testimonial {
+  margin-bottom: clamp(32px, 5vw, 72px);
   background: #e8ede5;
   padding-inline: 40px;
 }

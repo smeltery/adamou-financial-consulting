@@ -20,7 +20,7 @@ export function setupSearch() {
     });
     const count = links.filter((link) => !link.hidden).length;
     status.textContent = count
-      ? `${count} results. Use arrow keys to browse, Enter to open.`
+      ? `${count} ${count === 1 ? "result" : "results"}. Use arrow keys to browse, Enter to open.`
       : "No matches. Try budgeting, savings, or contact.";
   };
   const open = () => {

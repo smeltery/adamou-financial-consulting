@@ -12,7 +12,6 @@ const variants: Record<string, string> = {
   "02 / DEBT PAYOFF PLANNING": "panel",
   "03 / FINANCIAL GOALS": "reverse",
   "WHO IT’S FOR": "cards",
-  "WHAT AFIN STANDS FOR": "statement",
   "THE WORKING RELATIONSHIP": "cards",
   "GET TO KNOW THE FIT": "panel",
   "01 / YOUR INTRODUCTION": "panel",
@@ -80,11 +79,28 @@ export const aboutPage =
     "Financial coaching built around your goals, your circumstances, and a clearer way forward.",
   ) +
   `<section class="about about-page"><div class="wrap about-grid"><div class="portrait"><img src="/assets/matt-adamou.jpg" width="751" height="751" alt="Matt Adamou smiling"><span>MATT ADAMOU / FINANCIAL COACH</span></div><div><p class="eyebrow">THE PERSON BEHIND AFIN</p><h2>Personal guidance<br> starts with a person.</h2><p class="lead">Matt is the financial coach behind Adamou Financial Consulting.</p><p>He helps individuals, couples, and small businesses with customized financial strategies, personalized budgets, and debt payoff planning. Afin’s focus is a long-term partnership around your goals and financial growth.</p><div class="inline-links"><a href="${linkedin}">${linkedIcon} LinkedIn</a><a href="${instagram}">${instagramIcon} Afin on Instagram</a></div></div></div></section>` +
-  chapter(
-    "WHAT AFIN STANDS FOR",
-    "Your life sets<br> the direction.",
-    `<p class="lead">Financial guidance should connect to something that matters to you.</p><p>A calmer month. Less uncertainty around debt. More room for a goal you’ve put off. Your reason for seeking help is the starting point—not a template you need to fit.</p><p>Afin brings the conversation back to your priorities so the next steps have a purpose you recognize.</p>`,
-  ) +
+  `<section class="wrap section values" aria-labelledby="values-title"><div class="values-intro"><p class="eyebrow">WHAT AFIN STANDS FOR</p><h2 id="values-title">Your life sets<br> <em>the direction.</em></h2><p class="lead">Financial guidance should connect to something that matters to you.</p><p class="values-principle">Your priorities are the starting point. Together, give your next steps a purpose you recognize.</p></div><div class="values-list"><p class="eyebrow">WHAT PROGRESS COULD LOOK LIKE</p>${[
+    [
+      "wallet",
+      "A calmer month.",
+      "A clearer view of everyday spending, with a budget shaped around your life.",
+    ],
+    [
+      "compass",
+      "Less uncertainty around debt.",
+      "Understand your options and find a practical next step that fits your circumstances.",
+    ],
+    [
+      "target",
+      "More room for your goals.",
+      "Make space for what you’ve been putting off—and connect today’s choices to what comes next.",
+    ],
+  ]
+    .map(
+      ([icon, title, description]) =>
+        `<article><span class="values-icon">${uiIcon(icon)}</span><div><h3>${title}</h3><p>${description}</p></div></article>`,
+    )
+    .join("")}</div></section>` +
   chapter(
     "THE WORKING RELATIONSHIP",
     "Practical.<br> Personal.<br> Built together.",

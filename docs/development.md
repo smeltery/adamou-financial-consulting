@@ -22,6 +22,11 @@ The preview uses localhost:3000; rebuild after editing files.
 syntax, LOC budgets, strict TypeScript, inquiry tests, and the production build.
 `actionlint` validates GitHub workflows in the shared `scripts/check.sh` entry.
 
+Use `bun run format` to apply Prettier before committing. HTML template literals
+carry a `/* HTML */` annotation so Prettier formats their contents, not just the
+surrounding TypeScript. `.prettierrc.json` sets the shared formatting rules;
+pre-commit and CI enforce them with `prettier --check`.
+
 ## Architecture
 
 ```mermaid
@@ -48,7 +53,7 @@ Source is grouped by responsibility:
 ## Budgets
 
 Tracked source, docs, scripts, and configuration have a 1,000-line file ceiling,
-20 direct files per directory, and a 5,200-line overall ceiling. Generated
+20 direct files per directory, and a 7,000-line overall ceiling. Generated
 assets, lockfiles, and Flox metadata are excluded. See `scripts/budgets.json`.
 
 Add new files to Git before running budget checks; CI checks the tracked snapshot.
@@ -63,3 +68,5 @@ Responsive line breaks retain literal whitespace so hiding a break cannot join w
 The mobile menu slides in from the right and fades its backdrop with CSS transitions and a closing animation. Reduced-motion visitors get an immediate open and close.
 
 Search opens and closes with a short fade and lift. Result changes animate without delaying filtering; rapid input replaces the previous animation. All search motion respects reduced-motion preferences.
+
+The overall LOC ceiling includes expanded, formatted HTML templates. The per-file limit remains 1,000 lines; readability should not require compressing markup.

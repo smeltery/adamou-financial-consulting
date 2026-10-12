@@ -4,13 +4,21 @@ export const linkedin =
   "https://www.linkedin.com/in/matt-adamou-p-e-9b7059111/";
 export const instagram =
   "https://www.instagram.com/adamoufinancial.consulting/";
-const brandIcon = ({ icon: [width, height, , , paths] }: typeof faInstagram) =>
-  `<svg viewBox="0 0 ${width} ${height}" aria-hidden="true" fill="currentColor"><!-- Font Awesome Free https://fontawesome.com/license/free CC BY 4.0 -->${[
-    paths,
-  ]
-    .flat()
-    .map((path) => `<path d="${path}"/>`)
-    .join("")}</svg>`;
+const brandIcon = ({
+  icon: [width, height, , , paths],
+}: typeof faInstagram) => /* HTML */ `
+  <svg viewBox="0 0 ${width} ${height}" aria-hidden="true" fill="currentColor">
+    <!-- Font Awesome Free https://fontawesome.com/license/free CC BY 4.0 -->
+    ${[paths]
+      .flat()
+      .map(
+        (path) => /* HTML */ `
+          <path d="${path}" />
+        `,
+      )
+      .join("")}
+  </svg>
+`;
 export const linkedIcon = brandIcon(faLinkedinIn);
 export const instagramIcon = brandIcon(faInstagram);
 
@@ -45,5 +53,18 @@ export function uiIcon(name: string) {
     chevron: '<path d="m9 5 7 7-7 7"/>',
     switch: '<path d="m8 8 4-4 4 4M8 16l4 4 4-4"/>',
   };
-  return `<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name] || paths.page}</svg>`;
+  return /* HTML */ `
+    <svg
+      class="ui-icon"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      ${paths[name] || paths.page}
+    </svg>
+  `;
 }

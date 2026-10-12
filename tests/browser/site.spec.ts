@@ -138,7 +138,7 @@ test("agents can discover and read every page without JavaScript", async ({
     const html = await (await request.get(path)).text();
     expect(html).toContain(`rel="canonical" href="${url}"`);
     expect(
-      JSON.parse(html.match(/application\/ld\+json">(.*?)<\/script>/)![1])[
+      JSON.parse(html.match(/application\/ld\+json">(.*?)<\/script>/s)![1])[
         "@graph"
       ],
     ).toHaveLength(4);

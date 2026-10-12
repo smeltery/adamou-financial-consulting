@@ -21,7 +21,7 @@ test("search metadata is unique and structured entities match the public content
     descriptions.add(html.match(/name="description" content="([^"]+)"/)![1]);
     expect(html).not.toContain('content="noindex"');
     const graph = JSON.parse(
-      html.match(/application\/ld\+json">(.*?)<\/script>/)![1],
+      html.match(/application\/ld\+json">(.*?)<\/script>/s)![1],
     )["@graph"];
     const person = graph.find(
       (item: Record<string, unknown>) => item["@type"] === "Person",

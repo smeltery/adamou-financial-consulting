@@ -13,7 +13,7 @@ export function layout(title: string, content: string, active = "") {
   <a class="skip" href="#main">Skip to content</a>
   <div class="header-space"><header class="site-header"><div class="wrap header-inner">
     <a class="logo" href="/" aria-label="Afin home"><img src="/assets/afin-mark.svg" width="76" height="38" alt="Afin mountain mark"><span class="logo-name">Adamou Financial Consulting</span></a>
-    <nav class="desktop-nav" aria-label="Main navigation"><a href="/services/" ${active === "services" ? 'aria-current="page"' : ""}>Services</a><a href="/about/" ${active === "about" ? 'aria-current="page"' : ""}>About Matt</a><a href="/approach/" ${active === "approach" ? 'aria-current="page"' : ""}>Our approach</a><a href="/tools/" ${active === "tools" ? 'aria-current="page"' : ""}>Tools</a><a href="/brand/" ${active === "brand" ? 'aria-current="page"' : ""}>Brand</a></nav>
+    <nav class="desktop-nav" aria-label="Main navigation"><a href="/services/" ${active === "services" ? 'aria-current="page"' : ""}>Services</a><a href="/about/" ${active === "about" ? 'aria-current="page"' : ""}>About Matt</a><a href="/approach/" ${active === "approach" ? 'aria-current="page"' : ""}>Our approach</a><a href="/tools/" ${active === "tools" ? 'aria-current="page"' : ""}>Tools</a></nav>
     <button class="search-trigger" type="button" data-search hidden aria-haspopup="dialog" aria-controls="site-search" aria-label="Search">${uiIcon("search")}<span>Search</span><kbd>⌘K</kbd></button>
     <a class="button nav-cta" href="/contact/">Contact Matt</a>
     <button class="mobile-menu-trigger" type="button" hidden aria-label="Open navigation menu" aria-haspopup="dialog" aria-controls="mobile-navigation">${uiIcon("menu")}</button>

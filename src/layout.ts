@@ -1,4 +1,5 @@
-import { calculators } from "./tools/catalog";
+import { searchMarkup, mobileMarkup } from "./navigation";
+import { uiIcon } from "./identity";
 import {
   email,
   linkedin,
@@ -13,32 +14,10 @@ export function layout(title: string, content: string, active = "") {
   <div class="header-space"><header class="site-header"><div class="wrap header-inner">
     <a class="logo" href="/" aria-label="Afin home"><img src="/assets/afin-mark.svg" width="76" height="38" alt="Afin mountain mark"><span class="logo-name">Adamou Financial Consulting</span></a>
     <nav class="desktop-nav" aria-label="Main navigation"><a href="/services/" ${active === "services" ? 'aria-current="page"' : ""}>Services</a><a href="/about/" ${active === "about" ? 'aria-current="page"' : ""}>About Matt</a><a href="/approach/" ${active === "approach" ? 'aria-current="page"' : ""}>Our approach</a><a href="/tools/" ${active === "tools" ? 'aria-current="page"' : ""}>Tools</a><a href="/brand/" ${active === "brand" ? 'aria-current="page"' : ""}>Brand</a></nav>
-    <button class="search-trigger" type="button" data-search hidden aria-haspopup="dialog" aria-controls="site-search">Search<kbd>⌘K</kbd></button>
+    <button class="search-trigger" type="button" data-search hidden aria-haspopup="dialog" aria-controls="site-search" aria-label="Search">${uiIcon("search")}<span>Search</span><kbd>⌘K</kbd></button>
     <a class="button nav-cta" href="/contact/">Contact Matt</a>
-    <details class="mobile-menu"><summary aria-label="Open navigation menu"><span></span><span></span><span></span></summary><nav aria-label="Mobile navigation"><a href="/services/" ${active === "services" ? 'aria-current="page"' : ""}>Services</a><a href="/about/" ${active === "about" ? 'aria-current="page"' : ""}>About Matt</a><a href="/approach/" ${active === "approach" ? 'aria-current="page"' : ""}>Our approach</a><a href="/tools/" ${active === "tools" ? 'aria-current="page"' : ""}>Tools</a><a href="/brand/">Brand resources</a><a href="/contact/">Start a conversation</a></nav></details>
-  </div></header></div>
-  <dialog id="site-search" aria-labelledby="search-title"><div class="search-heading"><h2 id="search-title">Find your way</h2><button type="button" data-close aria-label="Close search">Close</button></div><label for="search-query">Search pages and tools</label><input id="search-query" type="search" placeholder="Try savings, loans, or contact…" autocomplete="off"><p role="status" aria-live="polite"></p><nav class="search-results" aria-label="Search results">${[
-    ["Home", "/", "afin overview"],
-    ["Services", "/services/", "coaching budget debt small business"],
-    ["About Matt", "/about/", "adamou coach profile"],
-    ["Our approach", "/approach/", "process faq questions"],
-    ["Financial tools", "/tools/", "calculators money"],
-    ["Contact Matt", "/contact/", "intake appointment help email"],
-    ["Brand resources", "/brand/", "logo colors"],
-    ["Privacy", "/privacy/", "data"],
-    ...calculators.map((tool) => [
-      tool.title,
-      `/tools/#tool-${tool.id}`,
-      tool.question,
-    ]),
-    ["Email Matt", `mailto:${email}`, "contact message"],
-    ["Call Matt", "tel:+12037706522", "phone contact"],
-  ]
-    .map(
-      ([title, href, keywords]) =>
-        `<a href="${href}" data-keywords="${keywords}">${title}</a>`,
-    )
-    .join("")}</nav></dialog>
+    <button class="mobile-menu-trigger" type="button" hidden aria-label="Open navigation menu" aria-haspopup="dialog" aria-controls="mobile-navigation">${uiIcon("menu")}</button>
+  </div></header></div>${mobileMarkup(active)}${searchMarkup}
   <main id="main">${content}</main><footer class="site-footer"><div class="wrap">
   <div class="footer-grid"><div class="footer-brand"><a href="/" aria-label="Afin home"><img src="/assets/afin-mark.svg" width="80" height="40" alt="Afin mountain mark"></a><p class="footer-name">Adamou Financial<br>Consulting</p><p>Personal guidance.<br>A clearer path forward.</p><div class="social-links"><a href="${linkedin}" aria-label="Matt Adamou on LinkedIn">${linkedIcon}</a><a href="${instagram}" aria-label="Afin on Instagram">${instagramIcon}</a></div></div>
   <nav aria-label="Footer services"><h2>HOW WE HELP</h2><a href="/contact/?goal=budget">Budgeting</a><a href="/contact/?goal=debt">Debt payoff planning</a><a href="/contact/?goal=goals">Financial goals</a><a href="/services/">Small-business support</a></nav>

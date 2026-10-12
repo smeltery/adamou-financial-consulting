@@ -1,6 +1,6 @@
 # Financial tools
 
-Open `/tools/` and choose a calculator. Replace the example values with your own
+Open `/tools/` and select **Your calculator** to browse the searchable tool library. Replace the example values with your own
 estimates. Results update immediately; **Reset example** restores the defaults.
 Choose a country and currency to change units and result formatting. This does
 not convert amounts or fetch exchange rates. Use the selected currency for every
@@ -26,7 +26,8 @@ and the [CFPB explanation of costs beyond principal and interest](https://www.co
 Use **Search** in the header, **⌘K** on Mac, or **Ctrl+K** elsewhere to find pages,
 calculators, and contact links. Type a few words, use arrow keys to select a
 result, and press Enter. Escape closes search and restores focus. Search runs
-locally; queries are neither stored nor sent to a search service. Calculator
+locally; filter results by Pages, Tools, or Contact. Both search and mobile navigation
+lock background scrolling and return you to your previous position when dismissed. Queries are neither stored nor sent to a search service. Calculator
 links include a fragment (for example, `/tools/#tool-loan`) so you can bookmark
 a specific tool. Financial inputs are never included in these links.
 

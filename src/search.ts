@@ -1,83 +1,128 @@
 export function setupSearch() {
-  const shortcut = document.querySelector(".search-trigger kbd");
-  if (shortcut && !/Mac|iPhone|iPad/.test(navigator.platform))
-    shortcut.textContent = "Ctrl K";
-  const dialog = document.querySelector<HTMLDialogElement>("#site-search")!;
-  const input = dialog.querySelector<HTMLInputElement>("input")!;
+  const search = document.querySelector<HTMLDialogElement>("#site-search")!;
+  const menu = document.querySelector<HTMLDialogElement>("#mobile-navigation")!;
+  const input = search.querySelector<HTMLInputElement>("input")!;
   const links = [
-    ...dialog.querySelectorAll<HTMLAnchorElement>(".search-results a"),
+    ...search.querySelectorAll<HTMLAnchorElement>(".search-results a"),
   ];
-  const status = dialog.querySelector<HTMLElement>("[role=status]")!;
-  let previousFocus: HTMLElement | null = null;
+  const scopes = [
+    ...search.querySelectorAll<HTMLButtonElement>("[data-scope]"),
+  ];
+  const status = search.querySelector<HTMLElement>("[role=status]")!;
+  let scope = "all",
+    scrollPosition = 0;
+  let returnFocus: HTMLElement | null = null;
+  const close = (dialog: HTMLDialogElement) => {
+    dialog.close();
+    document.body.style.top = "";
+    document.documentElement.classList.remove("overlay-open");
+    window.scrollTo({ top: scrollPosition, behavior: "instant" });
+    returnFocus?.focus({ preventScroll: true });
+  };
+  const show = (dialog: HTMLDialogElement, trigger: HTMLElement | null) => {
+    const current = document.querySelector<HTMLDialogElement>("dialog[open]");
+    if (current) close(current);
+    scrollPosition = window.scrollY;
+    returnFocus = trigger;
+    document.body.style.top = `-${scrollPosition}px`;
+    document.documentElement.classList.add("overlay-open");
+    dialog.showModal();
+  };
   const filter = () => {
     const words = input.value.toLowerCase().trim().split(/\s+/);
     links.forEach((link) => {
-      link.hidden = !words.every((word) =>
-        `${link.textContent} ${link.dataset.keywords}`
-          .toLowerCase()
-          .includes(word),
+      const group = link.closest<HTMLElement>("[data-group]")!.dataset.group;
+      link.hidden =
+        (scope !== "all" && scope !== group) ||
+        !words.every((word) => link.textContent!.toLowerCase().includes(word));
+    });
+    search.querySelectorAll<HTMLElement>("[data-group]").forEach((group) => {
+      group.hidden = ![...group.querySelectorAll<HTMLAnchorElement>("a")].some(
+        (link) => !link.hidden,
       );
     });
+    scopes.forEach((button) =>
+      button.setAttribute(
+        "aria-pressed",
+        String(button.dataset.scope === scope),
+      ),
+    );
     const count = links.filter((link) => !link.hidden).length;
-    status.textContent = count
-      ? `${count} ${count === 1 ? "result" : "results"}. Use arrow keys to browse, Enter to open.`
-      : "No matches. Try budgeting, savings, or contact.";
+    status.textContent = `${count} ${count === 1 ? "result" : "results"}`;
+    search.querySelector<HTMLElement>(".search-empty")!.hidden = count > 0;
+    search.querySelector(".search-scroll")!.scrollTop = 0;
   };
-  const open = () => {
-    if (dialog.open) {
-      dialog.close();
-      return;
-    }
-    previousFocus = document.activeElement as HTMLElement;
-    document
-      .querySelector<HTMLDetailsElement>(".mobile-menu")
-      ?.removeAttribute("open");
+  const openSearch = (trigger: HTMLElement | null, selectedScope = "all") => {
+    scope = selectedScope;
     input.value = "";
     filter();
-    dialog.showModal();
+    show(search, trigger);
     input.focus();
   };
+  const shortcut = document.querySelector(".search-trigger kbd");
+  if (shortcut && !/Mac|iPhone|iPad/.test(navigator.platform))
+    shortcut.textContent = "Ctrl K";
   document
     .querySelectorAll<HTMLButtonElement>("[data-search]")
     .forEach((button) => {
       button.hidden = false;
-      button.addEventListener("click", () => {
-        open();
-        previousFocus = button;
-      });
+      button.addEventListener("click", () =>
+        openSearch(button, button.dataset.search || "all"),
+      );
     });
+  const menuTrigger = document.querySelector<HTMLButtonElement>(
+    ".mobile-menu-trigger",
+  )!;
+  menuTrigger.hidden = false;
+  menuTrigger.addEventListener("click", () => show(menu, menuTrigger));
+  matchMedia("(min-width: 901px)").addEventListener("change", (event) => {
+    if (event.matches && menu.open) close(menu);
+  });
   document.addEventListener("keydown", (event) => {
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
       event.preventDefault();
-      open();
+      if (search.open) close(search);
+      else openSearch(document.activeElement as HTMLElement);
     }
   });
   input.addEventListener("input", filter);
-  dialog
-    .querySelector("[data-close]")!
-    .addEventListener("click", () => dialog.close());
-  dialog.addEventListener("close", () =>
-    previousFocus?.focus({ preventScroll: true }),
+  scopes.forEach((button) =>
+    button.addEventListener("click", () => {
+      scope = button.dataset.scope!;
+      filter();
+      input.focus();
+    }),
   );
-  dialog.addEventListener("click", (event) => {
-    if (event.target === dialog) {
+  [search, menu].forEach((dialog) => {
+    dialog
+      .querySelector("[data-close]")!
+      .addEventListener("click", () => close(dialog));
+    dialog.addEventListener("cancel", (event) => {
+      event.preventDefault();
+      close(dialog);
+    });
+    dialog.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        close(dialog);
+      }
+    });
+    dialog.addEventListener("click", (event) => {
       const rect = dialog.getBoundingClientRect();
       if (
-        event.clientX < rect.left ||
-        event.clientX > rect.right ||
-        event.clientY < rect.top ||
-        event.clientY > rect.bottom
+        event.target === dialog &&
+        (event.clientX < rect.left ||
+          event.clientX > rect.right ||
+          event.clientY < rect.top ||
+          event.clientY > rect.bottom)
       )
-        dialog.close();
-    }
+        close(dialog);
+    });
+    dialog
+      .querySelectorAll("a")
+      .forEach((link) => link.addEventListener("click", () => close(dialog)));
   });
-  links.forEach((link) => link.addEventListener("click", () => dialog.close()));
-  dialog.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      event.preventDefault();
-      dialog.close();
-      return;
-    }
+  search.addEventListener("keydown", (event) => {
     const visible = links.filter((link) => !link.hidden);
     if (event.key === "Enter" && event.target === input) {
       event.preventDefault();
@@ -88,9 +133,12 @@ export function setupSearch() {
     event.preventDefault();
     const index = visible.indexOf(document.activeElement as HTMLAnchorElement);
     const start = index < 0 && event.key === "ArrowUp" ? 0 : index;
-    visible[
-      (start + (event.key === "ArrowDown" ? 1 : -1) + visible.length) %
-        visible.length
-    ].focus();
+    const next =
+      visible[
+        (start + (event.key === "ArrowDown" ? 1 : -1) + visible.length) %
+          visible.length
+      ];
+    next.focus({ preventScroll: true });
+    next.scrollIntoView({ block: "nearest", behavior: "instant" });
   });
 }

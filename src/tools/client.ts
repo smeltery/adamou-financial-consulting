@@ -158,26 +158,18 @@ export function setupTools() {
     form.addEventListener("reset", () => setTimeout(update, 0));
     update();
   });
-  const buttons = document.querySelectorAll<HTMLButtonElement>("[data-tool]");
-  const select = (id: string) => {
-    buttons.forEach((button) =>
-      button.setAttribute("aria-pressed", String(button.dataset.tool === id)),
-    );
-    forms.forEach((form) => {
-      form.closest<HTMLElement>(".calculator")!.hidden =
-        form.dataset.calculator !== id;
-    });
-  };
-  buttons.forEach((button) =>
-    button.addEventListener("click", () => {
-      location.hash = `tool-${button.dataset.tool!}`;
-    }),
-  );
   const selectFromHash = () => {
-    const id = location.hash.replace("#tool-", "");
-    select(
-      [...buttons].some((button) => button.dataset.tool === id) ? id : "budget",
-    );
+    const requested = location.hash.replace("#tool-", "");
+    const id = [...forms].some((form) => form.dataset.calculator === requested)
+      ? requested
+      : "budget";
+    forms.forEach((form) => {
+      const article = form.closest<HTMLElement>(".calculator")!;
+      article.hidden = form.dataset.calculator !== id;
+      if (!article.hidden)
+        document.querySelector("#selected-tool")!.textContent =
+          article.querySelector("h2")!.textContent;
+    });
   };
   if (forms.length) {
     window.addEventListener("hashchange", selectFromHash);

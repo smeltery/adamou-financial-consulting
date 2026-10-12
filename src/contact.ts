@@ -1,3 +1,4 @@
+import { uiIcon } from "./identity";
 const select = (
   name: string,
   label: string,
@@ -8,7 +9,7 @@ const select = (
 export const contact = `
 <section class="wrap contact-heading"><p class="eyebrow">LET’S FIND YOUR NEXT STEP</p><h1>A little about you.<br><em>A good place to start.</em></h1><p class="lead">Tell Matt what’s on your mind. You don’t need exact numbers<br class="desktop"> or a perfect plan to start a conversation.</p></section>
 
-<section class="wrap intake-layout"><aside><h2>It starts with<br>a conversation.</h2><p>This introduction helps Matt understand your goals before connecting with you.</p><p>Share only what you’re comfortable sharing. Please don’t include account numbers, passwords, Social Security numbers, or financial documents.</p><hr><p>Prefer to reach out directly?</p><a href="mailto:madamou@afin-consulting.com">Email Matt</a><a href="tel:+12037706522">(203) 770-6522</a><p class="micro">* Required fields</p></aside><form id="intake">
+<section class="wrap intake-layout"><aside><h2>It starts with<br>a conversation.</h2><p>This introduction helps Matt understand your goals before connecting with you.</p><p>Share only what you’re comfortable sharing. Please don’t include account numbers, passwords, Social Security numbers, or financial documents.</p><hr><p>Prefer to reach out directly?</p><a class="icon-link" href="mailto:madamou@afin-consulting.com">${uiIcon("contact")}Email Matt</a><a class="icon-link" href="tel:+12037706522">${uiIcon("phone")}(203) 770-6522</a><p class="micro">* Required fields</p></aside><form id="intake">
 <fieldset><legend><span>01</span> Let’s get acquainted</legend><div class="fields"><label>Full name *<input name="name" autocomplete="name" required maxlength="100"></label><label>Email address *<input type="email" name="email" autocomplete="email" required maxlength="200"></label><label>Phone <span id="phone-requirement">(optional)</span><input type="tel" name="phone" autocomplete="tel" maxlength="40"></label>${select("contactPreference", "Preferred way to connect", ["Email", "Phone"], true)}<label>Location / time zone <span>(optional)</span><input name="location" maxlength="100" placeholder="City, state or time zone"></label>${select("clientType", "Who is this for?", ["Myself", "My partner and me", "My small business"], true)}</div><label id="business-field" hidden>Business name and type <span>(optional)</span><input name="business" maxlength="200" disabled></label></fieldset>
 
 <fieldset><legend><span>02</span> What brings you here?</legend><p>Select any areas you’d like to explore.</p><div class="choices">${[

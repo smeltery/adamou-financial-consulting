@@ -1,5 +1,11 @@
 import { closing, testimonial } from "./sections";
-import { linkedin, linkedIcon, instagram, instagramIcon } from "./identity";
+import {
+  linkedin,
+  linkedIcon,
+  instagram,
+  instagramIcon,
+  uiIcon,
+} from "./identity";
 const intro = (eyebrow: string, title: string, description: string) =>
   `<section class="wrap contact-heading"><p class="eyebrow">${eyebrow}</p><h1>${title}</h1><p class="lead">${description}</p></section>`;
 const variants: Record<string, string> = {
@@ -14,8 +20,16 @@ const variants: Record<string, string> = {
   "03 / AGREEING ON A DIRECTION": "statement",
   "PREPARING WITHOUT OVERTHINKING": "cards",
 };
+const chapterIcons: Record<string, string> = {
+  "01 / PERSONALIZED BUDGETING": "wallet",
+  "02 / DEBT PAYOFF PLANNING": "debt",
+  "03 / FINANCIAL GOALS": "target",
+  "01 / YOUR INTRODUCTION": "person",
+  "02 / THE FIRST CONVERSATION": "conversation",
+  "03 / AGREEING ON A DIRECTION": "compass",
+};
 const chapter = (label: string, title: string, content: string) =>
-  `<section class="wrap section editorial chapter-${variants[label] || "split"}"><div><p class="eyebrow">${label}</p><h2>${title}</h2></div><div class="chapter-copy">${content}</div></section>`;
+  `<section class="wrap section editorial chapter-${variants[label] || "split"}"><div><p class="eyebrow icon-label">${chapterIcons[label] ? uiIcon(chapterIcons[label]) : ""}${label}</p><h2>${title}</h2></div><div class="chapter-copy">${content}</div></section>`;
 const faq = (items: string[][]) =>
   `<section class="wrap section faq"><div class="faq-heading"><p class="eyebrow">A FEW THINGS YOU MAY BE WONDERING</p><h2>Good questions.<br>Clear answers.</h2></div><div class="faq-items">${items.map(([q, a]) => `<details name="afin-faq"><summary>${q}<span class="faq-toggle" aria-hidden="true"></span></summary><p>${a}</p></details>`).join("")}</div></section>`;
 export const servicesPage =
@@ -74,7 +88,7 @@ export const aboutPage =
   chapter(
     "THE WORKING RELATIONSHIP",
     "Practical.<br>Personal.<br>Built together.",
-    `<div class="reading-cards"><article><h3>Clarity before complexity</h3><p>Start with what is happening today and what you want to understand better. A useful next step should make sense in your everyday life.</p></article><article><h3>Room for your circumstances</h3><p>Your responsibilities, timing, and goals shape the conversation. You don’t need to arrive with everything organized.</p></article><article><h3>A longer view</h3><p>Afin’s focus on partnership connects today’s financial choices with the direction you want to grow.</p></article></div>`,
+    `<div class="reading-cards"><article><span class="card-icon">${uiIcon("search")}</span><h3>Clarity before complexity</h3><p>Start with what is happening today and what you want to understand better. A useful next step should make sense in your everyday life.</p></article><article><span class="card-icon">${uiIcon("person")}</span><h3>Room for your circumstances</h3><p>Your responsibilities, timing, and goals shape the conversation. You don’t need to arrive with everything organized.</p></article><article><span class="card-icon">${uiIcon("compass")}</span><h3>A longer view</h3><p>Afin’s focus on partnership connects today’s financial choices with the direction you want to grow.</p></article></div>`,
   ) +
   testimonial +
   chapter(

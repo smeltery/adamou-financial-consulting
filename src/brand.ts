@@ -1,7 +1,8 @@
+import { uiIcon } from "./identity";
 export const brand = `
 <section class="wrap contact-heading"><p class="eyebrow">THE AFIN BRAND</p><h1>Grounded in clarity.<br><em>Built for possibility.</em></h1><p class="lead">A visual identity for a more personal path forward.</p></section>
 
-<section class="wrap section brand-mark"><div class="mark-preview"><img src="/assets/afin-mark.svg" width="300" height="144" alt="Afin mountain symbol"></div><div><p class="eyebrow">01 / THE MARK</p><h2>A clear direction.</h2><p>The overlapping mountain lines from Matt’s business card, redrawn as a clean, scalable SVG. The symbol stands on its own, without a wordmark.</p><a class="button" href="/assets/afin-mark.svg" download="afin-mark.svg">Download the SVG <span aria-hidden="true">↓</span></a><p class="micro">Keep its proportions. Leave at least one peak’s height of clear space. Use on a light, uncluttered background.</p></div></section>
+<section class="wrap section brand-mark"><div class="mark-preview"><img src="/assets/afin-mark.svg" width="300" height="144" alt="Afin mountain symbol"></div><div><p class="eyebrow">01 / THE MARK</p><h2>A clear direction.</h2><p>The overlapping mountain lines from Matt’s business card, redrawn as a clean, scalable SVG. The symbol stands on its own, without a wordmark.</p><a class="button" href="/assets/afin-mark.svg" download="afin-mark.svg">Download the SVG ${uiIcon("download")}</a><p class="micro">Keep its proportions. Leave at least one peak’s height of clear space. Use on a light, uncluttered background.</p></div></section>
 
 <section class="wrap section"><p class="eyebrow">02 / COLOR</p><h2>Calm. Warm. Confident.</h2><div class="swatches">${[
   ["Mountain blue", "#315E89"],

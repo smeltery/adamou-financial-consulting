@@ -6,7 +6,6 @@ import "@fontsource/libre-caslon-text/400.css";
 import "@fontsource/libre-caslon-text/400-italic.css";
 import { createRoot } from "react-dom/client";
 import App from "./App";
+import "./login.css";
 import "./styles.css";
 createRoot(document.getElementById("root")!).render(<App />);
-
-import "./login.css";

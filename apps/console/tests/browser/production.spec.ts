@@ -16,6 +16,11 @@ test("production offers no demo or anonymous path to client records", async ({
     "content",
     "noindex,nofollow",
   );
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
   const files = await page
     .locator("script[src]")
     .evaluateAll((nodes) =>

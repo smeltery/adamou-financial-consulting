@@ -12,11 +12,11 @@ await rm("dist", { recursive: true, force: true });
 await mkdir("dist", { recursive: true });
 await cp("public", "dist", { recursive: true });
 const pages = [
-  ["", "Financial coaching for a clearer path forward", home],
+  ["", "Financial Coaching | Adamou Financial Consulting", home],
   ["services", "Financial coaching services", servicesPage],
   ["about", "Meet Matt Adamou", aboutPage],
   ["approach", "Our approach to financial coaching", approachPage],
-  ["tools", "Financial tools and calculators", toolsPage],
+  ["tools", "Free Financial Calculators: Budget, Debt & Savings", toolsPage],
   ["contact", "Start a conversation", contact],
   ["brand", "Brand resources", brand],
   ["privacy", "Privacy", privacy],

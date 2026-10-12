@@ -141,7 +141,7 @@ test("agents can discover and read every page without JavaScript", async ({
       JSON.parse(html.match(/application\/ld\+json">(.*?)<\/script>/)![1])[
         "@graph"
       ],
-    ).toHaveLength(3);
+    ).toHaveLength(4);
   }
   expect(await (await request.get("/llms.txt")).text()).toContain(
     "Contact workflow",

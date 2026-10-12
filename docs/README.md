@@ -10,3 +10,5 @@
 - [Agent discovery](agents.md): crawlable pages and machine-readable content.
 
 - [Financial tools](tools.md): calculator methods, assumptions, and privacy.
+
+- [Search visibility](seo.md): SEO foundations, launch setup, and content priorities.

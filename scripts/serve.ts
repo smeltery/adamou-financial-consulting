@@ -1,3 +1,4 @@
+import { siteUrl } from "../src/metadata";
 import { resolve, sep } from "node:path";
 const root = resolve("dist");
 Bun.serve({
@@ -5,6 +6,23 @@ Bun.serve({
   hostname: "127.0.0.1",
   async fetch(request) {
     let pathname = decodeURIComponent(new URL(request.url).pathname);
+    const buildPage = pathname.match(
+      /^\/pages\/(home|services|about|approach|contact|brand|privacy|tools)\.html$/,
+    );
+    if (buildPage)
+      return new Response(null, {
+        status: 308,
+        headers: {
+          Location: buildPage[1] === "home" ? "/" : `/${buildPage[1]}/`,
+        },
+      });
+    if (
+      /^\/(services|about|approach|contact|brand|privacy|tools)$/.test(pathname)
+    )
+      return new Response(null, {
+        status: 308,
+        headers: { Location: `${pathname}/` },
+      });
     const markdown = request.headers.get("accept")?.includes("text/markdown");
     if (
       /^\/(services|about|approach|contact|brand|privacy|tools)?\/?$/.test(
@@ -14,6 +32,12 @@ Bun.serve({
       pathname = markdown
         ? `/content/${pathname.replaceAll("/", "") || "home"}.md`
         : `/pages/${pathname.replaceAll("/", "") || "home"}.html`;
+    const documentName = pathname.match(
+      /^\/content\/(home|services|about|approach|contact|brand|privacy|tools)\.md$/,
+    )?.[1];
+    const canonical = documentName
+      ? `${siteUrl}/${documentName === "home" ? "" : `${documentName}/`}`
+      : null;
     const path = resolve(
       root,
       `.${pathname.endsWith("/") ? `${pathname}index.html` : pathname}`,
@@ -25,6 +49,7 @@ Bun.serve({
       return new Response(file, {
         headers: {
           Vary: "Accept",
+          ...(canonical ? { Link: `<${canonical}>; rel="canonical"` } : {}),
           ...(pathname.endsWith(".md")
             ? { "Content-Type": "text/markdown; charset=utf-8" }
             : {}),

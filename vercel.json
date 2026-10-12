@@ -17,6 +17,34 @@
       "continue": true
     },
     {
+      "src": "/pages/home\\.html",
+      "headers": {
+        "Location": "/"
+      },
+      "status": 308
+    },
+    {
+      "src": "/pages/(services|about|approach|contact|brand|privacy|tools)\\.html",
+      "headers": {
+        "Location": "/$1/"
+      },
+      "status": 308
+    },
+    {
+      "src": "/content/home\\.md",
+      "headers": {
+        "Link": "<https://adamou-financial-consulting.vercel.app/>; rel=\"canonical\""
+      },
+      "continue": true
+    },
+    {
+      "src": "/content/(services|about|approach|contact|brand|privacy|tools)\\.md",
+      "headers": {
+        "Link": "<https://adamou-financial-consulting.vercel.app/$1/>; rel=\"canonical\""
+      },
+      "continue": true
+    },
+    {
       "src": "/(services|about|approach|contact|brand|privacy|tools)",
       "headers": {
         "Location": "/$1/"

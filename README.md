@@ -12,7 +12,7 @@
 [Visit Afin](https://adamou-financial-consulting.vercel.app/) · [Documentation](docs/README.md)
 
 A lean website for Matt Adamou’s financial coaching practice: clear service
-pages, five private financial calculators, a downloadable SVG brand mark, and a
+pages, eight private financial calculators, a downloadable SVG brand mark, and a
 detailed client intake. Agent-readable Markdown, sitemap, and structured data. Static HTML, CSS, and TypeScript built with Bun;
 Vercel hosting and Web Analytics; optional Formspree delivery.
 

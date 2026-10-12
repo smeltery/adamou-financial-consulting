@@ -28,5 +28,7 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: browser-diagnostics
-          path: test-results/
+          path: |
+            apps/site/test-results/
+            apps/console/test-results/
           retention-days: 7

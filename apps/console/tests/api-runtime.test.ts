@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 
-test("the emitted API runs on Node without a bundler resolving imports", () => {
+test("the console API runs on Node and fails closed without credentials", () => {
   const output = mkdtempSync(join(tmpdir(), "afin-api-"));
   const node = process.env.FLOX_ENV
     ? `${process.env.FLOX_ENV}/bin/node`
@@ -12,8 +12,8 @@ test("the emitted API runs on Node without a bundler resolving imports", () => {
   try {
     const compile = Bun.spawnSync([
       node,
-      "node_modules/typescript/bin/tsc",
-      "api/activity.ts",
+      "../../node_modules/typescript/bin/tsc",
+      "api/intake.ts",
       "--module",
       "NodeNext",
       "--moduleResolution",
@@ -22,7 +22,7 @@ test("the emitted API runs on Node without a bundler resolving imports", () => {
       "ES2022",
       "--skipLibCheck",
       "--rootDir",
-      ".",
+      "../..",
       "--outDir",
       output,
     ]);
@@ -31,7 +31,9 @@ test("the emitted API runs on Node without a bundler resolving imports", () => {
       compile.stdout.toString() + compile.stderr.toString(),
     ).toBe(0);
     writeFileSync(join(output, "package.json"), '{"type":"module"}');
-    const entry = pathToFileURL(join(output, "api/activity.js")).href;
+    const entry = pathToFileURL(
+      join(output, "apps/console/api/intake.js"),
+    ).href;
     const run = Bun.spawnSync(
       [
         node,
@@ -39,8 +41,8 @@ test("the emitted API runs on Node without a bundler resolving imports", () => {
         "--eval",
         `
       import handler from ${JSON.stringify(entry)};
-      const response = await handler.fetch(new Request("https://afin.test/api/activity"));
-      if (response.status !== 200 || JSON.stringify(await response.json()) !== '{"events":[]}') throw new Error("Expected an empty unconfigured feed");
+      const response = await handler.fetch(new Request("https://afin.test/api/intake", {method: "POST", body: "{}"}));
+      if (response.status !== 503) throw new Error("Expected unconfigured webhook rejection");
     `,
       ],
       {
@@ -48,8 +50,8 @@ test("the emitted API runs on Node without a bundler resolving imports", () => {
           ...process.env,
           FORMSPREE_WEBHOOK_SECRET: "",
           FORMSPREE_FORM_ID: "",
-          UPSTASH_REDIS_REST_URL: "",
-          UPSTASH_REDIS_REST_TOKEN: "",
+          SUPABASE_URL: "",
+          SUPABASE_SERVICE_ROLE_KEY: "",
         },
       },
     );

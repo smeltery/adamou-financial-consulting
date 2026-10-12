@@ -21,5 +21,5 @@ No API, MCP server, booking availability, or payment system is advertised.
 Agents should get visitor consent before sending an inquiry and must not treat
 an email draft as successful delivery. See [intake delivery](intake.md).
 
-When moving to a custom domain, update `siteUrl` in `src/site/metadata.ts` and rebuild
+When moving to a custom domain, update `siteUrl` in `apps/site/src/site/metadata.ts` and rebuild
 so canonical URLs, structured data, sitemap, and Markdown links stay consistent.

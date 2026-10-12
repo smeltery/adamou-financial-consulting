@@ -15,10 +15,14 @@ test("the live preview keeps calculators working after checks and a build", asyn
     ? `${process.env.FLOX_ENV}/bin/node`
     : "node";
   for (const command of ["check", "build"]) {
-    const run = spawnSync(node, ["node_modules/astro/bin/astro.mjs", command], {
-      encoding: "utf8",
-      timeout: 60_000,
-    });
+    const run = spawnSync(
+      node,
+      ["../../node_modules/astro/bin/astro.mjs", command],
+      {
+        encoding: "utf8",
+        timeout: 60_000,
+      },
+    );
     expect(run.status, run.stderr + run.stdout).toBe(0);
   }
   const crawl = spawnSync("bun", ["scripts/crawl.ts"], { encoding: "utf8" });

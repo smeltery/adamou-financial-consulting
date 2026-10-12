@@ -1,11 +1,5 @@
-export const goalLabels: Record<string, string> = {
-  budget: "Building a budget",
-  debt: "Paying down debt",
-  goals: "Saving toward a goal",
-  habits: "Building money habits",
-  business: "Small-business finances",
-  unsure: "Finding a starting point",
-};
+import { fieldLabels, goalLabels } from "@afin/intake";
+export { goalLabels } from "@afin/intake";
 
 export function validateEndpoint(endpoint: string) {
   if (
@@ -18,25 +12,6 @@ export function validateEndpoint(endpoint: string) {
   }
   return endpoint;
 }
-
-const fieldLabels: Record<string, string> = {
-  name: "Name",
-  email: "Email",
-  phone: "Phone",
-  contactPreference: "Preferred contact",
-  clientType: "Coaching for",
-  business: "Business",
-  location: "Location / time zone",
-  goals: "Goal",
-  priority: "Top priority",
-  budget: "Budgeting approach",
-  debt: "Debt focus",
-  timeline: "Timing",
-  experience: "Previous coaching",
-  notes: "Additional context",
-  availability: "Availability",
-  consent: "Permission to respond",
-};
 
 export function introduction(data: FormData) {
   return [...data.entries()]

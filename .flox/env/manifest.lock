@@ -31,6 +31,9 @@
       ]
     },
     "services": {
+      "console": {
+        "command": "bun run dev:console"
+      },
       "preview": {
         "command": "bun run dev"
       }

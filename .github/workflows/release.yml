@@ -35,11 +35,11 @@ jobs:
         with:
           version: 1.18.1
       - name: Verify and build
-        run: flox activate -- bash -c 'bun install --frozen-lockfile && bunx --bun playwright install --with-deps --only-shell chromium && ./scripts/check.sh'
+        run: flox activate -- bash -c 'bun install --frozen-lockfile && node node_modules/@playwright/test/cli.js install --with-deps --only-shell chromium && ./scripts/check.sh'
       - name: Package static site
         run: |
-          cp LICENSE dist/LICENSE
-          tar -czf afin-site.tar.gz -C dist .
+          cp LICENSE apps/site/dist/LICENSE
+          tar -czf afin-site.tar.gz -C apps/site/dist .
           sha256sum afin-site.tar.gz > afin-site.tar.gz.sha256
       - uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64
         with:

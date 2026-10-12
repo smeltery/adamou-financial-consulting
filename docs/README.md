@@ -13,3 +13,5 @@
 - [Financial tools](tools.md): calculator methods, assumptions, and privacy.
 
 - [Search visibility](seo.md): SEO foundations, launch setup, and content priorities.
+
+- [Matt’s private client workspace](workspace.md): daily workflow, setup, access, and intake sync.

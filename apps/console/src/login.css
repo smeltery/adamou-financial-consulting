@@ -1,0 +1,88 @@
+.login {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  min-height: 100dvh;
+}
+.login-art {
+  background: #e6ece1;
+  padding: 60px clamp(30px, 6vw, 110px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.login-art .brand {
+  margin-bottom: 90px;
+}
+.login-art h1 {
+  font-size: clamp(40px, 4vw, 66px);
+}
+.login-art h1 em {
+  color: #658478;
+}
+.login-art > p:not(.eyebrow) {
+  margin-top: 28px;
+  max-width: 440px;
+  font-size: 16px;
+}
+.login-art > span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 80px;
+  font-size: 12px;
+}
+.login-form {
+  max-width: 450px;
+  width: 100%;
+  margin: auto;
+  padding: 40px;
+}
+.login-form h2 {
+  font-size: 28px;
+  margin: 24px 0 14px;
+}
+.login-form > p {
+  color: var(--muted);
+  margin-bottom: 25px;
+}
+.login-form form {
+  display: grid;
+  gap: 20px;
+}
+.login-form > small {
+  display: block;
+  margin-top: 24px;
+}
+.login-form > .secondary {
+  margin-top: 22px;
+}
+.icon-tile {
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  background: var(--sage);
+  display: grid;
+  place-items: center;
+}
+.auth-error {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #f9e9e5;
+  padding: 20px;
+  color: #862e23;
+}
+.client-panel {
+  animation: enter 0.2s ease;
+}
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

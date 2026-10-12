@@ -1,0 +1,6 @@
+{
+  "name": "@afin/intake",
+  "private": true,
+  "type": "module",
+  "exports": "./index.ts"
+}

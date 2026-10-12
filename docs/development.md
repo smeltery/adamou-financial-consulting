@@ -46,17 +46,17 @@ flowchart LR
 
 Source is grouped by responsibility:
 
-| Directory         | Responsibility                                         |
-| ----------------- | ------------------------------------------------------ |
-| `src/pages/`      | File-based Astro routes and content                    |
-| `src/components/` | Shared Astro navigation, forms, and sections           |
-| `src/layouts/`    | HTML document, header, footer, and shared assets       |
-| `src/site/`       | Business identity, metadata, and structured data       |
-| `src/client/`     | Browser entry point, search, celebrations, and intake  |
-| `src/styles/`     | Shared and page styles, in explicit build order        |
-| `src/tools/`      | Calculator definitions, formulas, behavior, and styles |
+| Directory                   | Responsibility                                         |
+| --------------------------- | ------------------------------------------------------ |
+| `apps/site/src/pages/`      | File-based Astro routes and content                    |
+| `apps/site/src/components/` | Shared Astro navigation, forms, and sections           |
+| `apps/site/src/layouts/`    | HTML document, header, footer, and shared assets       |
+| `apps/site/src/site/`       | Business identity, metadata, and structured data       |
+| `apps/site/src/client/`     | Browser entry point, search, celebrations, and intake  |
+| `apps/site/src/styles/`     | Shared and page styles, in explicit build order        |
+| `apps/site/src/tools/`      | Calculator definitions, formulas, behavior, and styles |
 
-`scripts/` holds build and quality checks; `public/assets/` holds images. Public URLs stay stable; Astro fingerprints compiled CSS and JavaScript for caching.
+`scripts/` holds build and quality checks; `apps/site/public/assets/` holds images. Public URLs stay stable; Astro fingerprints compiled CSS and JavaScript for caching.
 
 Content pages render as HTML at build time. Only `/tools/` loads React through
 `CalculatorSuite.tsx` with `client:load`; other interactions use focused TypeScript
@@ -70,7 +70,7 @@ content has one source of truth. There is no application server or client router
 ## Budgets
 
 Tracked source, docs, scripts, and configuration have a 1,000-line file ceiling,
-20 direct files per directory, and a 10,500-line overall ceiling. Generated
+20 direct files per directory, and a 15,000-line overall ceiling. Generated
 assets, lockfiles, and Flox metadata are excluded. See `scripts/budgets.json`.
 
 Add new files to Git before running budget checks; CI checks the tracked snapshot.
@@ -102,7 +102,7 @@ Screenshots cover the hero, services, calculator, intake, search, and mobile men
 
 After an intentional design change, run `bun run build` followed by
 `bun run check:visual --update-snapshots`. Inspect every changed PNG under
-`tests/visual/baselines/` before committing. Never regenerate snapshots just to
+`apps/site/tests/visual/baselines/` before committing. Never regenerate snapshots just to
 silence an unexplained failure. CI uploads screenshot differences on failure.
 
 When upgrading Playwright, update the matching image version and digest in

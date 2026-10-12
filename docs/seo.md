@@ -21,7 +21,7 @@ Canonical URLs remain on the live Vercel hostname until the new domain works.
 ## Launch checklist
 
 1. Connect the chosen custom domain in Vercel, verify HTTPS, then update `siteUrl`
-   in `src/site/metadata.ts` and the canonical Link headers in `vercel.json` together.
+   in `apps/site/src/site/metadata.ts` and the canonical Link headers in `vercel.json` together.
    Redirect the old production hostname to the chosen domain. Update public
    profile links and documentation after verifying the new site.
 2. Verify ownership in [Google Search Console](https://search.google.com/search-console/).

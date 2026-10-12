@@ -1,0 +1,23 @@
+{
+  "name": "@afin/console",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 3100",
+    "build": "tsc && vite build",
+    "check": "bun test tests/*.test.ts && bun run build && bunx --bun playwright test"
+  },
+  "dependencies": {
+    "@afin/intake": "workspace:*",
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/libre-caslon-text": "^5.3.0",
+    "@supabase/supabase-js": "^2.0.0",
+    "lucide-react": "^0.468.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "recharts": "^3.0.0"
+  },
+  "devDependencies": {
+    "vite": "^7.0.0"
+  }
+}

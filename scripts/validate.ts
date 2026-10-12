@@ -13,7 +13,7 @@ const files = result.stdout
   .filter(Boolean)
   .filter(
     (path) =>
-      !/^(public\/assets\/|\.flox\/|\.openai\/)/.test(path) &&
+      !/^(apps\/site\/public\/assets\/|\.flox\/|\.openai\/)/.test(path) &&
       path !== "bun.lock",
   );
 const errors: string[] = [];

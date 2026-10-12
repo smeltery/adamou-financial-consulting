@@ -2,13 +2,16 @@ import confetti from "canvas-confetti";
 
 export function celebrate(welcome = false) {
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
   const canvas = document.createElement("canvas");
+  // Confetti is decorative and must stay out of the accessibility tree.
   canvas.setAttribute("aria-hidden", "true");
   canvas.style.cssText =
     "position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:100";
   document.body.append(canvas);
   const fire = confetti.create(canvas, { resize: true });
   const colors = ["#204F60", "#78978E", "#E7C78C", "#ECA77B", "#FFFFFF"];
+
   const burst = (particleCount: number, angle: number, x: number) =>
     fire({
       particleCount,
@@ -22,6 +25,7 @@ export function celebrate(welcome = false) {
       colors,
       disableForReducedMotion: true,
     });
+
   for (let wave = 0; wave < (welcome ? 4 : 6); wave++) {
     window.setTimeout(() => {
       burst(welcome ? 60 : 70, 60, 0.05);
@@ -35,6 +39,7 @@ export function celebrate(welcome = false) {
 export function welcomeVisitor() {
   try {
     if (localStorage.getItem("afin:welcomed")) return;
+    // Record before scheduling so navigation cannot trigger another welcome.
     localStorage.setItem("afin:welcomed", "1");
   } catch {
     console.warn(
@@ -42,6 +47,7 @@ export function welcomeVisitor() {
     );
     return;
   }
+
   window.setTimeout(() => {
     if (
       document.visibilityState !== "visible" ||

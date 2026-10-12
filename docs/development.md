@@ -70,3 +70,5 @@ The mobile menu slides in from the right and fades its backdrop with CSS transit
 Search opens and closes with a short fade and lift. Result changes animate without delaying filtering; rapid input replaces the previous animation. All search motion respects reduced-motion preferences.
 
 The overall LOC ceiling includes expanded, formatted HTML templates. The per-file limit remains 1,000 lines; readability should not require compressing markup.
+
+Separate logical steps and helper functions with blank lines. Keep imports at the top, and use short comments to explain non-obvious behavior or constraints rather than restating the code. Prettier preserves these intentional breaks.

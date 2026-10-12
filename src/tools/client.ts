@@ -25,6 +25,7 @@ function result(id: string, v: Record<string, number>) {
       `${money(spending)} allocated from ${money(v.income)} take-home income.`,
     ];
   }
+
   if (id === "emergency") {
     const { target, gap } = emergencyFund(v.expenses, v.months, v.saved);
     return [
@@ -33,6 +34,7 @@ function result(id: string, v: Record<string, number>) {
       `${money(gap)} still to save. ${v.expenses > 0 ? (v.saved / v.expenses).toFixed(1) + " months currently covered." : "Enter essential expenses to estimate current coverage."}`,
     ];
   }
+
   if (id === "savings") {
     const { gap, months } = savingsGoal(v.target, v.saved, v.monthly);
     return [
@@ -45,6 +47,7 @@ function result(id: string, v: Record<string, number>) {
         : `${money(gap)} left to contribute. Interest is not included.`,
     ];
   }
+
   if (id === "debt") {
     const payoff = debtPayoff(v.balance, v.apr, v.payment);
     return payoff
@@ -68,6 +71,7 @@ function result(id: string, v: Record<string, number>) {
       `${money(growth.contributed)} contributed · ${money(growth.growth)} hypothetical growth. Not a guaranteed return.`,
     ];
   }
+
   if (id === "loan") {
     const loan = loanPayment(v.principal, v.rate, v.years);
     return loan
@@ -82,6 +86,7 @@ function result(id: string, v: Record<string, number>) {
           "Enter at least one year for the loan term.",
         ];
   }
+
   if (id === "inflation")
     return [
       money(futureCost(v.cost, v.rate, v.years)),
@@ -94,9 +99,11 @@ function result(id: string, v: Record<string, number>) {
     `${money(v.cash + v.investments + v.property)} in assets − ${money(v.loans + v.cards)} in debts. A snapshot, not a measure of your worth as a person.`,
   ];
 }
+
 export function setupTools() {
   const currency = document.querySelector<HTMLSelectElement>("#tool-currency");
   currency?.addEventListener("change", () => {
+    // Currency changes formatting only; entered amounts are not converted.
     currencyFormatter = moneyFormat(currency.value);
     const { currency: code } = currencyFormatter.resolvedOptions();
     document.querySelectorAll("[data-currency-unit]").forEach((label) => {
@@ -106,6 +113,7 @@ export function setupTools() {
       .querySelectorAll("[data-calculator]")
       .forEach((form) => form.dispatchEvent(new Event("input")));
   });
+
   const forms = document.querySelectorAll<HTMLFormElement>("[data-calculator]");
   forms.forEach((form) => {
     form
@@ -113,6 +121,7 @@ export function setupTools() {
       .forEach((control) => {
         control.disabled = false;
       });
+
     const output = form.querySelector<HTMLElement>(".tool-result")!;
     const update = () => {
       if (!form.checkValidity()) {
@@ -120,6 +129,7 @@ export function setupTools() {
           "Enter a valid amount in every field. Use nonnegative numbers within the displayed limits.";
         return;
       }
+
       const values = Object.fromEntries(
         [...new FormData(form)].map(([key, value]) => [key, Number(value)]),
       );
@@ -150,14 +160,18 @@ export function setupTools() {
         output.append(caption, meter);
       }
     };
+
     form.addEventListener("input", update);
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       update();
     });
+
+    // Reset events fire before the browser restores the input values.
     form.addEventListener("reset", () => setTimeout(update, 0));
     update();
   });
+
   const selectFromHash = () => {
     const requested = location.hash.replace("#tool-", "");
     const id = [...forms].some((form) => form.dataset.calculator === requested)
@@ -171,6 +185,7 @@ export function setupTools() {
           article.querySelector("h2")!.textContent;
     });
   };
+
   if (forms.length) {
     window.addEventListener("hashchange", selectFromHash);
     selectFromHash();

@@ -14,11 +14,14 @@ export function setupSearch() {
   let returnFocus: HTMLElement | null = null;
   let closing: Animation | null = null;
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+
   const animate = (element: Element, frames: Keyframe[], duration: number) => {
+    // Replace in-flight animations so rapid typing never queues stale motion.
     element.getAnimations().forEach((animation) => animation.cancel());
     if (!reducedMotion.matches)
       return element.animate(frames, { duration, easing: "ease-out" });
   };
+
   const close = (dialog: HTMLDialogElement, immediate = false) => {
     if (!immediate && !reducedMotion.matches) {
       if (closing) return;
@@ -34,6 +37,7 @@ export function setupSearch() {
       closing.onfinish = () => close(dialog, true);
       return;
     }
+    // Keep the background locked until the closing animation finishes.
     closing?.cancel();
     closing = null;
     dialog.close();
@@ -43,9 +47,11 @@ export function setupSearch() {
     window.scrollTo({ top: scrollPosition, behavior: "instant" });
     returnFocus?.focus({ preventScroll: true });
   };
+
   const show = (dialog: HTMLDialogElement, trigger: HTMLElement | null) => {
     const current = document.querySelector<HTMLDialogElement>("dialog[open]");
     if (current) close(current, true);
+    // A fixed body preserves scroll position while preventing mobile background scroll.
     scrollPosition = window.scrollY;
     returnFocus = trigger;
     document.body.style.top = `-${scrollPosition}px`;
@@ -61,6 +67,7 @@ export function setupSearch() {
         220,
       );
   };
+
   const filter = () => {
     const words = input.value.toLowerCase().trim().split(/\s+/);
     links.forEach((link) => {
@@ -74,6 +81,7 @@ export function setupSearch() {
         (link) => !link.hidden,
       );
     });
+
     scopes.forEach((button) =>
       button.setAttribute(
         "aria-pressed",
@@ -95,6 +103,7 @@ export function setupSearch() {
         140,
       );
   };
+
   const openSearch = (trigger: HTMLElement | null, selectedScope = "all") => {
     scope = selectedScope;
     input.value = "";
@@ -102,6 +111,7 @@ export function setupSearch() {
     show(search, trigger);
     input.focus();
   };
+
   const shortcut = document.querySelector(".search-trigger kbd");
   if (shortcut && !/Mac|iPhone|iPad/.test(navigator.platform))
     shortcut.textContent = "Ctrl K";
@@ -113,6 +123,7 @@ export function setupSearch() {
         openSearch(button, button.dataset.search || "all"),
       );
     });
+
   const menuTrigger = document.querySelector<HTMLButtonElement>(
     ".mobile-menu-trigger",
   )!;
@@ -121,6 +132,7 @@ export function setupSearch() {
   matchMedia("(min-width: 901px)").addEventListener("change", (event) => {
     if (event.matches && menu.open) close(menu);
   });
+
   document.addEventListener("keydown", (event) => {
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
       event.preventDefault();
@@ -128,6 +140,7 @@ export function setupSearch() {
       else openSearch(document.activeElement as HTMLElement);
     }
   });
+
   input.addEventListener("input", filter);
   scopes.forEach((button) =>
     button.addEventListener("click", () => {
@@ -171,6 +184,7 @@ export function setupSearch() {
       event.preventDefault();
       visible[0]?.click();
     }
+
     if (!["ArrowDown", "ArrowUp"].includes(event.key) || !visible.length)
       return;
     event.preventDefault();

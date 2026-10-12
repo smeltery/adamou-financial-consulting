@@ -6,6 +6,7 @@ export const goalLabels: Record<string, string> = {
   business: "Small-business finances",
   unsure: "Finding a starting point",
 };
+
 export function validateEndpoint(endpoint: string) {
   if (
     endpoint &&
@@ -17,6 +18,7 @@ export function validateEndpoint(endpoint: string) {
   }
   return endpoint;
 }
+
 const fieldLabels: Record<string, string> = {
   name: "Name",
   email: "Email",
@@ -35,6 +37,7 @@ const fieldLabels: Record<string, string> = {
   availability: "Availability",
   consent: "Permission to respond",
 };
+
 export function introduction(data: FormData) {
   return [...data.entries()]
     .filter(([key, value]) => !key.startsWith("_") && String(value).trim())
@@ -44,6 +47,7 @@ export function introduction(data: FormData) {
     )
     .join("\n");
 }
+
 export async function sendInquiry(
   endpoint: string,
   data: FormData,
@@ -57,6 +61,7 @@ export async function sendInquiry(
     headers: { Accept: "application/json" },
     signal: AbortSignal.timeout(15000),
   });
+
   if (!response.ok)
     throw new Error(
       "Your inquiry could not be sent. Please try again or email Matt directly.",

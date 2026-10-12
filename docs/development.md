@@ -78,7 +78,9 @@ browsers use a CSS arrival animation. Internal page links blur the outgoing cont
 while loading; a timeout and browser-back reset prevent a stuck blur. Links remain native, with no artificial loading
 delay or JavaScript router. See [MDN’s view transition guide](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@view-transition).
 Responsive line breaks retain whitespace after `<br />` so hiding a break cannot
-join words. The Astro formatter uses strict whitespace sensitivity to preserve it.
+join words. The Astro formatter uses strict whitespace sensitivity, and Astro
+uses lossless HTML compression instead of JSX whitespace rules. This also
+preserves spaces around inline links and emphasized words.
 
 The mobile menu slides in from the right and fades its backdrop with CSS transitions and a closing animation. Reduced-motion visitors get an immediate open and close.
 

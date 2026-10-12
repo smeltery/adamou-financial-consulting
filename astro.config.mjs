@@ -7,6 +7,8 @@ import { siteUrl } from "./src/site/metadata";
 export default defineConfig({
   site: siteUrl,
   output: "static",
+  // Preserve word boundaries around inline links and emphasized text.
+  compressHTML: true,
   trailingSlash: "always",
   integrations: [react()],
   server: { host: "127.0.0.1", port: 3000 },

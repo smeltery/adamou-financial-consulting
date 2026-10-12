@@ -4,6 +4,9 @@ test("responsive headings preserve word boundaries when line breaks disappear", 
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
+  await expect(page.locator(".hero h1")).toHaveText(
+    "Less money stress. More possibility.",
+  );
   await expect(page.locator(".services h3")).toHaveText([
     "Know where your money is going.",
     "Give your debt a game plan.",
@@ -11,6 +14,10 @@ test("responsive headings preserve word boundaries when line breaks disappear", 
   ]);
   const rendered = await page.locator(".services h3").allInnerTexts();
   expect(rendered[0]).toBe("Know where your money is going.");
+  await page.goto("/about/");
+  await expect(page.locator(".chapter-copy").last()).toContainText(
+    "Explore the coaching approach for a closer look at the first conversation, or browse the services to see where you might start.",
+  );
   await page.goto("/contact/");
   expect(await page.locator(".intake-layout aside h2").innerText()).toBe(
     "It starts with a conversation.",

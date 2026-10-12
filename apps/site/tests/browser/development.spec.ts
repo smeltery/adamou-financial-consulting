@@ -1,5 +1,12 @@
 import { test, expect } from "@playwright/test";
 import { spawnSync } from "node:child_process";
+import { createRequire } from "node:module";
+import { dirname, join } from "node:path";
+
+const astroCli = join(
+  dirname(createRequire(import.meta.url).resolve("astro/package.json")),
+  "bin/astro.mjs",
+);
 
 test("the live preview keeps calculators working after checks and a build", async ({
   page,
@@ -15,14 +22,10 @@ test("the live preview keeps calculators working after checks and a build", asyn
     ? `${process.env.FLOX_ENV}/bin/node`
     : "node";
   for (const command of ["check", "build"]) {
-    const run = spawnSync(
-      node,
-      ["../../node_modules/astro/bin/astro.mjs", command],
-      {
-        encoding: "utf8",
-        timeout: 60_000,
-      },
-    );
+    const run = spawnSync(node, [astroCli, command], {
+      encoding: "utf8",
+      timeout: 60_000,
+    });
     expect(run.status, run.stderr + run.stdout).toBe(0);
   }
   const crawl = spawnSync("bun", ["scripts/crawl.ts"], { encoding: "utf8" });

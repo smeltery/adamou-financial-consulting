@@ -17,21 +17,21 @@
       "continue": true
     },
     {
-      "src": "/tools/(monthly-budget|emergency-fund|savings-goal|debt-payoff|net-worth|compound-growth|loan-payment|inflation)",
+      "src": "/tools/(monthly-budget|emergency-fund|savings-goal|debt-payoff|net-worth|compound-growth|loan-payment|inflation|monthly-savings|debt-to-income|hourly-pay|recurring-costs)",
       "headers": {
         "Location": "/tools/$1/"
       },
       "status": 308
     },
     {
-      "src": "/content/tools/(monthly-budget|emergency-fund|savings-goal|debt-payoff|net-worth|compound-growth|loan-payment|inflation)\\.md",
+      "src": "/content/tools/(monthly-budget|emergency-fund|savings-goal|debt-payoff|net-worth|compound-growth|loan-payment|inflation|monthly-savings|debt-to-income|hourly-pay|recurring-costs)\\.md",
       "headers": {
         "Link": "<https://adamou-financial-consulting.vercel.app/tools/$1/>; rel=\"canonical\""
       },
       "continue": true
     },
     {
-      "src": "/tools/(monthly-budget|emergency-fund|savings-goal|debt-payoff|net-worth|compound-growth|loan-payment|inflation)/",
+      "src": "/tools/(monthly-budget|emergency-fund|savings-goal|debt-payoff|net-worth|compound-growth|loan-payment|inflation|monthly-savings|debt-to-income|hourly-pay|recurring-costs)/",
       "has": [
         {
           "type": "header",
@@ -45,7 +45,7 @@
       }
     },
     {
-      "src": "/tools/(monthly-budget|emergency-fund|savings-goal|debt-payoff|net-worth|compound-growth|loan-payment|inflation)/",
+      "src": "/tools/(monthly-budget|emergency-fund|savings-goal|debt-payoff|net-worth|compound-growth|loan-payment|inflation|monthly-savings|debt-to-income|hourly-pay|recurring-costs)/",
       "dest": "/tools/$1/index.html"
     },
     {

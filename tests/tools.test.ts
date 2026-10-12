@@ -72,3 +72,29 @@ test("inflation compounds annually and preserves zero-rate costs", () => {
   expect(futureCost(1000, 0, 10)).toBe(1000);
   expect(futureCost(1000, 3, 0)).toBe(1000);
 });
+
+import {
+  monthlySavings,
+  debtRatio,
+  hourlyPay,
+  recurringCosts,
+} from "../src/tools/math";
+test("monthly savings handles reached goals and impossible deadlines", () => {
+  expect(monthlySavings(12000, 3000, 18)).toBe(500);
+  expect(monthlySavings(100, 200, 0)).toBe(0);
+  expect(monthlySavings(100, 0, 0)).toBeNull();
+});
+test("debt ratio handles zero income and obligations above income", () => {
+  expect(debtRatio(6000, 1500, 500)).toBeCloseTo(100 / 3);
+  expect(debtRatio(0, 1500, 500)).toBeNull();
+  expect(debtRatio(1000, 1500, 500)).toBe(200);
+});
+test("hourly pay uses paid weeks and reports a monthly average", () => {
+  expect(hourlyPay(25, 40, 50)).toEqual({ annual: 50000, monthly: 50000 / 12 });
+  expect(hourlyPay(25, 40, 0)).toEqual({ annual: 0, monthly: 0 });
+});
+test("recurring costs combine billing periods without duplicating annual fees", () => {
+  expect(recurringCosts(85, 240, 5)).toEqual({ yearly: 1260, total: 6300 });
+  expect(recurringCosts(0, 120, 1)).toEqual({ yearly: 120, total: 120 });
+  expect(recurringCosts(85, 240, 0).total).toBe(0);
+});

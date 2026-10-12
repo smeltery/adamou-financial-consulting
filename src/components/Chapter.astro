@@ -2,17 +2,18 @@
 import { uiIcon } from "../site/identity";
 interface Props {
   label: string;
+  id?: string;
 }
-const { label } = Astro.props;
+const { label, id } = Astro.props;
 const variants: Record<string, string> = {
   "02 / DEBT PAYOFF PLANNING": "panel",
   "03 / FINANCIAL GOALS": "reverse",
   "WHO IT’S FOR": "cards",
   "THE WORKING RELATIONSHIP": "cards",
   "GET TO KNOW THE FIT": "panel",
-  "01 / YOUR INTRODUCTION": "panel",
-  "02 / THE FIRST CONVERSATION": "checklist",
-  "03 / AGREEING ON A DIRECTION": "statement",
+  "01 / YOUR INTRODUCTION": "process",
+  "02 / THE FIRST CONVERSATION": "process",
+  "03 / AGREEING ON A DIRECTION": "process",
   "PREPARING WITHOUT OVERTHINKING": "cards",
 };
 const chapterIcons: Record<string, string> = {
@@ -25,7 +26,10 @@ const chapterIcons: Record<string, string> = {
 };
 ---
 
-<section class={`wrap section editorial chapter-${variants[label] || "split"}`}>
+<section
+  id={id}
+  class={`wrap section editorial chapter-${variants[label] || "split"}`}
+>
   <div>
     <p class="eyebrow icon-label">
       <Fragment

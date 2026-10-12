@@ -142,4 +142,68 @@ export const calculators: {
     formula: "Future cost = cost today × (1 + annual inflation / 100)^years.",
     note: "Assumes the same nonnegative inflation rate each year. This is a scenario, not a forecast or a country-specific inflation estimate. Individual expenses may change differently.",
   },
+  {
+    id: "contribution",
+    slug: "monthly-savings",
+    title: "Monthly savings",
+    question: "Work backward from a goal and a deadline to a monthly amount.",
+    fields: [
+      ["target", "Goal amount", 12000],
+      ["saved", "Savings already assigned", 3000],
+      ["months", "Months until your goal", 18, "months"],
+    ],
+    formula: "Monthly contribution = max(0, goal − saved) ÷ months remaining.",
+    note: "Assumes equal end-of-month contributions, no interest, no withdrawals, and a whole number of months. Rounded currency displays may leave a small final adjustment.",
+    guide:
+      "Start with a goal and a realistic time horizon, then compare the required contribution with your monthly budget. Changing the deadline changes the arithmetic, not what your budget can support.",
+  },
+  {
+    id: "ratio",
+    slug: "debt-to-income",
+    title: "Debt-to-income",
+    question: "See what share of gross monthly income goes to debt payments.",
+    fields: [
+      ["gross", "Gross monthly income", 6000],
+      ["housing", "Monthly mortgage or rent payment", 1500],
+      ["debts", "Other required monthly debt payments", 500],
+    ],
+    formula:
+      "Debt-to-income percentage = (housing payment + other monthly debt payments) ÷ gross monthly income × 100.",
+    note: "This scenario includes your housing payment plus other required debt payments. Gross income is before deductions. It is not a credit assessment or lending decision; lender definitions and included obligations vary.",
+    guide:
+      "Use income and required payments from the same month, and count each payment once. This ratio uses gross income, so it does not show the cash left after taxes and living expenses. Use the budget tool for that view.",
+  },
+  {
+    id: "pay",
+    slug: "hourly-pay",
+    title: "Hourly pay",
+    question:
+      "Turn an hourly rate and work schedule into gross income estimates.",
+    fields: [
+      ["rate", "Hourly pay rate", 25],
+      ["hours", "Paid hours each week", 40, "hours/week"],
+      ["weeks", "Paid weeks each year", 50, "weeks/year"],
+    ],
+    formula:
+      "Annual gross pay = hourly rate × paid hours per week × paid weeks per year. Monthly average = annual gross pay ÷ 12.",
+    note: "Straight-time gross pay only, before taxes and deductions. Excludes overtime premiums, tips, bonuses, and benefits. Monthly average is not an actual paycheck amount; hours and paid weeks are assumed constant.",
+    guide:
+      "Use paid weeks rather than automatically counting every week of the year. Compare the annual total and monthly average, then use your actual take-home income for budgeting. Overtime and variable schedules need separate treatment.",
+  },
+  {
+    id: "recurring",
+    slug: "recurring-costs",
+    title: "Recurring costs",
+    question: "See the longer-term total of subscriptions and memberships.",
+    fields: [
+      ["monthly", "Combined monthly subscriptions", 85],
+      ["annual", "Combined annual memberships", 240],
+      ["years", "Years to compare", 5, "years"],
+    ],
+    formula:
+      "Annual cost = monthly subscriptions × 12 + annual memberships. Period total = annual cost × years.",
+    note: "Assumes prices stay unchanged and every subscription renews. Excludes inflation, promotional changes, cancellation fees, and investment returns. Do not count the same subscription in both fields.",
+    guide:
+      "Add up monthly and yearly charges separately. Review how much you use each service before deciding what to change. The total is spending under a constant-price scenario, not automatically available savings.",
+  },
 ];

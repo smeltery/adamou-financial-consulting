@@ -7,6 +7,10 @@ import {
   compoundGrowth,
   loanPayment,
   futureCost,
+  monthlySavings,
+  debtRatio,
+  hourlyPay,
+  recurringCosts,
 } from "./math";
 
 export function result(
@@ -15,6 +19,51 @@ export function result(
   formatter: Intl.NumberFormat,
 ) {
   const money = (value: number) => formatter.format(value);
+  if (id === "contribution") {
+    const monthly = monthlySavings(v.target, v.saved, v.months);
+    return monthly === null
+      ? [
+          "Choose a deadline",
+          "No monthly estimate yet",
+          "Enter at least one month to spread the remaining goal across future contributions.",
+        ]
+      : [
+          money(monthly),
+          "Required monthly contribution",
+          `${money(Math.max(0, v.target - v.saved))} left to fund over ${v.months} months. No interest assumed.`,
+        ];
+  }
+  if (id === "ratio") {
+    const ratio = debtRatio(v.gross, v.housing, v.debts);
+    return [
+      ratio === null
+        ? "No ratio yet"
+        : new Intl.NumberFormat(formatter.resolvedOptions().locale, {
+            style: "percent",
+            maximumFractionDigits: 1,
+          }).format(ratio / 100),
+      "Housing and debt share of gross income",
+      ratio === null
+        ? "Enter gross monthly income greater than zero to calculate the ratio."
+        : `${money(v.housing + v.debts)} in monthly payments from ${money(v.gross)} gross income. Not a lending decision.`,
+    ];
+  }
+  if (id === "pay") {
+    const pay = hourlyPay(v.rate, v.hours, v.weeks);
+    return [
+      money(pay.annual),
+      "Estimated annual gross pay",
+      `${money(pay.monthly)} per month on average, before taxes and deductions. No overtime premium included.`,
+    ];
+  }
+  if (id === "recurring") {
+    const costs = recurringCosts(v.monthly, v.annual, v.years);
+    return [
+      money(costs.total),
+      "Total recurring cost over your period",
+      `${money(costs.yearly)} per year over ${v.years} years, assuming unchanged prices and renewals.`,
+    ];
+  }
   if (id === "budget") {
     const { spending, remaining } = monthlyBudget(v.income, [
       v.housing,

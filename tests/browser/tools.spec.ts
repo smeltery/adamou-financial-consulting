@@ -1,3 +1,4 @@
+import { calculators } from "../../src/tools/catalog";
 import { test, expect, type Page } from "@playwright/test";
 test("five calculators update, validate, and reset without sending inputs", async ({
   page,
@@ -67,7 +68,9 @@ test.describe("static calculator content", () => {
 
   test("all formulas remain readable without JavaScript", async ({ page }) => {
     await page.goto("/tools/");
-    await expect(page.locator(".calculator:visible")).toHaveCount(8);
+    await expect(page.locator(".calculator:visible")).toHaveCount(
+      calculators.length,
+    );
     for (const input of await page.locator(".calculator input").all()) {
       await expect(input).toBeDisabled();
     }

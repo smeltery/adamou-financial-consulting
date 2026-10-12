@@ -1,4 +1,6 @@
 ---
+import "../styles/approach.css";
+import { uiIcon } from "../site/identity";
 import Closing from "../components/sections/Closing.astro";
 
 import Layout from "../layouts/SiteLayout.astro";
@@ -19,7 +21,41 @@ import Faq from "../components/Faq.astro";
       <br /> <em>Build from there.</em>
     </Fragment>
   </Intro>
-  <Chapter label={"01 / YOUR INTRODUCTION"}>
+  <nav class="wrap process-overview" aria-label="The three steps">
+    {[
+      [
+        "introduction",
+        "01",
+        "Introduce yourself",
+        "Share your priorities",
+        "person",
+      ],
+      [
+        "conversation",
+        "02",
+        "Explore the fit",
+        "Ask your questions",
+        "conversation",
+      ],
+      [
+        "direction",
+        "03",
+        "Agree on a direction",
+        "Clarify scope and next steps",
+        "compass",
+      ],
+    ].map(([id, number, title, description, icon]) => (
+      <a href={`#${id}`}>
+        <span class="process-number">{number}</span>
+        <span>
+          <strong>{title}</strong>
+          <small>{description}</small>
+        </span>
+        <Fragment set:html={uiIcon(icon)} />
+      </a>
+    ))}
+  </nav>
+  <Chapter id="introduction" label={"01 / YOUR INTRODUCTION"}>
     <Fragment slot="title">
       Tell Matt what
       <br /> you want to change.
@@ -41,7 +77,7 @@ import Faq from "../components/Faq.astro";
       Open the introduction form
     </a>
   </Chapter>
-  <Chapter label={"02 / THE FIRST CONVERSATION"}>
+  <Chapter id="conversation" label={"02 / THE FIRST CONVERSATION"}>
     <Fragment slot="title">
       Understand the situation.
       <br /> Explore the fit.
@@ -63,7 +99,7 @@ import Faq from "../components/Faq.astro";
       begin a paid engagement.
     </p>
   </Chapter>
-  <Chapter label={"03 / AGREEING ON A DIRECTION"}>
+  <Chapter id="direction" label={"03 / AGREEING ON A DIRECTION"}>
     <Fragment slot="title">
       Know the next step
       <br /> before taking it.
@@ -74,10 +110,12 @@ import Faq from "../components/Faq.astro";
       Budgeting, debt payoff planning, and goal-focused guidance may play
       different roles depending on your circumstances.
     </p>
-    <p>
-      This is also the time to clarify what you need to prepare and how you will
-      stay in contact.
-    </p>
+    <h3>Leave with a shared understanding</h3>
+    <ul>
+      <li>The priorities and scope you agree on.</li>
+      <li>Fees and what happens before work starts.</li>
+      <li>What to prepare and how to stay in contact.</li>
+    </ul>
   </Chapter>
   <Chapter label={"PREPARING WITHOUT OVERTHINKING"}>
     <Fragment slot="title">

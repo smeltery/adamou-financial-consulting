@@ -5,6 +5,7 @@ for (const [name, path, selector] of [
   ["services", "/services/", "main"],
   ["library", "/tools/", ".tool-library"],
   ["guide", "/tools/debt-payoff/", ".preparation"],
+  ["approach", "/approach/", ".chapter-process"],
   ["related", "/tools/debt-payoff/", ".related-tools"],
   ["calculator", "/tools/debt-payoff/", ".tool-workspace"],
   ["contact", "/contact/", ".intake-layout"],
@@ -20,7 +21,7 @@ for (const [name, path, selector] of [
     await page.addStyleTag({
       content: ".site-header { visibility: hidden !important; }",
     });
-    const section = page.locator(selector);
+    const section = page.locator(selector).first();
     // Align the section before capture; the sticky header is tested separately.
     await section.evaluate((element) =>
       window.scrollTo({

@@ -184,4 +184,92 @@ export const guides: Record<string, Guide> = {
       ],
     ],
   },
+  contribution: {
+    icon: "target",
+    category: "Future goals",
+    related: ["savings", "budget", "growth"],
+    prepare: [
+      "The full cost of one goal.",
+      "Money already set aside for that goal.",
+      "A deadline expressed in complete months.",
+    ],
+    experiment:
+      "Give the same goal a few more months and compare the required monthly contribution. Then compare that amount with the unallocated money in your budget.",
+    faq: [
+      [
+        "What if the goal is already covered?",
+        "The remaining monthly contribution is zero. The calculator does not treat any excess savings as a new expense or require you to save them again.",
+      ],
+      [
+        "Why does a zero-month deadline give no estimate?",
+        "If money is still needed, the model needs at least one month over which to spread contributions. It cannot make a future contribution plan for a deadline of today.",
+      ],
+    ],
+  },
+  ratio: {
+    icon: "balance",
+    category: "Debt & borrowing",
+    related: ["budget", "debt", "loan"],
+    prepare: [
+      "Gross monthly income before deductions.",
+      "A single monthly housing payment.",
+      "Other required debt payments, excluding the housing payment already entered.",
+    ],
+    experiment:
+      "Change one monthly debt payment while keeping income unchanged. Compare the ratio, then review your full monthly budget; this percentage does not include all living costs.",
+    faq: [
+      [
+        "Is this the ratio a lender will use?",
+        "Not necessarily. Lenders can use different income definitions and payment rules. This calculator includes the housing payment and other debt payments you enter; it does not estimate approval or eligibility.",
+      ],
+      [
+        "What if my income is zero?",
+        "A ratio cannot be calculated with zero income. The tool shows no ratio rather than an infinite percentage. A ratio above 100% is possible when entered payments exceed gross income.",
+      ],
+    ],
+  },
+  pay: {
+    icon: "wallet",
+    category: "Everyday money",
+    related: ["budget", "ratio", "contribution"],
+    prepare: [
+      "A straight-time hourly pay rate.",
+      "The paid hours in a typical week.",
+      "The number of paid weeks you expect during the year.",
+    ],
+    experiment:
+      "Change the paid weeks to account for an unpaid break, leaving your rate and weekly hours unchanged. The monthly figure averages the annual total; individual months can still differ.",
+    faq: [
+      [
+        "Is the result take-home pay?",
+        "No. It is gross income before taxes and other deductions. This calculator does not apply tax rules for your country or estimate benefits.",
+      ],
+      [
+        "Does it include overtime?",
+        "No. Every hour uses the same rate. Overtime premiums, bonuses, tips, and variable schedules are outside this simple model.",
+      ],
+    ],
+  },
+  recurring: {
+    icon: "switch",
+    category: "Everyday money",
+    related: ["budget", "contribution", "inflation"],
+    prepare: [
+      "The total of your monthly recurring charges.",
+      "Separately, the total of charges billed once a year.",
+      "The number of complete years you want to compare.",
+    ],
+    experiment:
+      "Remove one unused monthly subscription from the combined monthly amount. Compare the period total before and after, keeping the time horizon unchanged.",
+    faq: [
+      [
+        "Should I convert annual subscriptions to monthly amounts first?",
+        "No. Put monthly charges in the monthly field and yearly charges in the annual field. The calculator combines them, so entering the same charge in both fields would double count it.",
+      ],
+      [
+        "Does the result assume prices rise?",
+        "No. Prices and subscriptions stay unchanged throughout the selected period. Use the inflation tool separately to explore a hypothetical rising cost.",
+      ],
+    ],
+  },
 };

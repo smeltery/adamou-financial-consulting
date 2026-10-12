@@ -1,0 +1,83 @@
+.wrap.process-overview {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.process-overview a {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #e8ede5;
+  text-decoration: none;
+}
+.process-overview a:hover,
+.process-overview a:focus-visible {
+  border-color: var(--ink);
+}
+.process-number {
+  font:
+    28px Georgia,
+    serif;
+  color: var(--muted);
+}
+.process-overview strong,
+.process-overview small {
+  display: block;
+}
+.process-overview small {
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+.process-overview .ui-icon {
+  margin-left: auto;
+}
+.chapter-process.section {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: start;
+  gap: 64px;
+  padding: 48px;
+  margin-block: 24px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--white);
+  text-align: left;
+  scroll-margin-top: 120px;
+}
+.chapter-process h2 {
+  font-size: clamp(32px, 3.5vw, 48px);
+}
+.chapter-process .chapter-copy {
+  max-width: none;
+}
+.chapter-process .icon-label {
+  justify-content: flex-start;
+}
+.chapter-process .chapter-copy > :last-child {
+  margin-bottom: 0;
+}
+.chapter-process ul {
+  padding-left: 20px;
+}
+.chapter-process li {
+  padding: 8px 0;
+}
+@media (max-width: 900px) {
+  .wrap.process-overview {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .chapter-process.section {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 28px 24px;
+  }
+  .chapter-process h2 {
+    margin-bottom: 0;
+  }
+}

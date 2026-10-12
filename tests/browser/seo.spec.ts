@@ -1,3 +1,4 @@
+import { calculators } from "../../src/tools/catalog";
 import { test, expect } from "@playwright/test";
 test("search metadata is unique and structured entities match the public content", async ({
   request,
@@ -38,7 +39,7 @@ test("search metadata is unique and structured entities match the public content
         graph.find(
           (item: Record<string, unknown>) => item["@type"] === "CollectionPage",
         ).mainEntity.itemListElement,
-      ).toHaveLength(8);
+      ).toHaveLength(calculators.length);
     const raw = await request.get(`/pages/${path || "home"}.html`, {
       maxRedirects: 0,
     });

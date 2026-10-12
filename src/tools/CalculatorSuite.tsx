@@ -60,8 +60,22 @@ function CalculatorForm({
               name={name}
               value={values[name]}
               min="0"
-              max={unit === "months" ? 120 : unit ? 100 : 1000000000}
-              step={unit === "months" || unit === "years" ? 1 : 0.01}
+              max={
+                unit === "months"
+                  ? 120
+                  : unit === "weeks/year"
+                    ? 52
+                    : unit === "hours/week"
+                      ? 168
+                      : unit
+                        ? 100
+                        : 1000000000
+              }
+              step={
+                unit === "months" || unit === "years" || unit === "weeks/year"
+                  ? 1
+                  : 0.01
+              }
               required
               disabled={!ready}
               onChange={(event) => {

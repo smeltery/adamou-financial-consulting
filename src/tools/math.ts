@@ -72,3 +72,21 @@ export function loanPayment(principal: number, rate: number, years: number) {
 
 export const futureCost = (cost: number, inflation: number, years: number) =>
   cost * (1 + inflation / 100) ** years;
+
+export function monthlySavings(target: number, saved: number, months: number) {
+  const gap = Math.max(0, target - saved);
+  return gap === 0 ? 0 : months > 0 ? gap / months : null;
+}
+
+export const debtRatio = (income: number, housing: number, debts: number) =>
+  income > 0 ? ((housing + debts) / income) * 100 : null;
+
+export function hourlyPay(rate: number, hours: number, weeks: number) {
+  const annual = rate * hours * weeks;
+  return { annual, monthly: annual / 12 };
+}
+
+export function recurringCosts(monthly: number, annual: number, years: number) {
+  const yearly = monthly * 12 + annual;
+  return { yearly, total: yearly * years };
+}

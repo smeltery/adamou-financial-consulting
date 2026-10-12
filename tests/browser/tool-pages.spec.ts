@@ -75,11 +75,11 @@ test("the library filters by category and search, and recovers from no matches",
 }) => {
   await page.goto("/tools/");
   const cards = page.locator(".calculator-library > a:visible");
-  await expect(cards).toHaveCount(8);
+  await expect(cards).toHaveCount(calculators.length);
   await page
     .getByRole("button", { name: "Debt & borrowing", exact: true })
     .click();
-  await expect(cards).toHaveCount(2);
+  await expect(cards).toHaveCount(3);
   const search = page.getByRole("searchbox", { name: "Find a calculator" });
   await search.fill("loan");
   await expect(cards).toHaveCount(1);
@@ -88,7 +88,7 @@ test("the library filters by category and search, and recovers from no matches",
   await expect(cards).toHaveCount(0);
   await expect(page.locator(".library-empty")).toBeVisible();
   await page.getByRole("button", { name: "Show all tools" }).click();
-  await expect(cards).toHaveCount(8);
+  await expect(cards).toHaveCount(calculators.length);
   await expect(search).toBeFocused();
   await expect(
     page.getByRole("button", { name: "All tools", exact: true }),

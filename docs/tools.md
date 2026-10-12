@@ -17,6 +17,10 @@ saved, sent to Matt, or included in analytics. Reloading clears your changes.
 | Compound growth | Apply monthly growth, then add each contribution           | Constant assumed nonnegative rate; no taxes, fees, or inflation  |
 | Loan payment    | Fixed-rate monthly amortization                            | Principal and interest only; no fees, insurance, or taxes        |
 | Inflation       | Cost × (1 + annual rate / 100)^years                       | Constant assumed nonnegative inflation; no country forecast      |
+| Monthly savings | Remaining goal ÷ months until deadline                     | No interest or withdrawals; whole months                         |
+| Debt-to-income  | Housing and debt payments ÷ gross monthly income           | Includes entered housing costs; not a lending decision           |
+| Hourly pay      | Rate × paid hours per week × paid weeks per year           | Gross straight-time pay; no tax or overtime calculation          |
+| Recurring costs | (Monthly charges × 12 + annual charges) × years            | Unchanged prices and renewals; no inflation                      |
 
 Growth uses month-end contributions and whole-year horizons. Loan terms must
 be at least one year. Example rates are scenarios, not recommendations.
@@ -52,22 +56,24 @@ JavaScript enables interactive calculation; formulas remain readable without it.
 The formulas live in `src/tools/math.ts`, field definitions in `catalog.ts`, result
 explanations in `results.ts`, and the React interface in `CalculatorSuite.tsx`. Unit tests cover zero values, shortfalls,
 rounding, interest, and impossible payoff scenarios. Browser tests cover all
-eight tools, resets, invalid inputs, and the absence of network requests.
+twelve tools, resets, invalid inputs, and the absence of network requests.
 
 ## Dedicated guides
 
 Every calculator has a shareable `/tools/<name>/` page with a worked USD example,
 assumptions, and a link to discuss next steps with Matt. The library links to all
-eight guides. Search outside the workspace opens these pages; within `/tools/`,
+twelve guides. Search outside the workspace opens these pages; within `/tools/`,
 switching calculators preserves your current inputs. Existing `#tool-…` links
 continue to work. Reloading or moving to another page resets inputs; financial
 values are never included in a shared URL or a contact link.
 
 The library starts with category filters and a local search box. Select a category,
-search by a topic, or reset an empty result to see all eight tools. Without
+search by a topic, or reset an empty result to see all twelve tools. Without
 JavaScript, all calculator links remain available. The workspace below the
 library retains your inputs as you switch tools.
 
 Each guide includes an input checklist, a worked example, a scenario to try,
 and answers to questions about that calculator’s assumptions. In-page links
 let you move between the calculator and its supporting guidance.
+
+Additional calculators cover a monthly contribution for a deadline, housing and debt payments as a share of gross income, straight-time hourly pay annualization, and recurring subscription costs. These are arithmetic scenarios, not lender eligibility, tax, or return estimates.

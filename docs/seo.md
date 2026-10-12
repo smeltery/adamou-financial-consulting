@@ -2,7 +2,7 @@
 
 Afin serves complete HTML with unique titles and descriptions, canonical URLs,
 a sitemap, crawlable navigation, and Organization, Person, WebSite, and page
-structured data. The tools collection lists all eight calculators. Homepage
+structured data. The tools collection lists all twelve calculators. Homepage
 links lead directly to individual tools. Markdown copies declare their HTML
 canonical using HTTP headers; raw `/pages/*.html` URLs redirect to public pages.
 These signals help discovery and interpretation; they do not guarantee rankings.
@@ -36,7 +36,7 @@ Canonical URLs remain on the live Vercel hostname until the new domain works.
 
 ## Next content opportunity
 
-Eight dedicated calculator pages now include worked examples, assumptions, input
+Twelve dedicated calculator pages now include worked examples, assumptions, input
 checklists, and common questions. Extend these guides using actual Search Console
 queries and client questions, with Matt reviewing any new financial guidance.
 

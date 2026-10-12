@@ -8,6 +8,7 @@ import {
   uiIcon,
 } from "../site/identity";
 import { metadata } from "../site/metadata";
+import InquiryActivity from "../components/InquiryActivity.astro";
 import Search from "../components/Search.astro";
 import MobileNav from "../components/MobileNav.astro";
 import "../styles/base.css";
@@ -200,6 +201,7 @@ const { title, active = "", path = active } = Astro.props;
         </div>
       </div>
     </footer>
+    <InquiryActivity />
     <script>
       import "../client/app";
     </script>

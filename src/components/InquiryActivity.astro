@@ -1,0 +1,43 @@
+---
+import { uiIcon } from "../site/identity";
+import "../styles/activity.css";
+---
+
+<aside
+  id="inquiry-activity"
+  class="inquiry-activity"
+  aria-label="Recent inquiry activity"
+  data-enabled={
+    import.meta.env.PUBLIC_INQUIRY_ACTIVITY_ENABLED === "true"
+      ? "true"
+      : "false"
+  }
+  hidden
+>
+  <button class="activity-hide" type="button">
+    Hide activity for this visit
+  </button>
+  <div
+    class="activity-stack"
+    aria-live="polite"
+    aria-relevant="additions"
+  ></div>
+</aside>
+<template id="inquiry-toast">
+  <article class="activity-toast">
+    <span class="activity-icon">
+      <Fragment set:html={uiIcon("conversation")} />
+    </span>
+    <div>
+      <strong>A new introduction</strong>
+      <p>Someone sent Matt an inquiry.</p>
+      <small></small>
+    </div>
+    <button type="button" aria-label="Dismiss inquiry notification">
+      <Fragment set:html={uiIcon("close")} />
+    </button>
+  </article>
+</template>
+<script>
+  import "../client/activity";
+</script>

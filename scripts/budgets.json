@@ -1,1 +1,6 @@
-{ "default_lines": 1000, "default_files": 20, "total_lines": 9500, "files": {} }
+{
+  "default_lines": 1000,
+  "default_files": 20,
+  "total_lines": 10500,
+  "files": {}
+}

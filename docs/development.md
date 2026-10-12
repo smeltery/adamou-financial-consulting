@@ -70,7 +70,7 @@ content has one source of truth. There is no application server or client router
 ## Budgets
 
 Tracked source, docs, scripts, and configuration have a 1,000-line file ceiling,
-20 direct files per directory, and a 9,500-line overall ceiling. Generated
+20 direct files per directory, and a 10,500-line overall ceiling. Generated
 assets, lockfiles, and Flox metadata are excluded. See `scripts/budgets.json`.
 
 Add new files to Git before running budget checks; CI checks the tracked snapshot.

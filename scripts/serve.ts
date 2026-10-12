@@ -1,3 +1,4 @@
+import { handleActivity } from "../src/server/activity";
 import { siteUrl, descriptions } from "../src/site/metadata";
 import { resolve, sep } from "node:path";
 const root = resolve("dist");
@@ -5,6 +6,8 @@ Bun.serve({
   port: Number(process.env.PORT || 3000),
   hostname: "127.0.0.1",
   async fetch(request) {
+    if (new URL(request.url).pathname === "/api/activity")
+      return handleActivity(request);
     let pathname = decodeURIComponent(new URL(request.url).pathname);
     const buildPage = pathname.match(
       /^\/pages\/(home|services|about|approach|contact|brand|privacy|tools)\.html$/,

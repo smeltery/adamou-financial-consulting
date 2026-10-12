@@ -17,6 +17,10 @@
       "continue": true
     },
     {
+      "src": "/api/activity/?",
+      "dest": "/api/activity"
+    },
+    {
       "src": "/tools/(monthly-budget|emergency-fund|savings-goal|debt-payoff|net-worth|compound-growth|loan-payment|inflation|monthly-savings|debt-to-income|hourly-pay|recurring-costs|savings-rate|simple-interest|discount-savings|cost-per-use)",
       "headers": {
         "Location": "/tools/$1/"

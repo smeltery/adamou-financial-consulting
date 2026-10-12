@@ -174,13 +174,6 @@ blockquote {
   line-height: 1.4;
   margin: 35px 0;
 }
-.prose {
-  max-width: 760px;
-}
-.prose h2 {
-  font-size: 30px;
-  margin-top: 40px;
-}
 
 select {
   appearance: none;

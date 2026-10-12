@@ -1,5 +1,5 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
-import { activityLifetime, recentEvents } from "../activity/events";
+import { activityLifetime, recentEvents } from "../activity/events.js";
 
 type Settings = Record<string, string | undefined>;
 const key = "afin:anonymous-inquiries:v1";

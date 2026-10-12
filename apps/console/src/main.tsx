@@ -8,4 +8,6 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./login.css";
 import "./styles.css";
+import "./calendar/calendar.css";
+import "./search/search.css";
 createRoot(document.getElementById("root")!).render(<App />);

@@ -224,6 +224,7 @@ small {
   margin-left: 238px;
 }
 .topbar {
+  gap: 16px;
   height: 80px;
   padding: 0 38px;
   border-bottom: 1px solid var(--line);
@@ -243,6 +244,7 @@ small {
   font-weight: 500;
 }
 .owner-avatar {
+  flex-shrink: 0;
   border-radius: 50%;
   background: #e6ece0;
   font-size: 11px;
@@ -309,6 +311,7 @@ small {
 }
 .dashboard-grid {
   display: grid;
+  align-items: start;
   grid-template-columns: 1.3fr 1fr;
   gap: 24px;
 }

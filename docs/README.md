@@ -17,3 +17,5 @@
 - [Matt’s private client workspace](workspace.md): daily workflow, setup, access, and intake sync.
 
 - [Client documents](documents.md): upload, preview, private storage, and retention.
+
+- [Calendar and workspace search](calendar.md): meetings, reminders, exports, and keyboard shortcuts.

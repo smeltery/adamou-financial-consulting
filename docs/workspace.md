@@ -150,3 +150,9 @@ run through `scripts/check.sh`, matching the pre-commit hook and CI.
 Attach contracts and supporting files to saved client records. See
 [client documents](documents.md) for previews, supported formats, private storage
 setup, backups, and development testing.
+
+## Calendar and quick search
+
+Use [Calendar and workspace search](calendar.md) to manage tentative and confirmed
+meetings, see follow-up reminders, download a calendar snapshot, and find records
+with Cmd+K or Ctrl+K.

@@ -13,6 +13,11 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import { Calendar } from "./calendar/Calendar";
+import { MeetingEditor } from "./calendar/MeetingEditor";
+import { useMeetings } from "./calendar/useMeetings";
+import { newMeeting, type Meeting } from "./calendar/model";
+import { CommandSearch } from "./search/CommandSearch";
 import { Login, Brand } from "./Login";
 const Dashboard = lazy(() =>
   import("./Dashboard").then((module) => ({ default: module.Dashboard })),
@@ -31,6 +36,7 @@ const navigation = [
   { id: "overview", label: "Overview", icon: LayoutDashboard },
   { id: "clients", label: "All clients", icon: Users },
   { id: "inquiries", label: "Inquiries", icon: Inbox },
+  { id: "calendar", label: "Calendar", icon: CalendarDays },
   { id: "followups", label: "Follow-ups", icon: CalendarDays },
   { id: "archive", label: "Archive", icon: Archive },
 ];
@@ -38,6 +44,9 @@ export default function App() {
   const [authorized, setAuthorized] = useState(false);
   const [demo, setDemo] = useState(false);
   const [clients, setClients] = useState<Client[]>([]);
+  const calendar = useMeetings(authorized, demo, clients);
+  const [meetingEditor, setMeetingEditor] = useState<Meeting | null>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [view, setView] = useState("overview");
   const [query, setQuery] = useState("");
   const [stage, setStage] = useState<Stage | "">("");
@@ -90,6 +99,24 @@ export default function App() {
     };
   }, [menu, mobile]);
 
+  useEffect(() => {
+    if (!authorized) {
+      setSearchOpen(false);
+      setMeetingEditor(null);
+      return;
+    }
+    function shortcut(event: KeyboardEvent) {
+      if (!(event.metaKey || event.ctrlKey) || event.key.toLowerCase() !== "k")
+        return;
+      event.preventDefault();
+      if (!document.querySelector("dialog[open]")) {
+        setMenu(false);
+        setSearchOpen(true);
+      }
+    }
+    window.addEventListener("keydown", shortcut);
+    return () => window.removeEventListener("keydown", shortcut);
+  }, [authorized]);
   async function authorize() {
     if (!database) return;
     const { data, error } = await database.rpc("is_owner");
@@ -274,6 +301,16 @@ export default function App() {
             Adamou Financial Consulting <span className="separator">/</span>{" "}
             <strong>{title}</strong>
           </span>
+          <button
+            className="workspace-search-trigger"
+            aria-label="Search workspace"
+            aria-keyshortcuts="Meta+k Control+k"
+            onClick={() => setSearchOpen(true)}
+          >
+            <Search size={18} />
+            <span>Search</span>
+            <kbd>⌘ K</kbd>
+          </button>
           <span className="owner-avatar">MA</span>
         </header>
         {demo && (
@@ -354,6 +391,16 @@ export default function App() {
             >
               <Dashboard clients={clients} open={setEditor} />
             </Suspense>
+          ) : view === "calendar" ? (
+            <Calendar
+              clients={clients}
+              meetings={calendar.meetings}
+              error={calendar.error}
+              loading={calendar.loading}
+              refresh={calendar.refresh}
+              edit={setMeetingEditor}
+              openClient={setEditor}
+            />
           ) : (
             <section className="panel client-panel">
               <div className="list-controls">
@@ -456,6 +503,64 @@ export default function App() {
           </footer>
         </div>
       </main>
+      {searchOpen && (
+        <CommandSearch
+          clients={clients}
+          meetings={calendar.meetings}
+          actions={[
+            ...navigation.map((item) => ({
+              ...item,
+              run: () => {
+                setView(item.id);
+                setQuery("");
+                setStage("");
+              },
+            })),
+            {
+              id: "add-client",
+              label: "Add client",
+              icon: Plus,
+              run: () => setEditor(blankClient()),
+            },
+            ...(clients.some((client) => client.status !== "archived") &&
+            !calendar.loading &&
+            !calendar.error
+              ? [
+                  {
+                    id: "add-meeting",
+                    label: "New meeting",
+                    icon: CalendarDays,
+                    run: () =>
+                      setMeetingEditor(
+                        newMeeting(
+                          clients.find(
+                            (client) => client.status !== "archived",
+                          )!.id,
+                        ),
+                      ),
+                  },
+                ]
+              : []),
+          ]}
+          openClient={setEditor}
+          openMeeting={setMeetingEditor}
+          close={() => setSearchOpen(false)}
+        />
+      )}
+      {meetingEditor && (
+        <MeetingEditor
+          key={meetingEditor.id}
+          meeting={meetingEditor}
+          meetings={calendar.meetings}
+          clients={clients}
+          existing={calendar.meetings.some(
+            (item) => item.id === meetingEditor.id,
+          )}
+          save={calendar.save}
+          remove={calendar.remove}
+          close={() => setMeetingEditor(null)}
+        />
+      )}
       {editor && (
         <ClientEditor
           key={editor.id}

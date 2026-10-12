@@ -2,7 +2,8 @@ import { setupSearch } from "./search";
 setupSearch();
 import { setupTools } from "./tools/client";
 setupTools();
-import { celebrate } from "./celebrate";
+import { celebrate, welcomeVisitor } from "./celebrate";
+welcomeVisitor();
 import { inject } from "@vercel/analytics";
 if (!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {
   inject({

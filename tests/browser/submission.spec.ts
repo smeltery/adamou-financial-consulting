@@ -15,6 +15,7 @@ test.beforeAll(async () => {
   configuredApp = await build.outputs[0].text();
 });
 async function completeForm(page: Page, status: number) {
+  await page.addInitScript(() => localStorage.setItem("afin:welcomed", "1"));
   await page.route("**/app.js", (route) =>
     route.fulfill({ contentType: "text/javascript", body: configuredApp }),
   );

@@ -5,7 +5,10 @@ test("five calculators update, validate, and reset without sending inputs", asyn
   await page.goto("/tools/");
   await page.waitForLoadState("networkidle");
   const requests: string[] = [];
-  page.on("request", (request) => requests.push(request.url()));
+  page.on("request", (request) => {
+    // Confetti may create a local blob worker; only HTTP requests leave the browser.
+    if (/^https?:/.test(request.url())) requests.push(request.url());
+  });
   const active = page.locator(".calculator:visible");
   const result = active.locator(".tool-result");
   await expect(result).toContainText("$1,100.00");

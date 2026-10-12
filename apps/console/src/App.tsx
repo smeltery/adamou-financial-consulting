@@ -18,6 +18,7 @@ const Dashboard = lazy(() =>
   import("./Dashboard").then((module) => ({ default: module.Dashboard })),
 );
 import { ClientEditor } from "./ClientEditor";
+import { clearDemoDocuments } from "./documents/repository";
 import { database, loadClients, saveClient } from "./store";
 import {
   blankClient,
@@ -125,6 +126,7 @@ export default function App() {
   }, [authorized, demo]);
   async function enterDemo() {
     if (!import.meta.env.DEV) return;
+    clearDemoDocuments();
     const { sampleClients } = await import("./demo");
     setClients(sampleClients());
     setDemo(true);
@@ -159,6 +161,7 @@ export default function App() {
         return;
       }
     }
+    clearDemoDocuments();
     setMenu(false);
     setClients([]);
     setAuthorized(false);

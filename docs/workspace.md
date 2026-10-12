@@ -40,7 +40,7 @@ Close and reopen that record to see the newer version before applying your edits
 
 Charts animate unless reduced motion is preferred. Each chart has a text data
 alternative. Revenue is not estimated from client stages; payment collection,
-billing, client document uploads, and automated email campaigns are not included.
+billing and automated email campaigns are not included.
 
 ## Connect Supabase and sign-in
 
@@ -123,8 +123,8 @@ credentials shows only the disconnected sign-in screen.
 Client data lives in Supabase, not Vercel’s filesystem. Configure and verify
 Supabase backups and a restoration procedure before storing real records.
 Archiving is not deletion. Matt should agree a retention period; an authorized
-operator can permanently delete a client in Supabase, which cascades to their
-inquiries and history. Formspree copies have separate retention settings.
+operator can permanently delete a client in Supabase after removing its documents through Storage; deletion
+cascades to their inquiries and history. Formspree copies have separate retention settings.
 Never use production client records in preview deployments. Use a separate
 Supabase project for testing.
 
@@ -144,3 +144,9 @@ on reload. Production bundles exclude the fixtures and demo entry point.
 1,000 lines per file, exercises owner policies in a PostgreSQL test engine, and
 runs desktop/mobile workflows and accessibility checks. Visual site checks also
 run through `scripts/check.sh`, matching the pre-commit hook and CI.
+
+## Documents
+
+Attach contracts and supporting files to saved client records. See
+[client documents](documents.md) for previews, supported formats, private storage
+setup, backups, and development testing.

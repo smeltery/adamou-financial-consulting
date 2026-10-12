@@ -8,6 +8,7 @@ import {
   type Goal,
 } from "./model";
 import { loadHistory } from "./store";
+import { ClientDocuments } from "./documents/ClientDocuments";
 export function ClientEditor({
   client,
   existing,
@@ -24,6 +25,7 @@ export function ClientEditor({
   const dialog = useRef<HTMLDialogElement>(null);
   const [draft, setDraft] = useState(client);
   const [busy, setBusy] = useState(false);
+  const [documentBusy, setDocumentBusy] = useState(false);
   const [error, setError] = useState("");
   const [historyError, setHistoryError] = useState("");
   const [history, setHistory] = useState<
@@ -52,20 +54,21 @@ export function ClientEditor({
   }, [client.id, existing, demo]);
   useEffect(() => {
     const prevent = (e: BeforeUnloadEvent) => {
-      if (dirty) e.preventDefault();
+      if (dirty || documentBusy) e.preventDefault();
     };
     window.addEventListener("beforeunload", prevent);
     return () => window.removeEventListener("beforeunload", prevent);
-  }, [dirty]);
+  }, [dirty, documentBusy]);
   const patch = (values: Partial<Client>) =>
     setDraft((value) => ({ ...value, ...values }));
   function requestClose() {
-    if (busy) return;
+    if (busy || documentBusy) return;
     if (dirty) setConfirmClose(true);
     else close();
   }
   async function submit(event: React.FormEvent) {
     event.preventDefault();
+    if (documentBusy) return;
     if (
       draft.status === "archived" &&
       client.status !== "archived" &&
@@ -233,6 +236,13 @@ export function ClientEditor({
               />
             </label>
           )}
+          <ClientDocuments
+            clientId={client.id}
+            existing={existing}
+            demo={demo}
+            disabled={busy}
+            onBusyChange={setDocumentBusy}
+          />
           {existing && (
             <section>
               <h3>
@@ -314,7 +324,7 @@ export function ClientEditor({
               >
                 Cancel
               </button>
-              <button className="primary" disabled={busy}>
+              <button className="primary" disabled={busy || documentBusy}>
                 <Save size={18} />
                 {busy
                   ? "Saving…"

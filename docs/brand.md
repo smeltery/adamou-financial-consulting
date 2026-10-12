@@ -30,3 +30,5 @@ and PNG with `bun scripts/social.ts` after changing the brand design.
 
 Social brand icons use [Font Awesome Free](https://fontawesome.com/license/free)
 (CC BY 4.0); their marks identify linked profiles, not endorsements.
+
+The dedicated `/assets/afin-favicon.svg` uses a warm-paper tile and a heavier stroke for contrast at small sizes in light and dark tabs. The primary logo stays unchanged.

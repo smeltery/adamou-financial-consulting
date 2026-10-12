@@ -9,7 +9,7 @@ import {
 } from "./identity";
 import { metadata } from "./metadata";
 export function layout(title: string, content: string, active = "") {
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">${metadata(title, active)}<meta name="theme-color" content="#204f60"><title>${title} | Afin</title><link rel="icon" href="/assets/afin-mark.svg" type="image/svg+xml"><link rel="stylesheet" href="/styles.css"></head><body>
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">${metadata(title, active)}<meta name="theme-color" content="#204f60"><title>${title} | Afin</title><link rel="icon" href="/assets/afin-favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/styles.css"></head><body>
   <a class="skip" href="#main">Skip to content</a>
   <div class="header-space"><header class="site-header"><div class="wrap header-inner">
     <a class="logo" href="/" aria-label="Afin home"><img src="/assets/afin-mark.svg" width="76" height="38" alt="Afin mountain mark"><span class="logo-name">Adamou Financial Consulting</span></a>

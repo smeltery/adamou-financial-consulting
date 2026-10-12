@@ -198,9 +198,30 @@ dialog::backdrop {
   padding: 14px 20px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 12px;
   font-size: 11px;
   color: var(--muted);
+}
+.search-shortcuts,
+.search-shortcuts > span,
+.shortcut-keys {
+  display: inline-flex;
+  align-items: center;
+}
+.search-shortcuts {
+  gap: 16px;
+}
+.search-shortcuts > span {
+  gap: 8px;
+}
+.shortcut-keys {
+  gap: 4px;
+}
+.search-shortcuts kbd {
+  min-width: 24px;
+  padding: 4px 6px;
+  text-align: center;
 }
 .search-footer p {
   margin: 0;

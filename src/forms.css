@@ -193,3 +193,63 @@ select {
   font-size: 13px;
   color: var(--ink);
 }
+
+.favicon-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.favicon-section .text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.favicon-preview {
+  padding: 32px;
+  background: #e8ede5;
+  border: 1px solid var(--line);
+  min-width: 0;
+}
+.favicon-tab {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--white);
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px 12px 0 0;
+  font-size: 12px;
+}
+.favicon-preview img {
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.favicon-sizes {
+  display: flex;
+  gap: 28px;
+  margin-top: 28px;
+}
+.favicon-sizes figure {
+  margin: 0;
+  text-align: center;
+}
+.favicon-sizes figure > div {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.favicon-sizes figcaption {
+  font-size: 12px;
+  margin-top: 8px;
+}
+@media (max-width: 700px) {
+  .favicon-section {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .favicon-preview {
+    padding: 24px;
+  }
+}

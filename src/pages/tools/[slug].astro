@@ -1,4 +1,7 @@
 ---
+import { guides } from "../../tools/guides";
+import { uiIcon } from "../../site/identity";
+import Faq from "../../components/Faq.astro";
 import Layout from "../../layouts/SiteLayout.astro";
 import { calculators } from "../../tools/catalog";
 import CalculatorSuite from "../../tools/CalculatorSuite";
@@ -12,6 +15,7 @@ export function getStaticPaths() {
   }));
 }
 const { tool } = Astro.props;
+const guide = guides[tool.id];
 const values = Object.fromEntries(
   tool.fields.map(([name, , value]) => [name, value]),
 );
@@ -29,17 +33,56 @@ const goal =
     <a class="text-link" href="/tools/">
       All financial tools
     </a>
-    <p class="eyebrow">THE AFIN TOOLKIT</p>
+    <p class="eyebrow icon-label">
+      <Fragment set:html={uiIcon(guide.icon)} /> {guide.category}
+    </p>
     <h1>{tool.title} calculator</h1>
     <p class="lead">{tool.question}</p>
+    <nav class="tool-jump-links" aria-label="On this page">
+      <a class="button" href={`#tool-${tool.id}`}>
+        <Fragment set:html={uiIcon("tools")} /> Use the calculator
+      </a>
+      <a class="text-link" href="#prepare">
+        <Fragment set:html={uiIcon("checklist")} /> Before you begin
+      </a>
+      <a class="text-link" href="#worked-example">
+        <Fragment set:html={uiIcon("page")} /> See an example
+      </a>
+    </nav>
     <p class="micro">
       Private calculations in your browser. No account required.
     </p>
   </section>
   <CalculatorSuite toolId={tool.id} client:load />
+  <section
+    class="wrap section preparation"
+    id="prepare"
+    aria-labelledby="prepare-title"
+  >
+    <div>
+      <p class="eyebrow icon-label">
+        <Fragment set:html={uiIcon("checklist")} /> BEFORE YOU BEGIN
+      </p>
+      <h2 id="prepare-title">Bring the right numbers.</h2>
+      <p>
+        Estimates are enough to explore. Keep every money amount in the same
+        selected currency.
+      </p>
+    </div>
+    <ol>
+      {guide.prepare.map((item, index) => (
+        <li>
+          <span>{String(index + 1).padStart(2, "0")}</span>
+          <p>{item}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
   <section class="wrap section calculator-guide" aria-label="Calculator guide">
     <div>
-      <p class="eyebrow">MAKE THE RESULT USEFUL</p>
+      <p class="eyebrow icon-label">
+        <Fragment set:html={uiIcon("compass")} /> MAKE THE RESULT USEFUL
+      </p>
       <h2>What to look for.</h2>
       <p>{tool.guide}</p>
       <a class="text-link" href={`/contact/?goal=${goal}`}>
@@ -49,8 +92,10 @@ const goal =
         Your calculator inputs are not included in your inquiry.
       </p>
     </div>
-    <aside>
-      <p class="eyebrow">WORKED EXAMPLE · USD</p>
+    <aside id="worked-example">
+      <p class="eyebrow icon-label">
+        <Fragment set:html={uiIcon("page")} /> WORKED EXAMPLE · USD
+      </p>
       <h3>
         {label}: {amount}
       </h3>
@@ -71,6 +116,28 @@ const goal =
       </p>
     </aside>
   </section>
+  <section class="wrap section scenario-prompt">
+    <div>
+      <p class="eyebrow icon-label">
+        <Fragment set:html={uiIcon("switch")} /> TRY ANOTHER SCENARIO
+      </p>
+      <h2>
+        Change one thing.
+        <br /> Notice the difference.
+      </h2>
+    </div>
+    <div>
+      <p class="lead">{guide.experiment}</p>
+      <a class="text-link" href={`#tool-${tool.id}`}>
+        Return to your numbers
+      </a>
+      <p class="micro">
+        Changing inputs here does not send them to Matt or save them between
+        visits.
+      </p>
+    </div>
+  </section>
+  <Faq items={guide.faq} />
   <section class="wrap section">
     <p class="eyebrow">KEEP EXPLORING</p>
     <h2>Another question to work through?</h2>
@@ -79,7 +146,7 @@ const goal =
         .filter((other) => other.id !== tool.id)
         .map((other) => (
           <a class="text-link" href={`/tools/${other.slug}/`}>
-            {other.title}
+            <Fragment set:html={uiIcon(guides[other.id].icon)} /> {other.title}
           </a>
         ))}
     </nav>

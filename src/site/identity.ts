@@ -24,6 +24,14 @@ export const instagramIcon = brandIcon(faInstagram);
 
 export function uiIcon(name: string) {
   const paths: Record<string, string> = {
+    balance:
+      '<path d="M12 3v18M5 21h14M4 7h16M6 7l-4 8h8L6 7Zm12 0-4 8h8l-4-8Z"/>',
+    growth: '<path d="M4 20V4M4 20h17M7 15l5-5 4 2 5-7M16 5h5v5"/>',
+    loan: '<path d="m3 9 9-6 9 6H3ZM5 12v6m7-6v6m7-6v6M3 21h18"/>',
+    inflation:
+      '<circle cx="12" cy="12" r="9"/><path d="M8 16l8-8M8 8h.01M16 16h.01"/>',
+    checklist:
+      '<path d="m3 6 2 2 3-4m3 2h10M3 13l2 2 3-4m3 2h10M3 20l2 2 3-4m3 2h10"/>',
     wallet:
       '<path d="M20 8V5H5a2 2 0 0 0-2 2v12h18V8H5a1 1 0 0 1 0-2M21 12h-6v4h6"/><path d="M17 14h.01"/>',
     debt: '<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M3 8h18M8 21h8M12 17v4M7 12h3"/>',

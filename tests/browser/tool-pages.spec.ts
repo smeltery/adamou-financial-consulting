@@ -24,6 +24,13 @@ for (const tool of calculators) {
       "href",
       `https://adamou-financial-consulting.vercel.app${path}`,
     );
+    await expect(page.locator(".preparation li")).toHaveCount(3);
+    await expect(page.locator(".faq details")).toHaveCount(2);
+    await page.locator(".faq summary").first().click();
+    await expect(page.locator(".faq details").first()).toHaveAttribute(
+      "open",
+      "",
+    );
     const markdown = await request.get(path, {
       headers: { Accept: "text/markdown" },
     });
@@ -54,4 +61,29 @@ test("the tool library and sitemap expose every calculator", async ({
   for (const tool of calculators)
     expect(sitemap).toContain(`/tools/${tool.slug}/`);
   expect((await request.get("/tools/not-a-calculator/")).status()).toBe(404);
+});
+
+test("the library filters by category and search, and recovers from no matches", async ({
+  page,
+}) => {
+  await page.goto("/tools/");
+  const cards = page.locator(".calculator-library > a:visible");
+  await expect(cards).toHaveCount(8);
+  await page
+    .getByRole("button", { name: "Debt & borrowing", exact: true })
+    .click();
+  await expect(cards).toHaveCount(2);
+  const search = page.getByRole("searchbox", { name: "Find a calculator" });
+  await search.fill("loan");
+  await expect(cards).toHaveCount(1);
+  await expect(cards.first()).toContainText("Loan payment");
+  await search.fill("nothing matches this");
+  await expect(cards).toHaveCount(0);
+  await expect(page.locator(".library-empty")).toBeVisible();
+  await page.getByRole("button", { name: "Show all tools" }).click();
+  await expect(cards).toHaveCount(8);
+  await expect(search).toBeFocused();
+  await expect(
+    page.getByRole("button", { name: "All tools", exact: true }),
+  ).toHaveAttribute("aria-pressed", "true");
 });

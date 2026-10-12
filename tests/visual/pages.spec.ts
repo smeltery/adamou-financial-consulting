@@ -3,6 +3,8 @@ import { test, expect } from "@playwright/test";
 for (const [name, path, selector] of [
   ["home", "/", ".hero"],
   ["services", "/services/", "main"],
+  ["library", "/tools/", ".tool-library"],
+  ["guide", "/tools/debt-payoff/", ".preparation"],
   ["calculator", "/tools/debt-payoff/", ".tool-workspace"],
   ["contact", "/contact/", ".intake-layout"],
 ]) {

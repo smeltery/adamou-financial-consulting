@@ -36,10 +36,9 @@ Canonical URLs remain on the live Vercel hostname until the new domain works.
 
 ## Next content opportunity
 
-Dedicated calculator URLs could support focused pages for budget, debt payoff,
-and savings questions. Each should include its own worked example and clear
-assumptions, not merely duplicate the current tools page. Choose priorities
-using actual Search Console queries and client questions.
+Eight dedicated calculator pages now include worked examples, assumptions, input
+checklists, and common questions. Extend these guides using actual Search Console
+queries and client questions, with Matt reviewing any new financial guidance.
 
 ## Verification
 

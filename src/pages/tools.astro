@@ -4,7 +4,7 @@ import { uiIcon } from "../site/identity";
 import Closing from "../components/sections/Closing.astro";
 
 import Layout from "../layouts/SiteLayout.astro";
-import { calculators } from "../tools/catalog";
+import ToolLibrary from "../components/ToolLibrary.astro";
 import CalculatorSuite from "../tools/CalculatorSuite";
 ---
 
@@ -36,6 +36,17 @@ import CalculatorSuite from "../tools/CalculatorSuite";
       <span>Planning estimates · Your selected currency</span>
     </aside>
   </section>
+  <ToolLibrary />
+  <section class="wrap section workspace-heading" id="workspace">
+    <p class="eyebrow icon-label">
+      <Fragment set:html={uiIcon("tools")} /> YOUR WORKSPACE
+    </p>
+    <h2>Keep your numbers together.</h2>
+    <p class="lead">
+      Switch between tools here without losing your inputs. Choose a currency
+      once, then explore different questions.
+    </p>
+  </section>
   <CalculatorSuite client:load />
   <noscript>
     <style is:inline>
@@ -49,7 +60,9 @@ import CalculatorSuite from "../tools/CalculatorSuite";
     <h2>Explore. Compare. Talk it through.</h2>
     <div class="reading-cards">
       <article>
-        <span>01</span>
+        <span class="card-icon">
+          <Fragment set:html={uiIcon("wallet")} />
+        </span>
         <h3>Start with a snapshot.</h3>
         <p>
           Replace the examples with your own estimates. Check that all amounts
@@ -57,7 +70,9 @@ import CalculatorSuite from "../tools/CalculatorSuite";
         </p>
       </article>
       <article>
-        <span>02</span>
+        <span class="card-icon">
+          <Fragment set:html={uiIcon("switch")} />
+        </span>
         <h3>Change one thing.</h3>
         <p>
           Try a different contribution or monthly payment and see how the
@@ -65,7 +80,9 @@ import CalculatorSuite from "../tools/CalculatorSuite";
         </p>
       </article>
       <article>
-        <span>03</span>
+        <span class="card-icon">
+          <Fragment set:html={uiIcon("conversation")} />
+        </span>
         <h3>Add the human context.</h3>
         <p>
           The tools do arithmetic. Matt can discuss how your goals and
@@ -77,19 +94,6 @@ import CalculatorSuite from "../tools/CalculatorSuite";
       These educational estimates aren’t personalized financial advice. Review
       the assumptions before using a result for a decision.
     </p>
-  </section>
-  <section class="wrap section">
-    <p class="eyebrow">THE FULL LIBRARY</p>
-    <h2>A tool for the question in front of you.</h2>
-    <div class="calculator-library">
-      {calculators.map((tool) => (
-        <a href={`/tools/${tool.slug}/`}>
-          <h3>{tool.title}</h3>
-          <p>{tool.question}</p>
-          <span class="text-link">Calculator and guide</span>
-        </a>
-      ))}
-    </div>
   </section>
   <Closing />
 </Layout>

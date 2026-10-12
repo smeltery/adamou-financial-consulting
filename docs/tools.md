@@ -62,3 +62,12 @@ eight guides. Search outside the workspace opens these pages; within `/tools/`,
 switching calculators preserves your current inputs. Existing `#tool-…` links
 continue to work. Reloading or moving to another page resets inputs; financial
 values are never included in a shared URL or a contact link.
+
+The library starts with category filters and a local search box. Select a category,
+search by a topic, or reset an empty result to see all eight tools. Without
+JavaScript, all calculator links remain available. The workspace below the
+library retains your inputs as you switch tools.
+
+Each guide includes an input checklist, a worked example, a scenario to try,
+and answers to questions about that calculator’s assumptions. In-page links
+let you move between the calculator and its supporting guidance.

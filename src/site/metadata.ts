@@ -1,4 +1,4 @@
-import { calculators } from "./tools/catalog";
+import { calculators } from "../tools/catalog";
 import { email, linkedin, instagram } from "./identity";
 export const siteUrl = "https://adamou-financial-consulting.vercel.app";
 export const descriptions: Record<string, string> = {

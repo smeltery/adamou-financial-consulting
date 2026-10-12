@@ -1,4 +1,4 @@
-import { email, linkedIcon, linkedin, uiIcon } from "./identity";
+import { email, linkedIcon, linkedin, uiIcon } from "../site/identity";
 export const services = `<section class="section wrap" id="services"><div class="section-intro"><p class="eyebrow">MAKE ROOM FOR WHAT MATTERS</p><h2>Your money should<br> support your life.</h2><p>You don’t need to have it all figured out. Start with what’s on your mind, and build a plan around what matters to you.</p></div><div class="services">
 <article><span class="service-number icon-label">${uiIcon("wallet")}01 / EVERYDAY CLARITY</span><h3>Know where your<br> money is going.</h3><p>Bring income and expenses into focus with a personalized budget you can actually use.</p><a href="/contact/?goal=budget">Build a better budget</a></article>
 

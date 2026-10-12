@@ -1,4 +1,4 @@
-import { uiIcon } from "./identity";
+import { uiIcon } from "../site/identity";
 const select = (
   name: string,
   label: string,

@@ -1,13 +1,13 @@
 import { searchMarkup, mobileMarkup } from "./navigation";
-import { uiIcon } from "./identity";
+import { uiIcon } from "../site/identity";
 import {
   email,
   linkedin,
   linkedIcon,
   instagram,
   instagramIcon,
-} from "./identity";
-import { metadata } from "./metadata";
+} from "../site/identity";
+import { metadata } from "../site/metadata";
 export function layout(title: string, content: string, active = "") {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">${metadata(title, active)}<meta name="theme-color" content="#204f60"><title>${title} | Afin</title><link rel="icon" href="/assets/afin-favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/styles.css"></head><body>
   <a class="skip" href="#main">Skip to content</a>

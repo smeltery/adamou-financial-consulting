@@ -1,6 +1,6 @@
-import { uiIcon } from "../identity";
+import { uiIcon } from "../site/identity";
 import { regions } from "./currencies";
-import { closing } from "../sections";
+import { closing } from "../components/sections";
 type Field = [name: string, label: string, example: number, unit?: string];
 export const calculators: {
   id: string;

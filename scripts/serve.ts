@@ -1,4 +1,4 @@
-import { siteUrl } from "../src/metadata";
+import { siteUrl } from "../src/site/metadata";
 import { resolve, sep } from "node:path";
 const root = resolve("dist");
 Bun.serve({

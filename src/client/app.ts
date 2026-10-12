@@ -1,6 +1,6 @@
 import { setupSearch } from "./search";
 setupSearch();
-import { setupTools } from "./tools/client";
+import { setupTools } from "../tools/client";
 setupTools();
 import { celebrate, welcomeVisitor } from "./celebrate";
 welcomeVisitor();

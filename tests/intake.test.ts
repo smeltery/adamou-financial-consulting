@@ -1,5 +1,9 @@
 import { describe, expect, test } from "bun:test";
-import { introduction, sendInquiry, validateEndpoint } from "../src/intake";
+import {
+  introduction,
+  sendInquiry,
+  validateEndpoint,
+} from "../src/client/intake";
 describe("client inquiry delivery", () => {
   test("rejects unexpected submission destinations", () => {
     expect(() => validateEndpoint("https://example.com/f/test")).toThrow();

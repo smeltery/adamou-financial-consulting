@@ -1,12 +1,12 @@
 import { cp, mkdir, rm } from "node:fs/promises";
-import { layout } from "../src/layout";
-import { servicesPage, aboutPage, approachPage } from "../src/pages";
+import { layout } from "../src/components/layout";
+import { servicesPage, aboutPage, approachPage } from "../src/pages/company";
 import { writeCrawlFiles } from "./crawl";
 import { toolsPage } from "../src/tools/catalog";
-import { home } from "../src/home";
-import { contact } from "../src/contact";
-import { brand, privacy } from "../src/brand";
-import { validateEndpoint } from "../src/intake";
+import { home } from "../src/pages/home";
+import { contact } from "../src/pages/contact";
+import { brand, privacy } from "../src/pages/brand";
+import { validateEndpoint } from "../src/client/intake";
 const endpoint = validateEndpoint(process.env.FORMSPREE_ENDPOINT || "");
 await rm("dist", { recursive: true, force: true });
 await mkdir("dist", { recursive: true });
@@ -41,20 +41,20 @@ await Bun.write(
   (
     await Promise.all(
       [
-        "base",
-        "home",
-        "forms",
-        "responsive",
-        "chrome",
-        "search",
-        "editorial",
+        "styles/base",
+        "styles/home",
+        "styles/forms",
+        "styles/responsive",
+        "styles/chrome",
+        "styles/search",
+        "styles/editorial",
         "tools/styles",
       ].map((name) => Bun.file(`src/${name}.css`).text()),
     )
   ).join("\n"),
 );
 const result = await Bun.build({
-  entrypoints: ["src/app.ts"],
+  entrypoints: ["src/client/app.ts"],
   outdir: "dist",
   minify: true,
   define: { FORMSPREE_ENDPOINT: JSON.stringify(endpoint) },

@@ -1,5 +1,5 @@
 import { Window } from "happy-dom";
-import { siteUrl } from "../src/metadata";
+import { siteUrl } from "../src/site/metadata";
 
 function markdown(html: string) {
   const window = new Window();

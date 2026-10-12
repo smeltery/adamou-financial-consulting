@@ -3,7 +3,7 @@ import { test, expect, type Page } from "@playwright/test";
 let configuredApp: string;
 test.beforeAll(async () => {
   const build = await Bun.build({
-    entrypoints: ["src/app.ts"],
+    entrypoints: ["src/client/app.ts"],
     target: "browser",
     minify: true,
     define: {

@@ -1,4 +1,4 @@
-import { uiIcon } from "./identity";
+import { uiIcon } from "../site/identity";
 export const brand = `
 <section class="wrap contact-heading"><p class="eyebrow">THE AFIN BRAND</p><h1>Grounded in clarity.<br> <em>Built for possibility.</em></h1><p class="lead">A visual identity for a more personal path forward.</p></section>
 

@@ -32,7 +32,18 @@ flowchart LR
   B --> E[dist static website]
 ```
 
-`src/` holds templates, styles, and client behavior; `scripts/` holds build and quality checks; `public/assets/` holds images.
+Source is grouped by responsibility:
+
+| Directory         | Responsibility                                         |
+| ----------------- | ------------------------------------------------------ |
+| `src/pages/`      | Route content and page templates                       |
+| `src/components/` | Shared layout, navigation, and sections                |
+| `src/site/`       | Business identity, metadata, and structured data       |
+| `src/client/`     | Browser entry point, search, celebrations, and intake  |
+| `src/styles/`     | Shared and page styles, in explicit build order        |
+| `src/tools/`      | Calculator definitions, formulas, behavior, and styles |
+
+`scripts/` holds build and quality checks; `public/assets/` holds images. The build keeps public URLs and asset names stable.
 
 ## Budgets
 

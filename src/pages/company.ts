@@ -1,11 +1,11 @@
-import { closing, testimonial } from "./sections";
+import { closing, testimonial } from "../components/sections";
 import {
   linkedin,
   linkedIcon,
   instagram,
   instagramIcon,
   uiIcon,
-} from "./identity";
+} from "../site/identity";
 const intro = (eyebrow: string, title: string, description: string) =>
   `<section class="wrap contact-heading"><p class="eyebrow">${eyebrow}</p><h1>${title}</h1><p class="lead">${description}</p></section>`;
 const variants: Record<string, string> = {

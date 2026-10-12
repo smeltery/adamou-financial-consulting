@@ -1,5 +1,5 @@
-import { calculators } from "./tools/catalog";
-import { email, uiIcon } from "./identity";
+import { calculators } from "../tools/catalog";
+import { email, uiIcon } from "../site/identity";
 const pages = [
   ["Home", "/", "A clearer path forward"],
   ["Services", "/services/", "Budgeting, debt, and financial coaching"],

@@ -48,11 +48,17 @@ the portrait and SVG mark. There is no client framework or database.
 ## Budgets
 
 Tracked source, docs, scripts, and configuration have a 400-line file ceiling,
-20 direct files per directory, and a 4,900-line overall ceiling. Generated
+20 direct files per directory, and a 5,000-line overall ceiling. Generated
 assets, lockfiles, and Flox metadata are excluded. Budgets live in
 `scripts/budgets.json`; split by responsibility rather than compressing code.
 
 Add new files to Git before running budget checks. CI always checks the tracked
 snapshot. Dependencies and build output stay out of Git.
 
-The 4,900-line budget includes expanded, distinct service, about, and approach pages, generated agent-readable content, submission celebration coverage, and eight tested financial calculators and keyboard site search. Shared sections and routing keep those additions small.
+The 5,000-line budget includes expanded, distinct service, about, and approach pages, generated agent-readable content, submission celebration coverage, and eight tested financial calculators and keyboard site search. Shared sections and routing keep those additions small.
+
+Page navigation uses native CSS cross-document view transitions for a brief
+blur and fade. Reduced-motion visitors get ordinary navigation; unsupported
+browsers also navigate normally. Links remain native, with no artificial loading
+delay or JavaScript router. See [MDN’s view transition guide](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@view-transition).
+Responsive line breaks retain literal whitespace so hiding a break cannot join words.

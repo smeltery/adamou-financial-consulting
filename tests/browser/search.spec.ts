@@ -93,7 +93,10 @@ test("tool library scopes results and preserves inputs when switching", async ({
   page,
 }) => {
   await page.goto("/tools/");
-  await page.getByLabel("Monthly take-home income").fill("6000");
+  await page
+    .locator("#tool-budget")
+    .getByLabel("Monthly take-home income")
+    .fill("6000");
   await page.locator(".tool-picker button").click();
   const dialog = page.getByRole("dialog");
   await expect(
@@ -106,7 +109,9 @@ test("tool library scopes results and preserves inputs when switching", async ({
   await dialog.getByRole("link", { name: "Loan payment", exact: true }).click();
   await expect(page.locator("#selected-tool")).toHaveText("Loan payment");
   await chooseTool(page, "Monthly budget");
-  await expect(page.getByLabel("Monthly take-home income")).toHaveValue("6000");
+  await expect(
+    page.locator("#tool-budget").getByLabel("Monthly take-home income"),
+  ).toHaveValue("6000");
 });
 
 test("search skips motion when reduced motion is preferred", async ({

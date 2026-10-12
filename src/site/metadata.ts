@@ -18,7 +18,7 @@ export const descriptions: Record<string, string> = {
   contact:
     "Introduce yourself to Matt Adamou. Share your financial goals, priorities, and preferred way to connect.",
   tools:
-    "Explore twelve free financial calculators for budgets, debt payoff, savings, loan payments, compound growth, inflation, and more. Private, no account needed.",
+    "Explore sixteen free financial calculators for budgets, debt payoff, savings, loan payments, compound growth, inflation, and more. Private, no account needed.",
   brand:
     "Download the Afin logo and favicon. Explore Adamou Financial Consulting’s brand colors, typography, imagery, and writing style.",
   privacy: "How Afin handles inquiry information and Vercel Web Analytics.",
@@ -137,7 +137,7 @@ export function metadata(title: string, path: string) {
       content="Afin — Adamou Financial Consulting. Less money stress. More possibility."
     />
     <meta property="og:image:width" content="1200" />
-    <meta property="og:image:htwelve" content="630" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/png" />
     <meta name="twitter:image" content="${siteUrl}/assets/afin-social.png" />
     <meta name="twitter:card" content="summary_large_image" />

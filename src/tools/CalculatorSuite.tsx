@@ -3,6 +3,14 @@ import { calculators } from "./catalog";
 import { moneyFormat, regions } from "./currencies";
 import { result } from "./results";
 
+const inputLimits: Record<string, { max: number; step: number }> = {
+  months: { max: 120, step: 1 },
+  years: { max: 100, step: 1 },
+  "weeks/year": { max: 52, step: 1 },
+  "hours/week": { max: 168, step: 0.01 },
+  uses: { max: 1000000, step: 1 },
+};
+
 type Calculator = (typeof calculators)[number];
 
 function CalculatorForm({
@@ -60,22 +68,8 @@ function CalculatorForm({
               name={name}
               value={values[name]}
               min="0"
-              max={
-                unit === "months"
-                  ? 120
-                  : unit === "weeks/year"
-                    ? 52
-                    : unit === "hours/week"
-                      ? 168
-                      : unit
-                        ? 100
-                        : 1000000000
-              }
-              step={
-                unit === "months" || unit === "years" || unit === "weeks/year"
-                  ? 1
-                  : 0.01
-              }
+              max={unit ? (inputLimits[unit]?.max ?? 100) : 1000000000}
+              step={unit ? (inputLimits[unit]?.step ?? 0.01) : 0.01}
               required
               disabled={!ready}
               onChange={(event) => {

@@ -90,3 +90,23 @@ export function recurringCosts(monthly: number, annual: number, years: number) {
   const yearly = monthly * 12 + annual;
   return { yearly, total: yearly * years };
 }
+
+export const savingsRate = (income: number, saved: number) =>
+  income > 0 ? (saved / income) * 100 : null;
+
+export function simpleInterest(
+  principal: number,
+  rate: number,
+  months: number,
+) {
+  const interest = principal * (rate / 100) * (months / 12);
+  return { interest, total: principal + interest };
+}
+
+export function discountPrice(price: number, discount: number) {
+  const saved = price * (discount / 100);
+  return { saved, price: price - saved };
+}
+
+export const costPerUse = (price: number, upkeep: number, uses: number) =>
+  uses > 0 ? (price + upkeep) / uses : null;

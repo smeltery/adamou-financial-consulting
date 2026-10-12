@@ -20,6 +20,7 @@ test("search metadata is unique and structured entities match the public content
     expect(response.ok()).toBe(true);
     titles.add(html.match(/<title>(.*?)<\/title>/)![1]);
     descriptions.add(html.match(/name="description" content="([^"]+)"/)![1]);
+    expect(html).toContain('property="og:image:height" content="630"');
     expect(html).not.toContain('content="noindex"');
     const graph = JSON.parse(
       html.match(/application\/ld\+json">(.*?)<\/script>/s)![1],

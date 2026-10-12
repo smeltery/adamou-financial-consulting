@@ -206,4 +206,68 @@ export const calculators: {
     guide:
       "Add up monthly and yearly charges separately. Review how much you use each service before deciding what to change. The total is spending under a constant-price scenario, not automatically available savings.",
   },
+  {
+    id: "savingrate",
+    slug: "savings-rate",
+    title: "Savings rate",
+    question: "See how much of your monthly take-home income you set aside.",
+    fields: [
+      ["income", "Monthly take-home income", 4500],
+      ["saved", "Monthly amount set aside", 675],
+    ],
+    formula:
+      "Savings rate = monthly amount set aside ÷ monthly take-home income × 100.",
+    note: "Uses take-home income and savings from the same month. Do not include payroll contributions withheld before take-home pay unless you adjust both inputs consistently. This is a chosen cash-flow measure, not a universal savings benchmark.",
+    guide:
+      "Choose what you count as savings and keep that definition consistent when comparing months. The percentage does not tell you whether your savings are enough for a particular goal. Compare it with your budget and goal timeline.",
+  },
+  {
+    id: "simple",
+    slug: "simple-interest",
+    title: "Simple interest",
+    question: "Explore interest calculated on an unchanged starting amount.",
+    fields: [
+      ["principal", "Starting amount", 5000],
+      ["rate", "Annual simple interest rate", 4, "%"],
+      ["months", "Duration in months", 18, "months"],
+    ],
+    formula:
+      "Interest = principal × annual rate / 100 × months / 12. Total = principal + interest.",
+    note: "Simple interest only: interest does not earn additional interest. Assumes the principal and annual rate stay unchanged, with no deposits, repayments, fees, or taxes. This is not an amortized-loan calculation or a quoted account return.",
+    guide:
+      "Use this tool only for a simple-interest scenario. Compare the interest amount with the original principal. For interest that compounds or a balance with monthly repayments, choose the matching growth or loan tool instead.",
+  },
+  {
+    id: "discount",
+    slug: "discount-savings",
+    title: "Discount savings",
+    question:
+      "Calculate the sale price and saving from one percentage discount.",
+    fields: [
+      ["price", "Original price", 120],
+      ["discount", "Discount percentage", 25, "%"],
+    ],
+    formula:
+      "Saving = original price × discount / 100. Sale price = original price − saving.",
+    note: "One percentage discount on the entered original price. Excludes tax, delivery, fees, rebates, and stacked offers. The saving is a price difference, not money earned or automatically added to savings.",
+    guide:
+      "Compare the final price with what you intended to spend, not just the size of the discount. Confirm the original price and check additional charges separately. A lower price does not change whether the purchase fits your budget.",
+  },
+  {
+    id: "costuse",
+    slug: "cost-per-use",
+    title: "Cost per use",
+    question:
+      "Compare the cost of something with how often you expect to use it.",
+    fields: [
+      ["price", "Purchase price or subscription cost", 240],
+      ["upkeep", "Additional costs over the same period", 60],
+      ["uses", "Expected number of uses", 60, "uses"],
+    ],
+    formula:
+      "Cost per use = (purchase or subscription cost + additional costs) ÷ expected uses.",
+    note: "Use the same ownership or subscription period for costs and uses. Assumes every expected use occurs. Excludes financing, resale value, and costs you do not enter. A low cost per use alone does not establish affordability.",
+    guide:
+      "Choose a realistic number of uses before comparing options. Include upkeep or additional fees over the same period. Compare a lower-use scenario too; the estimate depends as much on actual use as it does on price.",
+  },
 ];

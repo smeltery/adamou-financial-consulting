@@ -11,6 +11,10 @@ import {
   debtRatio,
   hourlyPay,
   recurringCosts,
+  savingsRate,
+  simpleInterest,
+  discountPrice,
+  costPerUse,
 } from "./math";
 
 export function result(
@@ -19,6 +23,47 @@ export function result(
   formatter: Intl.NumberFormat,
 ) {
   const money = (value: number) => formatter.format(value);
+  if (id === "savingrate") {
+    const rate = savingsRate(v.income, v.saved);
+    return [
+      rate === null
+        ? "No rate yet"
+        : new Intl.NumberFormat(formatter.resolvedOptions().locale, {
+            style: "percent",
+            maximumFractionDigits: 1,
+          }).format(rate / 100),
+      "Share of take-home income set aside",
+      rate === null
+        ? "Enter take-home income greater than zero to calculate a savings rate."
+        : `${money(v.saved)} set aside from ${money(v.income)} take-home income. Keep the period and income basis consistent.`,
+    ];
+  }
+  if (id === "simple") {
+    const estimate = simpleInterest(v.principal, v.rate, v.months);
+    return [
+      money(estimate.interest),
+      "Simple interest over your period",
+      `${money(estimate.total)} principal plus interest after ${v.months} months. No compounding or repayments.`,
+    ];
+  }
+  if (id === "discount") {
+    const estimate = discountPrice(v.price, v.discount);
+    return [
+      money(estimate.price),
+      "Price after the discount",
+      `${money(estimate.saved)} below the original ${money(v.price)} price. Tax, shipping, and other charges excluded.`,
+    ];
+  }
+  if (id === "costuse") {
+    const cost = costPerUse(v.price, v.upkeep, v.uses);
+    return [
+      cost === null ? "Add expected uses" : money(cost),
+      "Estimated cost per use",
+      cost === null
+        ? "Enter at least one use to divide the total cost."
+        : `${money(v.price + v.upkeep)} in total costs across ${v.uses} expected uses. Use the same period for both.`,
+    ];
+  }
   if (id === "contribution") {
     const monthly = monthlySavings(v.target, v.saved, v.months);
     return monthly === null

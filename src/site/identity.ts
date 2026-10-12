@@ -24,6 +24,7 @@ export const instagramIcon = brandIcon(faInstagram);
 
 export function uiIcon(name: string) {
   const paths: Record<string, string> = {
+    tag: '<path d="M3 3h7l11 11-7 7L3 10Z"/><circle cx="7" cy="7" r="1"/>',
     balance:
       '<path d="M12 3v18M5 21h14M4 7h16M6 7l-4 8h8L6 7Zm12 0-4 8h8l-4-8Z"/>',
     growth: '<path d="M4 20V4M4 20h17M7 15l5-5 4 2 5-7M16 5h5v5"/>',

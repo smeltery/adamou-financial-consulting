@@ -98,3 +98,30 @@ test("recurring costs combine billing periods without duplicating annual fees", 
   expect(recurringCosts(0, 120, 1)).toEqual({ yearly: 120, total: 120 });
   expect(recurringCosts(85, 240, 0).total).toBe(0);
 });
+
+import {
+  savingsRate,
+  simpleInterest,
+  discountPrice,
+  costPerUse,
+} from "../src/tools/math";
+test("savings rate handles zero income and savings above income", () => {
+  expect(savingsRate(4500, 675)).toBe(15);
+  expect(savingsRate(0, 100)).toBeNull();
+  expect(savingsRate(100, 150)).toBe(150);
+});
+test("simple interest scales with time without compounding", () => {
+  expect(simpleInterest(5000, 4, 18)).toEqual({ interest: 300, total: 5300 });
+  expect(simpleInterest(5000, 4, 0)).toEqual({ interest: 0, total: 5000 });
+  expect(simpleInterest(5000, 0, 18).interest).toBe(0);
+});
+test("discounts preserve the original at zero and reach zero at 100 percent", () => {
+  expect(discountPrice(120, 25)).toEqual({ saved: 30, price: 90 });
+  expect(discountPrice(120, 0).price).toBe(120);
+  expect(discountPrice(120, 100).price).toBe(0);
+});
+test("cost per use includes upkeep and rejects zero uses", () => {
+  expect(costPerUse(240, 60, 60)).toBe(5);
+  expect(costPerUse(240, 60, 0)).toBeNull();
+  expect(costPerUse(0, 0, 60)).toBe(0);
+});

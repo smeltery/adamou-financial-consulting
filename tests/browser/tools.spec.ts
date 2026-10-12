@@ -41,9 +41,9 @@ test("currency selection updates units and every result without changing inputs"
   await expect(page.locator(".calculator:visible .tool-result")).toContainText(
     "£1,100.00",
   );
-  await expect(page.getByLabel("Monthly take-home income (GBP)")).toHaveValue(
-    "4500",
-  );
+  await expect(
+    page.locator("#tool-budget").getByLabel("Monthly take-home income (GBP)"),
+  ).toHaveValue("4500");
   await chooseTool(page, "Emergency fund");
   await expect(page.locator(".calculator:visible .tool-result")).toContainText(
     "£8,400.00",

@@ -1,6 +1,10 @@
 import { test, expect } from "@playwright/test";
 
 for (const [slug, label, value, expected] of [
+  ["savings-rate", "Monthly amount set aside", "900", "20%"],
+  ["simple-interest", "Duration in months", "12", "$200.00"],
+  ["discount-savings", "Discount percentage", "50", "$60.00"],
+  ["cost-per-use", "Expected number of uses", "30", "$10.00"],
   ["monthly-savings", "Months until your goal", "9", "$1,000.00"],
   ["debt-to-income", "Gross monthly income", "4000", "50%"],
   ["hourly-pay", "Paid weeks each year", "48", "$48,000.00"],

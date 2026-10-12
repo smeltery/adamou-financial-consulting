@@ -272,4 +272,92 @@ export const guides: Record<string, Guide> = {
       ],
     ],
   },
+  savingrate: {
+    icon: "growth",
+    category: "Everyday money",
+    related: ["budget", "contribution", "savings"],
+    prepare: [
+      "Take-home income for one month.",
+      "Money set aside from that same take-home amount.",
+      "A consistent definition of which savings you count.",
+    ],
+    experiment:
+      "Keep take-home income fixed and change the monthly amount saved. Then check whether the remaining income covers your other commitments in the budget tool.",
+    faq: [
+      [
+        "Can the rate be above 100%?",
+        "Yes, if the entered savings exceed the entered income. That may involve existing funds, a different time period, or inconsistent inputs. The calculator displays the arithmetic without treating it as a target.",
+      ],
+      [
+        "Should I include retirement contributions from payroll?",
+        "This tool starts from take-home income. Including contributions already deducted from that income mixes two bases. For a consistent comparison, use amounts from the same income basis and period.",
+      ],
+    ],
+  },
+  simple: {
+    icon: "inflation",
+    category: "Future goals",
+    related: ["growth", "loan", "savings"],
+    prepare: [
+      "A starting principal that stays unchanged.",
+      "A hypothetical annual simple-interest rate.",
+      "The length of the scenario in complete months.",
+    ],
+    experiment:
+      "Compare a 12-month and a 24-month duration at the same principal and rate. In this model, doubling time doubles interest because interest does not compound.",
+    faq: [
+      [
+        "How is this different from compound growth?",
+        "Simple interest is calculated only on the unchanged starting principal. Compound growth adds interest to the balance so later growth also applies to earlier interest.",
+      ],
+      [
+        "Can I use this for a loan I repay monthly?",
+        "Not to estimate its repayment schedule. This model never reduces principal. The loan payment calculator models a fixed-rate loan with regular monthly repayments.",
+      ],
+    ],
+  },
+  discount: {
+    icon: "tag",
+    category: "Purchases",
+    related: ["costuse", "budget", "recurring"],
+    prepare: [
+      "The original price before the discount.",
+      "One discount expressed as a percentage.",
+      "Any extra charges to consider outside the estimate.",
+    ],
+    experiment:
+      "Compare two discount percentages on the same original price. If comparing two shops, update the original price as well; a larger percentage does not always mean a lower final price.",
+    faq: [
+      [
+        "Can I add two discount percentages together?",
+        "Not for successive discounts. Two discounts are usually applied in sequence to different amounts. This tool applies only one percentage to the original price you enter.",
+      ],
+      [
+        "Are tax and shipping included?",
+        "No. Add those separately when comparing the actual total you would pay. Discount rules and which charges are eligible can differ between sellers.",
+      ],
+    ],
+  },
+  costuse: {
+    icon: "checklist",
+    category: "Purchases",
+    related: ["discount", "recurring", "budget"],
+    prepare: [
+      "The price or subscription charge for the period.",
+      "Upkeep and additional costs for that same period.",
+      "A realistic count of uses within that period.",
+    ],
+    experiment:
+      "Halve the expected uses while leaving costs unchanged. The cost per use doubles, which shows why an optimistic usage estimate can make a purchase look more attractive.",
+    faq: [
+      [
+        "What happens if I enter no uses?",
+        "There is no meaningful cost-per-use estimate with zero uses. The calculator asks for at least one use instead of showing an infinite amount.",
+      ],
+      [
+        "Can I compare a subscription with buying something?",
+        "Yes, as a simple cost comparison if both options use the same time period and realistic usage count. Include relevant ongoing costs; this tool does not value convenience, quality, or resale proceeds.",
+      ],
+    ],
+  },
 };

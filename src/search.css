@@ -186,7 +186,6 @@ dialog::backdrop {
 }
 .search-results a:hover,
 .search-results a:focus,
-#mobile-navigation nav a:hover,
 #mobile-navigation nav a[aria-current] {
   background: #e8ede5;
   border-color: var(--line);
@@ -248,7 +247,15 @@ dialog::backdrop {
   border-bottom: 1px solid var(--line);
 }
 #mobile-navigation nav {
-  padding: 12px;
+  display: grid;
+  gap: 8px;
+  padding: 16px 12px;
+}
+@media (hover: hover) {
+  #mobile-navigation nav a:not([aria-current]):hover {
+    background: var(--paper);
+    border-color: var(--line);
+  }
 }
 #mobile-navigation nav a {
   padding: 14px 12px;

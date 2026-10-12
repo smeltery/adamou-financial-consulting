@@ -31,6 +31,8 @@ export function uiIcon(name: string) {
     loan: '<path d="m3 9 9-6 9 6H3ZM5 12v6m7-6v6m7-6v6M3 21h18"/>',
     inflation:
       '<circle cx="12" cy="12" r="9"/><path d="M8 16l8-8M8 8h.01M16 16h.01"/>',
+    calendar:
+      '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 11h18M7 15h2m4 0h2m-8 3h2"/>',
     checklist:
       '<path d="m3 6 2 2 3-4m3 2h10M3 13l2 2 3-4m3 2h10M3 20l2 2 3-4m3 2h10"/>',
     wallet:

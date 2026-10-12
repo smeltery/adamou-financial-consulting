@@ -119,10 +119,10 @@ hr {
   navigation: auto;
 }
 ::view-transition-old(root) {
-  animation: page-out 180ms ease-out both;
+  animation: page-out 240ms ease-out both;
 }
 ::view-transition-new(root) {
-  animation: page-in 220ms ease-out both;
+  animation: page-in 340ms ease-out both;
 }
 @keyframes page-out {
   to {
@@ -147,5 +147,20 @@ hr {
   ::view-transition-old(root),
   ::view-transition-new(root) {
     animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  main {
+    transition:
+      opacity 180ms ease,
+      filter 180ms ease;
+  }
+  .is-navigating main {
+    opacity: 0.55;
+    filter: blur(3px);
+  }
+  .page-enter main {
+    animation: page-in 340ms ease-out backwards;
   }
 }

@@ -12,7 +12,23 @@ export function setupSearch() {
   let scope = "all",
     scrollPosition = 0;
   let returnFocus: HTMLElement | null = null;
-  const close = (dialog: HTMLDialogElement) => {
+  let closing: Animation | null = null;
+  const close = (dialog: HTMLDialogElement, immediate = false) => {
+    if (
+      dialog === menu &&
+      !immediate &&
+      !matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      if (closing) return;
+      closing = menu.animate(
+        { transform: [getComputedStyle(menu).transform, "translateX(100%)"] },
+        { duration: 240, easing: "ease-in", fill: "forwards" },
+      );
+      closing.onfinish = () => close(menu, true);
+      return;
+    }
+    closing?.cancel();
+    closing = null;
     dialog.close();
     document.body.style.top = "";
     document.documentElement.classList.remove("overlay-open");
@@ -21,7 +37,7 @@ export function setupSearch() {
   };
   const show = (dialog: HTMLDialogElement, trigger: HTMLElement | null) => {
     const current = document.querySelector<HTMLDialogElement>("dialog[open]");
-    if (current) close(current);
+    if (current) close(current, true);
     scrollPosition = window.scrollY;
     returnFocus = trigger;
     document.body.style.top = `-${scrollPosition}px`;

@@ -30,3 +30,30 @@ test("page links and browser back work with reduced motion", async ({
   await page.goBack();
   await expect(page.locator(".hero h1")).toBeVisible();
 });
+
+test("interrupted navigation restores sharp, readable content", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await page.evaluate(() =>
+    window.addEventListener("click", (event) => event.preventDefault(), {
+      once: true,
+    }),
+  );
+  await page.locator(".hero a.button").click();
+  await expect(page.locator("html")).toHaveClass(/is-navigating/);
+  await expect(page.locator("main")).toHaveCSS("filter", "blur(3px)");
+  await expect(page.locator("html")).not.toHaveClass(/is-navigating/);
+  await expect(page.locator("main")).toHaveCSS("filter", "none");
+});
+
+test("fallback arrival animation respects reduced motion", async ({ page }) => {
+  await page.addInitScript(() => {
+    Reflect.deleteProperty(window, "CSSViewTransitionRule");
+  });
+  await page.goto("/");
+  await expect(page.locator("html")).toHaveClass(/page-enter/);
+  await expect(page.locator("main")).toHaveCSS("animation-name", "page-in");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(page.locator("main")).toHaveCSS("animation-name", "none");
+});

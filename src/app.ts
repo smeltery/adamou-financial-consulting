@@ -117,3 +117,40 @@ document.querySelector("#back-to-top")?.addEventListener("click", () => {
     .querySelector<HTMLAnchorElement>(".logo")
     ?.focus({ preventScroll: true });
 });
+
+if (!("CSSViewTransitionRule" in window))
+  document.documentElement.classList.add("page-enter");
+let navigationReset: ReturnType<typeof setTimeout>;
+const clearNavigation = () => {
+  clearTimeout(navigationReset);
+  document.documentElement.classList.remove("is-navigating");
+};
+window.addEventListener("pageshow", clearNavigation);
+document.addEventListener("click", (event) => {
+  if (
+    event.defaultPrevented ||
+    event.button !== 0 ||
+    event.metaKey ||
+    event.ctrlKey ||
+    event.shiftKey ||
+    event.altKey ||
+    matchMedia("(prefers-reduced-motion: reduce)").matches
+  )
+    return;
+  const link = (event.target as Element).closest<HTMLAnchorElement>("a[href]");
+  if (
+    !link ||
+    link.hasAttribute("download") ||
+    (link.target && link.target !== "_self")
+  )
+    return;
+  const url = new URL(link.href);
+  if (
+    url.origin !== location.origin ||
+    (url.pathname === location.pathname && url.search === location.search)
+  )
+    return;
+  document.documentElement.classList.add("is-navigating");
+  clearTimeout(navigationReset);
+  navigationReset = setTimeout(clearNavigation, 2000);
+});

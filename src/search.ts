@@ -13,23 +13,31 @@ export function setupSearch() {
     scrollPosition = 0;
   let returnFocus: HTMLElement | null = null;
   let closing: Animation | null = null;
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  const animate = (element: Element, frames: Keyframe[], duration: number) => {
+    element.getAnimations().forEach((animation) => animation.cancel());
+    if (!reducedMotion.matches)
+      return element.animate(frames, { duration, easing: "ease-out" });
+  };
   const close = (dialog: HTMLDialogElement, immediate = false) => {
-    if (
-      dialog === menu &&
-      !immediate &&
-      !matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
+    if (!immediate && !reducedMotion.matches) {
       if (closing) return;
-      closing = menu.animate(
-        { transform: [getComputedStyle(menu).transform, "translateX(100%)"] },
-        { duration: 240, easing: "ease-in", fill: "forwards" },
-      );
-      closing.onfinish = () => close(menu, true);
+      const style = getComputedStyle(dialog);
+      const frames = [
+        { transform: style.transform, opacity: style.opacity },
+        dialog === menu
+          ? { transform: "translateX(100%)" }
+          : { transform: "translateY(-10px) scale(0.98)", opacity: "0" },
+      ];
+      closing = animate(dialog, frames, dialog === menu ? 240 : 160)!;
+      dialog.classList.add("is-closing");
+      closing.onfinish = () => close(dialog, true);
       return;
     }
     closing?.cancel();
     closing = null;
     dialog.close();
+    dialog.classList.remove("is-closing");
     document.body.style.top = "";
     document.documentElement.classList.remove("overlay-open");
     window.scrollTo({ top: scrollPosition, behavior: "instant" });
@@ -43,6 +51,15 @@ export function setupSearch() {
     document.body.style.top = `-${scrollPosition}px`;
     document.documentElement.classList.add("overlay-open");
     dialog.showModal();
+    if (dialog === search)
+      animate(
+        search,
+        [
+          { opacity: 0, transform: "translateY(-12px) scale(0.98)" },
+          { opacity: 1, transform: "translateY(0) scale(1)" },
+        ],
+        220,
+      );
   };
   const filter = () => {
     const words = input.value.toLowerCase().trim().split(/\s+/);
@@ -66,7 +83,17 @@ export function setupSearch() {
     const count = links.filter((link) => !link.hidden).length;
     status.textContent = `${count} ${count === 1 ? "result" : "results"}`;
     search.querySelector<HTMLElement>(".search-empty")!.hidden = count > 0;
-    search.querySelector(".search-scroll")!.scrollTop = 0;
+    const results = search.querySelector<HTMLElement>(".search-scroll")!;
+    results.scrollTop = 0;
+    if (search.open)
+      animate(
+        results,
+        [
+          { opacity: 0.6, transform: "translateY(3px)" },
+          { opacity: 1, transform: "translateY(0)" },
+        ],
+        140,
+      );
   };
   const openSearch = (trigger: HTMLElement | null, selectedScope = "all") => {
     scope = selectedScope;

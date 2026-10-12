@@ -59,4 +59,5 @@ async function chooseTool(page: Page, name: string) {
     .getByRole("dialog")
     .getByRole("link", { name, exact: true })
     .click();
+  await expect(page.getByRole("dialog")).not.toBeVisible();
 }

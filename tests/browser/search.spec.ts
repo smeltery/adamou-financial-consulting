@@ -61,6 +61,7 @@ async function chooseTool(page: Page, name: string) {
     .getByRole("dialog")
     .getByRole("link", { name, exact: true })
     .click();
+  await expect(page.getByRole("dialog")).not.toBeVisible();
 }
 
 test("overlays lock background scroll and restore the page position", async ({
@@ -79,7 +80,7 @@ test("overlays lock background scroll and restore the page position", async ({
   ).toBe(lockedTop);
   await expect(page.locator("html")).toHaveClass(/overlay-open/);
   await page.keyboard.press("Escape");
-  expect(await page.evaluate(() => window.scrollY)).toBe(500);
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(500);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.getByLabel("Open navigation menu").click();
   await expect(page.getByRole("dialog")).toBeVisible();
@@ -106,4 +107,23 @@ test("tool library scopes results and preserves inputs when switching", async ({
   await expect(page.locator("#selected-tool")).toHaveText("Loan payment");
   await chooseTool(page, "Monthly budget");
   await expect(page.getByLabel("Monthly take-home income")).toHaveValue("6000");
+});
+
+test("search skips motion when reduced motion is preferred", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/tools/");
+  await page.keyboard.press("Control+k");
+  const dialog = page.locator("#site-search");
+  await expect(dialog).toBeVisible();
+  await dialog.locator("input").fill("savings");
+  expect(
+    await dialog.evaluate(
+      (element) => element.getAnimations({ subtree: true }).length,
+    ),
+  ).toBe(0);
+  await page.keyboard.press("Escape");
+  await expect(dialog).not.toBeVisible();
+  await expect(page.locator("html")).not.toHaveClass(/overlay-open/);
 });

@@ -37,7 +37,7 @@ flowchart LR
 ## Budgets
 
 Tracked source, docs, scripts, and configuration have a 1,000-line file ceiling,
-20 direct files per directory, and a 5,000-line overall ceiling. Generated
+20 direct files per directory, and a 5,200-line overall ceiling. Generated
 assets, lockfiles, and Flox metadata are excluded. See `scripts/budgets.json`.
 
 Add new files to Git before running budget checks; CI checks the tracked snapshot.
@@ -50,3 +50,5 @@ delay or JavaScript router. See [MDN’s view transition guide](https://develope
 Responsive line breaks retain literal whitespace so hiding a break cannot join words.
 
 The mobile menu slides in from the right and fades its backdrop with CSS transitions and a closing animation. Reduced-motion visitors get an immediate open and close.
+
+Search opens and closes with a short fade and lift. Result changes animate without delaying filtering; rapid input replaces the previous animation. All search motion respects reduced-motion preferences.

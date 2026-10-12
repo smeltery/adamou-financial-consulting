@@ -367,3 +367,24 @@ dialog::backdrop {
     }
   }
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  #site-search::backdrop {
+    opacity: 1;
+    transition: opacity 160ms ease;
+  }
+  #site-search.is-closing::backdrop {
+    opacity: 0;
+  }
+  @starting-style {
+    #site-search[open]::backdrop {
+      opacity: 0;
+    }
+  }
+  .search-filters button,
+  .search-results a {
+    transition:
+      background-color 120ms ease,
+      border-color 120ms ease;
+  }
+}

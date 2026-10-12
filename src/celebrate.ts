@@ -8,18 +8,18 @@ export function celebrate(welcome = false) {
       particleCount,
       angle,
       spread: 85,
-      startVelocity: welcome ? 35 : 55,
+      startVelocity: welcome ? 45 : 55,
       gravity: 0.85,
-      ticks: welcome ? 160 : 260,
+      ticks: welcome ? 200 : 260,
       scalar: 1.15,
       origin: { x, y: 0.7 },
       colors,
       disableForReducedMotion: true,
     });
-  for (let wave = 0; wave < (welcome ? 2 : 6); wave++) {
+  for (let wave = 0; wave < (welcome ? 4 : 6); wave++) {
     window.setTimeout(() => {
-      burst(welcome ? 30 : 70, 60, 0.05);
-      burst(welcome ? 30 : 70, 120, 0.95);
+      burst(welcome ? 60 : 70, 60, 0.05);
+      burst(welcome ? 60 : 70, 120, 0.95);
     }, wave * 350);
   }
 }

@@ -22,7 +22,7 @@ jobs:
         with:
           version: 1.18.1
       - name: Check in locked Flox environment
-        run: flox activate -- bash -c 'bun install --frozen-lockfile && bunx --bun playwright install --with-deps --only-shell chromium && ./scripts/check.sh'
+        run: flox activate -- bash -c 'bun install --frozen-lockfile && node node_modules/@playwright/test/cli.js install --with-deps --only-shell chromium && ./scripts/check.sh'
       - name: Upload failure diagnostics
         if: failure()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

@@ -53,6 +53,8 @@
 }
 .library-search input {
   width: 100%;
+  min-width: 0;
+  margin: 0;
   border: 0;
   padding: 12px 0;
   background: transparent;
@@ -79,6 +81,7 @@
   background: var(--white);
   text-decoration: none;
 }
+.calculator-library > a:focus-visible,
 .calculator-library > a:hover {
   border-color: var(--sage);
   background: #e8ede5;
@@ -105,12 +108,7 @@
 }
 .calculator-library p {
   font-size: 14px;
-  margin-bottom: 24px;
-}
-.calculator-library .text-link {
-  font-size: 13px;
-  margin-top: auto;
-  align-self: start;
+  margin-bottom: 0;
 }
 .library-empty {
   padding: 40px;

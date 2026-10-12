@@ -15,6 +15,8 @@ CI uses GitHub-hosted Ubuntu by default. Set the repository variable
 `CI_RUNNER=blacksmith-2vcpu-ubuntu-2404` when Blacksmith is enabled for the repo.
 
 The Astro dev server uses localhost:3000 and updates automatically as you edit.
+Vite caches are separated by Astro command so running checks or builds cannot
+replace the live preview’s React dependencies.
 For production routing checks (including Markdown negotiation), run
 `bun run build && bun run preview` instead. Stop the dev server first to free port 3000.
 

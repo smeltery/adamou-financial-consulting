@@ -10,7 +10,18 @@ export default defineConfig({
   // Preserve word boundaries around inline links and emphasized text.
   compressHTML: true,
   trailingSlash: "always",
-  integrations: [react()],
+  integrations: [
+    react(),
+    {
+      name: "isolated-vite-cache",
+      hooks: {
+        "astro:config:setup": ({ command, updateConfig }) => {
+          // Checks and builds must not replace a running dev server's React cache.
+          updateConfig({ vite: { cacheDir: `node_modules/.vite-${command}` } });
+        },
+      },
+    },
+  ],
   server: { host: "127.0.0.1", port: 3000 },
   devToolbar: { enabled: false },
   vite: {

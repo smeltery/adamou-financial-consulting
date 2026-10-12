@@ -53,15 +53,35 @@ if (form) {
     "contactPreference",
   ) as HTMLSelectElement;
 
+  let sending = false;
+  const syncSubmit = () => {
+    const controls = form.querySelectorAll<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >("input, select, textarea");
+    // Inspect validity without triggering validation messages while typing.
+    const ready = Array.from(controls).every(
+      (control) =>
+        control.disabled ||
+        (control.validity.valid &&
+          (!control.required || control.value.trim() !== "")),
+    );
+    submit.disabled = sending || !ready;
+    submit.setAttribute("aria-busy", String(sending));
+  };
+
   const syncFields = () => {
     business.hidden = clientType.value !== "My small business";
     business.querySelector("input")!.disabled = business.hidden;
     phone.required = preference.value === "Phone";
     get("#phone-requirement").textContent = phone.required ? "*" : "(optional)";
+    syncSubmit();
   };
 
-  clientType.addEventListener("change", syncFields);
-  preference.addEventListener("change", syncFields);
+  form.addEventListener("input", syncFields);
+  form.addEventListener("change", syncFields);
+  // Reset fires before native controls return to their default values.
+  form.addEventListener("reset", () => queueMicrotask(syncFields));
+  window.addEventListener("pageshow", syncFields);
   syncFields();
 
   const goal = new URLSearchParams(location.search).get("goal");
@@ -76,7 +96,8 @@ if (form) {
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    if (!form.reportValidity()) return;
+    syncFields();
+    if (submit.disabled || !form.reportValidity()) return;
 
     const data = new FormData(form);
     // Formspree’s hidden honeypot catches automated submissions.
@@ -99,7 +120,8 @@ if (form) {
       return;
     }
 
-    submit.disabled = true;
+    sending = true;
+    syncSubmit();
     submit.textContent = "Sending…";
     status.textContent = "";
 
@@ -122,7 +144,8 @@ if (form) {
         "We couldn’t confirm delivery. Your details are still here. Try again, or use the email draft below. If you already received confirmation, avoid sending twice.";
       draft();
     } finally {
-      submit.disabled = false;
+      sending = false;
+      syncFields();
       submit.textContent = "Send my introduction";
       status.focus();
     }

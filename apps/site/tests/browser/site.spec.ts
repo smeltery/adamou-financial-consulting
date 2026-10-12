@@ -29,7 +29,8 @@ test("intake validates, reveals business fields, and prepares an unsent draft", 
 }) => {
   await page.goto("/contact/?goal=debt");
   await expect(page.getByLabel("Paying down debt")).toBeChecked();
-  await page.getByRole("button", { name: "Prepare my introduction" }).click();
+  const submit = page.getByRole("button", { name: "Prepare my introduction" });
+  await expect(submit).toBeDisabled();
   await expect(page.locator("#email-fallback")).toBeHidden();
   await page.getByLabel("Full name").fill("Example Client");
   await page.getByLabel("Email address").fill("example@example.com");
@@ -44,8 +45,25 @@ test("intake validates, reveals business fields, and prepares an unsent draft", 
   await page
     .getByLabel("What would you most like to change?")
     .fill("Build a practical budget.");
+  await expect(submit).toBeDisabled();
   await page.getByLabel("I agree").check();
-  await page.getByRole("button", { name: "Prepare my introduction" }).click();
+  await expect(submit).toBeEnabled();
+  await page.getByLabel("Email address").fill("not-an-email");
+  await expect(submit).toBeDisabled();
+  await page.getByLabel("Email address").fill("example@example.com");
+  await page.getByLabel("Full name").fill("   ");
+  await expect(submit).toBeDisabled();
+  await page.getByLabel("Full name").fill("Example Client");
+  await page.getByLabel("Preferred way to connect").selectOption("Phone");
+  await expect(submit).toBeDisabled();
+  await page
+    .getByRole("textbox", { name: "Phone *", exact: true })
+    .fill("203-555-0100");
+  await expect(submit).toBeEnabled();
+  await page.getByLabel("I agree").uncheck();
+  await expect(submit).toBeDisabled();
+  await page.getByLabel("I agree").check();
+  await submit.click();
   await expect(page.getByRole("status")).toContainText(
     "It has not been sent yet",
   );

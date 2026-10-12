@@ -103,7 +103,7 @@ hr {
   font-size: 15px;
   cursor: pointer;
 }
-.button:hover {
+.button:hover:not(:disabled) {
   background: #173d4b;
   color: white;
 }
@@ -112,6 +112,10 @@ hr {
 }
 .button:disabled {
   opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.button[aria-busy="true"] {
   cursor: wait;
 }
 

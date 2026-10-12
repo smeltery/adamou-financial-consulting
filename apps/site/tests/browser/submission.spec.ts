@@ -37,6 +37,7 @@ test("confirmed delivery celebrates and clears the form", async ({ page }) => {
   await completeForm(page, 200);
   await expect(page.getByRole("status")).toContainText("Your inquiry was sent");
   await expect(page.getByLabel("Full name")).toHaveValue("");
+  await expect(page.locator("#submit")).toBeDisabled();
   await expect(page.locator("canvas")).toHaveCount(1);
 });
 test("rejected delivery preserves answers without confetti", async ({
@@ -47,6 +48,7 @@ test("rejected delivery preserves answers without confetti", async ({
     "couldn’t confirm delivery",
   );
   await expect(page.getByLabel("Full name")).toHaveValue("Example Client");
+  await expect(page.locator("#submit")).toBeEnabled();
   await expect(page.locator("canvas")).toHaveCount(0);
 });
 test("reduced motion confirms success without animation", async ({ page }) => {

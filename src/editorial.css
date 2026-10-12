@@ -58,6 +58,9 @@
   max-width: 860px;
   border: 0;
 }
+.chapter-statement .icon-label {
+  justify-content: center;
+}
 .chapter-statement h2 {
   font-size: clamp(40px, 5vw, 70px);
 }

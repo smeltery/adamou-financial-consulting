@@ -1,4 +1,5 @@
 type Guide = {
+  related: string[];
   icon: string;
   category: string;
   prepare: string[];
@@ -8,6 +9,7 @@ type Guide = {
 
 export const guides: Record<string, Guide> = {
   budget: {
+    related: ["emergency", "debt", "savings"],
     icon: "wallet",
     category: "Everyday money",
     prepare: [
@@ -29,6 +31,7 @@ export const guides: Record<string, Guide> = {
     ],
   },
   emergency: {
+    related: ["budget", "savings", "networth"],
     icon: "shield",
     category: "Everyday money",
     prepare: [
@@ -50,6 +53,7 @@ export const guides: Record<string, Guide> = {
     ],
   },
   savings: {
+    related: ["budget", "growth", "inflation"],
     icon: "target",
     category: "Future goals",
     prepare: [
@@ -71,6 +75,7 @@ export const guides: Record<string, Guide> = {
     ],
   },
   debt: {
+    related: ["budget", "loan", "emergency"],
     icon: "debt",
     category: "Debt & borrowing",
     prepare: [
@@ -92,6 +97,7 @@ export const guides: Record<string, Guide> = {
     ],
   },
   networth: {
+    related: ["budget", "debt", "growth"],
     icon: "balance",
     category: "Everyday money",
     prepare: [
@@ -113,6 +119,7 @@ export const guides: Record<string, Guide> = {
     ],
   },
   growth: {
+    related: ["savings", "inflation", "networth"],
     icon: "growth",
     category: "Future goals",
     prepare: [
@@ -134,6 +141,7 @@ export const guides: Record<string, Guide> = {
     ],
   },
   loan: {
+    related: ["budget", "debt", "savings"],
     icon: "loan",
     category: "Debt & borrowing",
     prepare: [
@@ -155,6 +163,7 @@ export const guides: Record<string, Guide> = {
     ],
   },
   inflation: {
+    related: ["savings", "growth", "budget"],
     icon: "inflation",
     category: "Future goals",
     prepare: [

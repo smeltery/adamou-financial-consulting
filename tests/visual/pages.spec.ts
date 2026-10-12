@@ -5,6 +5,7 @@ for (const [name, path, selector] of [
   ["services", "/services/", "main"],
   ["library", "/tools/", ".tool-library"],
   ["guide", "/tools/debt-payoff/", ".preparation"],
+  ["related", "/tools/debt-payoff/", ".related-tools"],
   ["calculator", "/tools/debt-payoff/", ".tool-workspace"],
   ["contact", "/contact/", ".intake-layout"],
 ]) {

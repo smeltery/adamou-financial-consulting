@@ -31,6 +31,13 @@ for (const tool of calculators) {
       "open",
       "",
     );
+    const related = page.locator(".related-tools nav a");
+    await expect(related).toHaveCount(3);
+    expect(
+      await related.evaluateAll((links) =>
+        links.map((link) => link.getAttribute("href")),
+      ),
+    ).not.toContain(path);
     const markdown = await request.get(path, {
       headers: { Accept: "text/markdown" },
     });

@@ -1,0 +1,97 @@
+---
+import { calculators } from "../tools/catalog";
+import { guides } from "../tools/guides";
+import { uiIcon } from "../site/identity";
+interface Props {
+  ids: string[];
+}
+const { ids } = Astro.props;
+const related = ids.map((id) => calculators.find((tool) => tool.id === id)!);
+---
+
+<section class="wrap section related-tools" aria-labelledby="related-title">
+  <div class="related-heading">
+    <div>
+      <p class="eyebrow">KEEP EXPLORING</p>
+      <h2 id="related-title">Build a fuller picture.</h2>
+      <p>Three related tools for your next question.</p>
+    </div>
+    <a class="text-link" href="/tools/">
+      View all tools
+    </a>
+  </div>
+  <nav aria-label="Related calculators">
+    {related.map((tool) => (
+      <a href={`/tools/${tool.slug}/`} aria-labelledby={`related-${tool.id}`}>
+        <span class="card-icon">
+          <Fragment set:html={uiIcon(guides[tool.id].icon)} />
+        </span>
+        <h3 id={`related-${tool.id}`}>{tool.title}</h3>
+        <p>{tool.question}</p>
+      </a>
+    ))}
+  </nav>
+</section>
+
+<style>
+  .related-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+  h2 {
+    margin-bottom: 16px;
+  }
+  .related-heading p:last-child {
+    margin-bottom: 0;
+    color: var(--muted);
+  }
+  .related-heading > a {
+    flex-shrink: 0;
+  }
+  nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+  nav a {
+    padding: 28px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--white);
+    text-decoration: none;
+  }
+  nav a:hover,
+  nav a:focus-visible {
+    border-color: var(--sage);
+    background: #e8ede5;
+  }
+  .card-icon {
+    margin-bottom: 24px;
+    background: #e8ede5;
+    border: 0;
+  }
+  h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+  nav p {
+    font-size: 15px;
+    margin-bottom: 0;
+  }
+  @media (max-width: 700px) {
+    .related-heading {
+      flex-direction: column;
+      align-items: start;
+    }
+    nav {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    nav a {
+      padding: 24px;
+    }
+  }
+</style>

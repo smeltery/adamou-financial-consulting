@@ -1,5 +1,8 @@
 import { cp, mkdir, rm } from "node:fs/promises";
 import { layout } from "../src/layout";
+import { servicesPage, aboutPage, approachPage } from "../src/pages";
+import { writeCrawlFiles } from "./crawl";
+import { toolsPage } from "../src/tools/catalog";
 import { home } from "../src/home";
 import { contact } from "../src/contact";
 import { brand, privacy } from "../src/brand";
@@ -8,29 +11,45 @@ const endpoint = validateEndpoint(process.env.FORMSPREE_ENDPOINT || "");
 await rm("dist", { recursive: true, force: true });
 await mkdir("dist", { recursive: true });
 await cp("public", "dist", { recursive: true });
-for (const [path, title, content] of [
-  ["", "Financial coaching for a clearer path forward", home],
+const pages = [
+  ["", "Financial Coaching | Adamou Financial Consulting", home],
+  ["services", "Financial coaching services", servicesPage],
+  ["about", "Meet Matt Adamou", aboutPage],
+  ["approach", "Our approach to financial coaching", approachPage],
+  ["tools", "Free Financial Calculators: Budget, Debt & Savings", toolsPage],
   ["contact", "Start a conversation", contact],
   ["brand", "Brand resources", brand],
   ["privacy", "Privacy", privacy],
-]) {
-  await mkdir(`dist/${path}`, { recursive: true });
-  await Bun.write(`dist/${path}/index.html`, layout(title, content, path));
+];
+for (const [path, title, content] of pages) {
+  await Bun.write(
+    `dist/pages/${path || "home"}.html`,
+    layout(title, content, path),
+  );
 }
+await writeCrawlFiles(pages);
 await Bun.write(
   "dist/404.html",
   layout(
     "Page not found",
     '<section class="wrap section"><h1>A different path.</h1><p>This page doesn’t exist. <a href="/">Return home</a> or <a href="/contact/">contact Matt</a>.</p></section>',
+    "404",
   ),
 );
 await Bun.write(
   "dist/styles.css",
   (
     await Promise.all(
-      ["base", "home", "forms", "responsive"].map((name) =>
-        Bun.file(`src/${name}.css`).text(),
-      ),
+      [
+        "base",
+        "home",
+        "forms",
+        "responsive",
+        "chrome",
+        "search",
+        "editorial",
+        "tools/styles",
+      ].map((name) => Bun.file(`src/${name}.css`).text()),
     )
   ).join("\n"),
 );

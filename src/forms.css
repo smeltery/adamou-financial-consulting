@@ -112,7 +112,7 @@ input[type="checkbox"] {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 .consent input {
   margin-top: 2px;
@@ -174,26 +174,75 @@ blockquote {
   line-height: 1.4;
   margin: 35px 0;
 }
-.prose {
-  max-width: 760px;
-}
-.prose h2 {
-  font-size: 30px;
-  margin-top: 40px;
-}
 
 select {
   appearance: none;
-  min-height: 48px;
   padding-right: 30px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='%23204f60'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
 }
-.consent {
-  flex-wrap: nowrap;
-}
 .consent span {
   font-size: 13px;
   color: var(--ink);
+}
+
+.favicon-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.favicon-section .text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.favicon-preview {
+  padding: 32px;
+  background: #e8ede5;
+  border: 1px solid var(--line);
+  min-width: 0;
+}
+.favicon-tab {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--white);
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px 12px 0 0;
+  font-size: 12px;
+}
+.favicon-preview img {
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.favicon-sizes {
+  display: flex;
+  gap: 28px;
+  margin-top: 28px;
+}
+.favicon-sizes figure {
+  margin: 0;
+  text-align: center;
+}
+.favicon-sizes figure > div {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.favicon-sizes figcaption {
+  font-size: 12px;
+  margin-top: 8px;
+}
+@media (max-width: 700px) {
+  .favicon-section {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .favicon-preview {
+    padding: 24px;
+  }
 }

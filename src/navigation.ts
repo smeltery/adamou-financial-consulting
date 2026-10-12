@@ -36,7 +36,7 @@ export const searchMarkup = `<dialog id="site-search" aria-labelledby="search-ti
     "",
   )}</nav><p class="search-empty" hidden>No matches. Try budgeting, savings, or contact.</p></div><div class="search-footer"><p role="status" aria-live="polite"></p><span><kbd>↑</kbd><kbd>↓</kbd> Navigate · <kbd>↵</kbd> Open · <kbd>Esc</kbd> Close</span></div></dialog>`;
 export function mobileMarkup(active: string) {
-  return `<dialog id="mobile-navigation" aria-labelledby="mobile-title"><div class="search-heading"><h2 id="mobile-title">Explore Afin</h2><button type="button" data-close aria-label="Close navigation menu">${uiIcon("close")}</button></div><p class="mobile-intro">Personal guidance. A clearer path.</p><nav aria-label="Mobile navigation">${pages
+  return `<dialog id="mobile-navigation" aria-labelledby="mobile-title"><div class="search-heading"><div class="mobile-nav-brand"><a href="/" aria-label="Afin home"><img src="/assets/afin-mark.svg" width="56" height="28" alt="Afin mountain mark"></a><h2 id="mobile-title">Explore Afin</h2></div><button type="button" data-close aria-label="Close navigation menu">${uiIcon("close")}</button></div><p class="mobile-intro">Personal guidance. A clearer path.</p><nav aria-label="Mobile navigation">${pages
     .filter(([, href]) => !["/contact/", "/privacy/"].includes(href))
     .map(
       ([title, href, description]) =>

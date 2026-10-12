@@ -227,6 +227,15 @@ dialog::backdrop {
   z-index: 1;
   padding: 24px 24px 8px;
 }
+.mobile-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.mobile-nav-brand a {
+  display: flex;
+  flex-shrink: 0;
+}
 #mobile-navigation .search-heading h2 {
   font:
     30px Georgia,

@@ -4,7 +4,9 @@
 
 Without `FORMSPREE_ENDPOINT`, the form prepares an email draft for the visitor
 to review and send. It never displays a sent confirmation for that draft.
-No inquiry is stored by this application.
+No inquiry is stored by this application. A confirmed Formspree success launches
+a confetti celebration; email drafts and failed submissions do not. Visitors
+who prefer reduced motion see the confirmation without animation.
 
 ## Enable Formspree
 
@@ -35,3 +37,9 @@ allowed domains in the provider dashboard.
 
 The site follows Formspree’s [JavaScript submission guidance](https://help.formspree.io/articles/building-your-form/submit-forms-with-javascript-ajax/).
 Automated tests mock the provider; they do not contact Matt or prove inbox delivery.
+
+A separate, lighter welcome animation runs once per browser on a first visit.
+It uses only the local `afin:welcomed` flag, respects reduced motion, and skips
+animation if storage is unavailable, the tab is hidden, or a dialog is open.
+This welcome is independent of inquiry delivery; only the larger submission
+celebration indicates a confirmed send. Clearing site data resets the welcome.

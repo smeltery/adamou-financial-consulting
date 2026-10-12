@@ -4,22 +4,118 @@
   "installCommand": "bun install --frozen-lockfile",
   "buildCommand": "bun run build",
   "outputDirectory": "dist",
-  "trailingSlash": true,
-  "headers": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
+      "src": "/(.*)",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "X-Frame-Options": "DENY",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+        "Vary": "Accept"
+      },
+      "continue": true
+    },
+    {
+      "src": "/pages/home\\.html",
+      "headers": {
+        "Location": "/"
+      },
+      "status": 308
+    },
+    {
+      "src": "/pages/(services|about|approach|contact|brand|privacy|tools)\\.html",
+      "headers": {
+        "Location": "/$1/"
+      },
+      "status": 308
+    },
+    {
+      "src": "/content/home\\.md",
+      "headers": {
+        "Link": "<https://adamou-financial-consulting.vercel.app/>; rel=\"canonical\""
+      },
+      "continue": true
+    },
+    {
+      "src": "/content/(services|about|approach|contact|brand|privacy|tools)\\.md",
+      "headers": {
+        "Link": "<https://adamou-financial-consulting.vercel.app/$1/>; rel=\"canonical\""
+      },
+      "continue": true
+    },
+    {
+      "src": "/(services|about|approach|contact|brand|privacy|tools)",
+      "headers": {
+        "Location": "/$1/"
+      },
+      "status": 308
+    },
+    {
+      "src": "/",
+      "has": [
         {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        {
-          "key": "Permissions-Policy",
-          "value": "camera=(), microphone=(), geolocation=()"
+          "type": "header",
+          "key": "accept",
+          "value": ".*text/markdown.*"
         }
-      ]
+      ],
+      "dest": "/content/home.md",
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8"
+      }
+    },
+    {
+      "src": "/(services|about|approach|contact|brand|privacy|tools)/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": ".*text/markdown.*"
+        }
+      ],
+      "dest": "/content/$1.md",
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8"
+      }
+    },
+    {
+      "src": "/",
+      "dest": "/pages/home.html"
+    },
+    {
+      "src": "/(services|about|approach|contact|brand|privacy|tools)/",
+      "dest": "/pages/$1.html"
+    },
+    {
+      "src": "/content/(.*)",
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8"
+      },
+      "continue": true
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": ".*text/markdown.*"
+        }
+      ],
+      "status": 404,
+      "dest": "/content/not-found.md",
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8"
+      }
+    },
+    {
+      "src": "/(.*)",
+      "status": 404,
+      "dest": "/404.html"
     }
   ]
 }

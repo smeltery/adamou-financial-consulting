@@ -2,7 +2,8 @@
 
 ## Vercel
 
-Import `smeltery/adamou-financial-consulting` into Vercel. The checked-in
+The public `smeltery/adamou-financial-consulting` repository is connected to Vercel.
+The site is available at [adamou-financial-consulting.vercel.app](https://adamou-financial-consulting.vercel.app/). The checked-in
 `vercel.json` uses Bun, builds with `bun run build`, and serves `dist/`.
 No application server or database is required. Connect the GitHub repository
 for automatic previews and production deployments from `main`.
@@ -12,8 +13,9 @@ Add a custom domain in Vercel and follow the DNS records it provides.
 
 ## Web Analytics
 
-The shared browser entry includes `@vercel/analytics`. Enable **Web Analytics**
-in the Vercel project dashboard, then redeploy and visit the site. Confirm page
+The shared browser entry includes `@vercel/analytics`, and Web Analytics is
+enabled for the connected Vercel project. For a fresh project, enable
+**Web Analytics** in its dashboard, then redeploy and visit the site. Confirm page
 views in the dashboard; an SDK installation alone does not verify collection.
 
 Analytics is disabled on localhost. Query strings and fragments are removed

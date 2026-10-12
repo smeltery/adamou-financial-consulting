@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   quality:
-    runs-on: blacksmith-2vcpu-ubuntu-2404
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-24.04' }}
     timeout-minutes: 20
     steps:
       - uses: step-security/harden-runner@ab7a9404c0f3da075243ca237b5fac12c98deaa5
@@ -22,4 +22,4 @@ jobs:
         with:
           version: 1.18.1
       - name: Check in locked Flox environment
-        run: flox activate -- bash -c 'bun install --frozen-lockfile && bunx --bun playwright install --with-deps chromium && ./scripts/check.sh'
+        run: flox activate -- bash -c 'bun install --frozen-lockfile && bunx --bun playwright install --with-deps --only-shell chromium && ./scripts/check.sh'

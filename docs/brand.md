@@ -32,3 +32,16 @@ Social brand icons use [Font Awesome Free](https://fontawesome.com/license/free)
 (CC BY 4.0); their marks identify linked profiles, not endorsements.
 
 The dedicated `/assets/afin-favicon.svg` uses a warm-paper tile and a heavier stroke for contrast at small sizes in light and dark tabs. The primary logo stays unchanged.
+
+## Workspace social preview
+
+The private app uses its own 1200 × 630 card at
+`https://afin-workspace.vercel.app/afin-workspace-social.png`. It shares the
+marketing site's mountain photograph, symbol, palette, and type treatment, with
+workspace-specific copy. Rebuild both editable SVG and PNG using
+`bun scripts/social.ts --workspace` from the repository root.
+
+The image and social metadata are public branding only; they never include
+client records or dashboard screenshots. The workspace remains marked noindex
+and requires authentication for client data. Update the absolute Open Graph and
+Twitter image URLs in `apps/console/index.html` if its production domain changes.

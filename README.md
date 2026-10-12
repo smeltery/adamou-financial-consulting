@@ -1,4 +1,4 @@
-# <img src="public/assets/afin-mark.svg" width="48" alt=""> Afin · Adamou Financial Consulting
+# <img src="public/assets/afin-favicon.svg" width="36" height="36" alt=""> Afin · Adamou Financial Consulting
 
 [![CI](https://github.com/smeltery/adamou-financial-consulting/actions/workflows/ci.yml/badge.svg)](https://github.com/smeltery/adamou-financial-consulting/actions/workflows/ci.yml)
 [![Bun](https://img.shields.io/badge/Bun-1.3.11-black?logo=bun)](https://bun.sh)

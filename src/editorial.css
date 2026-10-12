@@ -85,7 +85,7 @@
   left: 0;
 }
 .testimonial {
-  margin-bottom: clamp(32px, 5vw, 72px);
+  margin-block: clamp(32px, 5vw, 50px);
   background: #e8ede5;
   padding-inline: 40px;
 }
@@ -175,7 +175,6 @@
 .tool-spotlight {
   padding: 72px 0;
   background: #e8ede5;
-  margin-bottom: 50px;
 }
 .tool-spotlight > .wrap {
   display: grid;

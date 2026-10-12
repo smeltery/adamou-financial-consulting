@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": null,
+  "framework": "astro",
   "installCommand": "bun install --frozen-lockfile",
   "buildCommand": "bun run build",
   "outputDirectory": "dist",
@@ -81,11 +81,11 @@
     },
     {
       "src": "/",
-      "dest": "/pages/home.html"
+      "dest": "/index.html"
     },
     {
       "src": "/(services|about|approach|contact|brand|privacy|tools)/",
-      "dest": "/pages/$1.html"
+      "dest": "/$1/index.html"
     },
     {
       "src": "/content/(.*)",

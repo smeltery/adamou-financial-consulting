@@ -1,0 +1,108 @@
+---
+import { email, uiIcon } from "../site/identity";
+import { calculators } from "../tools/catalog";
+import { pages } from "../site/navigation";
+---
+
+<dialog id="site-search" aria-labelledby="search-title">
+  <div class="search-heading">
+    <h2 id="search-title">Find your way</h2>
+    <button type="button" data-close aria-label="Close search">
+      <Fragment set:html={uiIcon("close")} />
+    </button>
+  </div>
+  <label class="search-input" for="search-query">
+    <Fragment set:html={uiIcon("search")} />
+    <span class="sr-only">Search pages and tools</span>
+    <input
+      id="search-query"
+      type="search"
+      placeholder="Search Afin…"
+      autocomplete="off"
+    />
+  </label>
+  <div class="search-filters" aria-label="Filter search">
+    {["All", "Pages", "Tools", "Contact"].map((name) => (
+      <>
+        <button
+          type="button"
+          data-scope={name.toLowerCase()}
+          aria-pressed={name === "All"}
+        >
+          {name}
+        </button>
+      </>
+    ))}
+  </div>
+  <div class="search-scroll">
+    <nav class="search-results" aria-label="Search results">
+      {[
+        ["Pages", pages],
+        [
+          "Tools",
+          calculators.map((tool) => [
+            tool.title,
+            `/tools/#tool-${tool.id}`,
+            tool.question,
+          ]),
+        ],
+        [
+          "Contact",
+          [
+            ["Email Matt", `mailto:${email}`, email],
+            ["Call Matt", "tel:+12037706522", "(203) 770-6522"],
+          ],
+        ],
+      ].map(([group, entries]) => (
+        <>
+          <section data-group={String(group).toLowerCase()}>
+            <h3>{group}</h3>
+            {(entries as string[][]).map(([title, href, description]) => (
+              <>
+                <a href={href} aria-label={title}>
+                  <Fragment
+                    set:html={uiIcon(
+                      group === "Tools"
+                        ? "tools"
+                        : group === "Contact"
+                          ? "contact"
+                          : "page",
+                    )}
+                  />
+                  <span>
+                    <strong>{title}</strong>
+                    <small>{description}</small>
+                  </span>
+                  <Fragment set:html={uiIcon("chevron")} />
+                </a>
+              </>
+            ))}
+          </section>
+        </>
+      ))}
+    </nav>
+    <p class="search-empty" hidden>
+      No matches. Try budgeting, savings, or contact.
+    </p>
+  </div>
+  <div class="search-footer">
+    <p role="status" aria-live="polite"></p>
+    <span class="search-shortcuts">
+      <span>
+        <span class="shortcut-keys">
+          <kbd>↑</kbd>
+          <kbd>↓</kbd>
+        </span>
+        Navigate
+      </span>
+      <span>
+        <kbd>↵</kbd>
+        Open
+      </span>
+      <span>
+        <kbd>Esc</kbd>
+        Close
+      </span>
+    </span>
+  </div>
+</dialog>

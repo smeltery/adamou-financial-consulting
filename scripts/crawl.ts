@@ -66,3 +66,20 @@ export async function writeCrawlFiles(pages: string[][]) {
     `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${pages.map(([path]) => `<url><loc>${siteUrl}/${path ? `${path}/` : ""}</loc></url>`).join("")}</urlset>`,
   );
 }
+
+// Derive crawlable content from Astro's rendered routes so it cannot drift from the site.
+const pages: string[][] = [];
+for await (const file of new Bun.Glob("**/index.html").scan("dist")) {
+  const window = new Window();
+  window.document.write(await Bun.file(`dist/${file}`).text());
+  const path = file === "index.html" ? "" : file.replace("/index.html", "");
+  const main = window.document.querySelector("main");
+  if (!main) throw new Error(`Missing main content in ${file}`);
+  pages.push([
+    path,
+    window.document.title.replace(/ \| Afin$/, ""),
+    main.innerHTML,
+  ]);
+}
+pages.sort(([a], [b]) => a.localeCompare(b));
+await writeCrawlFiles(pages);

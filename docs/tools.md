@@ -49,7 +49,7 @@ These are original Afin implementations of common arithmetic tools, inspired by
 They provide educational estimates, not individualized financial advice.
 JavaScript enables interactive calculation; formulas remain readable without it.
 
-The formulas live in `src/tools/math.ts`, page definitions in `catalog.ts`, and
-browser behavior in `client.ts`. Unit tests cover zero values, shortfalls,
+The formulas live in `src/tools/math.ts`, field definitions in `catalog.ts`, result
+explanations in `results.ts`, and the React interface in `CalculatorSuite.tsx`. Unit tests cover zero values, shortfalls,
 rounding, interest, and impossible payoff scenarios. Browser tests cover all
 eight tools, resets, invalid inputs, and the absence of network requests.

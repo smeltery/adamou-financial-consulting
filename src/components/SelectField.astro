@@ -1,0 +1,20 @@
+---
+interface Props {
+  name: string;
+  label: string;
+  choices: string[];
+  required?: boolean;
+}
+const { name, label, choices, required = false } = Astro.props;
+---
+
+<label>
+  {label}
+  {required ? " *" : <span> (optional)</span>}
+  <select name={name} required={required}>
+    <option value="">Select an option</option>
+    {choices.map((choice) => (
+      <option>{choice}</option>
+    ))}
+  </select>
+</label>

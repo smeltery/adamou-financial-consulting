@@ -1,6 +1,8 @@
 # <img src="public/assets/afin-favicon.svg" width="36" height="36" alt=""> Afin · Adamou Financial Consulting
 
 [![CI](https://github.com/smeltery/adamou-financial-consulting/actions/workflows/ci.yml/badge.svg)](https://github.com/smeltery/adamou-financial-consulting/actions/workflows/ci.yml)
+[![Astro](https://img.shields.io/badge/Astro-static-BC52EE?logo=astro&logoColor=white)](https://astro.build)
+[![React](https://img.shields.io/badge/React-calculators-149ECA?logo=react)](https://react.dev)
 [![Bun](https://img.shields.io/badge/Bun-1.3.11-black?logo=bun)](https://bun.sh)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vercel](https://img.shields.io/badge/Vercel-hosting-black?logo=vercel)](https://vercel.com)
@@ -13,7 +15,7 @@
 
 A lean website for Matt Adamou’s financial coaching practice: clear service
 pages, eight private financial calculators, a downloadable SVG brand mark, and a
-detailed client intake. Agent-readable Markdown, sitemap, and structured data. Static HTML, CSS, and TypeScript built with Bun;
+detailed client intake. Agent-readable Markdown, sitemap, and structured data. Astro pages with a React calculator island, managed with Bun;
 Vercel hosting and Web Analytics; optional Formspree delivery.
 
 ```sh

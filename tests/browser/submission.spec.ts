@@ -16,7 +16,7 @@ test.beforeAll(async () => {
 });
 async function completeForm(page: Page, status: number) {
   await page.addInitScript(() => localStorage.setItem("afin:welcomed", "1"));
-  await page.route("**/app.js", (route) =>
+  await page.route("**/_astro/SiteLayout.*.js", (route) =>
     route.fulfill({ contentType: "text/javascript", body: configuredApp }),
   );
   await page.route("https://formspree.io/f/testonly", (route) =>

@@ -1,6 +1,5 @@
 import { inject } from "@vercel/analytics";
 
-import { setupTools } from "../tools/client";
 import { celebrate, welcomeVisitor } from "./celebrate";
 import { introduction, sendInquiry } from "./intake";
 import { setupSearch } from "./search";
@@ -8,7 +7,6 @@ import { setupSearch } from "./search";
 declare const FORMSPREE_ENDPOINT: string;
 
 setupSearch();
-setupTools();
 welcomeVisitor();
 
 if (!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {

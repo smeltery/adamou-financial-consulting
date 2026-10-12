@@ -1,0 +1,79 @@
+---
+import { email, uiIcon } from "../site/identity";
+
+import { pages } from "../site/navigation";
+interface Props {
+  active: string;
+}
+const { active } = Astro.props;
+---
+
+<dialog id="mobile-navigation" aria-labelledby="mobile-title">
+  <div class="search-heading">
+    <div class="mobile-nav-brand">
+      <a href="/" aria-label="Afin home">
+        <img
+          src="/assets/afin-mark.svg"
+          width="56"
+          height="28"
+          alt="Afin mountain mark"
+        />
+      </a>
+      <h2 id="mobile-title">Explore Afin</h2>
+    </div>
+    <button type="button" data-close aria-label="Close navigation menu">
+      <Fragment set:html={uiIcon("close")} />
+    </button>
+  </div>
+  <p class="mobile-intro">Personal guidance. A clearer path.</p>
+  <nav aria-label="Mobile navigation">
+    {pages
+      .filter(
+        ([, href]) => !["/contact/", "/privacy/", "/brand/"].includes(href),
+      )
+      .map(([title, href, description]) => (
+        <>
+          <a
+            href={href}
+            aria-label={title === "Financial tools" ? "Tools" : title}
+            aria-current={
+              href === `/${active}/` || (href === "/" && !active)
+                ? "page"
+                : undefined
+            }
+          >
+            <Fragment
+              set:html={uiIcon(
+                href === "/tools/"
+                  ? "tools"
+                  : href === "/"
+                    ? "home"
+                    : href === "/about/"
+                      ? "person"
+                      : href === "/approach/"
+                        ? "compass"
+                        : href === "/services/"
+                          ? "briefcase"
+                          : "page",
+              )}
+            />
+            <span>
+              <strong>{title}</strong>
+              <small>{description}</small>
+            </span>
+            <Fragment set:html={uiIcon("chevron")} />
+          </a>
+        </>
+      ))}
+  </nav>
+  <div class="mobile-contact">
+    <p>Ready for your next step?</p>
+    <a class="button" href="/contact/">
+      Start a conversation
+    </a>
+    <a href={`mailto:${email}`}>{email}</a>
+  </div>
+  <a class="mobile-privacy" href="/privacy/">
+    Privacy
+  </a>
+</dialog>

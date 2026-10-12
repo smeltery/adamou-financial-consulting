@@ -1,0 +1,27 @@
+---
+interface Props {
+  items: string[][];
+}
+const { items } = Astro.props;
+---
+
+<section class="wrap section faq">
+  <div class="faq-heading">
+    <p class="eyebrow">A FEW THINGS YOU MAY BE WONDERING</p>
+    <h2>
+      Good questions.
+      <br /> Clear answers.
+    </h2>
+  </div>
+  <div class="faq-items">
+    {items.map(([q, a]) => (
+      <details name="afin-faq">
+        <summary>
+          {q}
+          <span class="faq-toggle" aria-hidden="true"></span>
+        </summary>
+        <p>{a}</p>
+      </details>
+    ))}
+  </div>
+</section>

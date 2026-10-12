@@ -31,7 +31,7 @@ Bun.serve({
     )
       pathname = markdown
         ? `/content/${pathname.replaceAll("/", "") || "home"}.md`
-        : `/pages/${pathname.replaceAll("/", "") || "home"}.html`;
+        : `${pathname.endsWith("/") ? pathname : `${pathname}/`}index.html`;
     const documentName = pathname.match(
       /^\/content\/(home|services|about|approach|contact|brand|privacy|tools)\.md$/,
     )?.[1];

@@ -1,0 +1,66 @@
+---
+import { uiIcon } from "../../site/identity";
+---
+
+<section class="section wrap" id="services">
+  <div class="section-intro">
+    <p class="eyebrow">MAKE ROOM FOR WHAT MATTERS</p>
+    <h2>
+      Your money should
+      <br /> support your life.
+    </h2>
+    <p>
+      You don’t need to have it all figured out. Start with what’s on your mind,
+      and build a plan around what matters to you.
+    </p>
+  </div>
+  <div class="services">
+    <article>
+      <span class="service-number icon-label">
+        <Fragment set:html={uiIcon("wallet")} />
+        01 / EVERYDAY CLARITY
+      </span>
+      <h3>
+        Know where your
+        <br /> money is going.
+      </h3>
+      <p>
+        Bring income and expenses into focus with a personalized budget you can
+        actually use.
+      </p>
+      <a href="/contact/?goal=budget">Build a better budget</a>
+    </article>
+
+    <article>
+      <span class="service-number icon-label">
+        <Fragment set:html={uiIcon("debt")} />
+        02 / A WAY FORWARD
+      </span>
+      <h3>
+        Give your debt
+        <br /> a game plan.
+      </h3>
+      <p>
+        Put your balances in perspective and work toward a payoff plan that fits
+        your priorities.
+      </p>
+      <a href="/contact/?goal=debt">Make a debt plan</a>
+    </article>
+
+    <article>
+      <span class="service-number icon-label">
+        <Fragment set:html={uiIcon("target")} />
+        03 / THE BIGGER PICTURE
+      </span>
+      <h3>
+        Turn “someday”
+        <br /> into next steps.
+      </h3>
+      <p>
+        Connect your day-to-day decisions to longer-term goals, with support
+        along the way.
+      </p>
+      <a href="/contact/?goal=goals">Focus on your goals</a>
+    </article>
+  </div>
+</section>

@@ -21,7 +21,7 @@ const directories = new Map<string, number>();
 let total = 0;
 for (const path of files) {
   directories.set(dirname(path), (directories.get(dirname(path)) || 0) + 1);
-  if (!/\.(ts|css|md|json|jsonc|yml|yaml)$/.test(path)) continue;
+  if (!/\.(ts|tsx|astro|mjs|css|md|json|jsonc|yml|yaml)$/.test(path)) continue;
   const text = await Bun.file(path).text();
   const lines = text.trimEnd().split("\n").length;
   total += lines;

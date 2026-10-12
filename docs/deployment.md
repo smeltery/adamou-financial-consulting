@@ -4,7 +4,9 @@
 
 The public `smeltery/adamou-financial-consulting` repository is connected to Vercel.
 The site is available at [adamou-financial-consulting.vercel.app](https://adamou-financial-consulting.vercel.app/). The checked-in
-`vercel.json` uses Bun, builds with `bun run build`, and serves `dist/`.
+`vercel.json` selects Astro, uses Bun, builds with `bun run build`, and serves `dist/`.
+Node.js 24 is selected through `package.json`; Flox uses the same major version.
+Astro renders every page at build time and loads React only on the tools page.
 No application server or database is required. Connect the GitHub repository
 for automatic previews and production deployments from `main`.
 
@@ -28,7 +30,7 @@ See Vercel’s [setup guide](https://vercel.com/docs/analytics/quickstart) and
 
 ```mermaid
 flowchart LR
-  A[GitHub source] --> B[Vercel Bun build]
+  A[GitHub source] --> B[Vercel Astro build]
   B --> C[Static pages]
   C --> D[Page-view analytics]
   C --> E[Optional Formspree inquiry]

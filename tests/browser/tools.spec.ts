@@ -61,3 +61,16 @@ async function chooseTool(page: Page, name: string) {
     .click();
   await expect(page.getByRole("dialog")).not.toBeVisible();
 }
+
+test.describe("static calculator content", () => {
+  test.use({ javaScriptEnabled: false });
+
+  test("all formulas remain readable without JavaScript", async ({ page }) => {
+    await page.goto("/tools/");
+    await expect(page.locator(".calculator:visible")).toHaveCount(8);
+    for (const input of await page.locator(".calculator input").all()) {
+      await expect(input).toBeDisabled();
+    }
+    await expect(page.locator("#tool-inflation .tool-method")).toBeVisible();
+  });
+});

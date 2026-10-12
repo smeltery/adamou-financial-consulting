@@ -7,7 +7,10 @@
     "noEmit": true,
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "types": ["bun"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   },
-  "include": ["src", "scripts", "tests"]
+  "include": [".astro/types.d.ts", "src", "scripts", "tests"],
+  "extends": "astro/tsconfigs/strict"
 }

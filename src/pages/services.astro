@@ -1,0 +1,139 @@
+---
+import Closing from "../components/sections/Closing.astro";
+
+import Layout from "../layouts/SiteLayout.astro";
+import Intro from "../components/Intro.astro";
+import Chapter from "../components/Chapter.astro";
+import Faq from "../components/Faq.astro";
+---
+
+<Layout title="Financial coaching services" active="services">
+  <Intro
+    eyebrow={"FINANCIAL COACHING"}
+    description={
+      "Explore where personalized coaching can help: your everyday budget, your debt, and the goals you want to move toward."
+    }
+  >
+    <Fragment slot="title">
+      Make your money
+      <br /> <em>work for your life.</em>
+    </Fragment>
+  </Intro>
+  <Chapter label={"01 / PERSONALIZED BUDGETING"}>
+    <Fragment slot="title">
+      A budget you can
+      <br /> come back to.
+    </Fragment>
+    <p class="lead">A useful budget starts with the life you actually live.</p>
+    <p>
+      Bring your income, regular commitments, and changing expenses into one
+      clearer picture. The goal is a practical plan you can use when everyday
+      decisions come up.
+    </p>
+    <h3>This may be your starting point if…</h3>
+    <ul>
+      <li>You’re not sure where your money goes each month.</li>
+      <li>You have a budget, but it rarely matches real life.</li>
+      <li>
+        You want to make room for saving without guessing what’s available.
+      </li>
+    </ul>
+    <a class="text-link" href="/contact/?goal=budget">
+      Talk about your budget
+    </a>
+  </Chapter>
+  <Chapter label={"02 / DEBT PAYOFF PLANNING"}>
+    <Fragment slot="title">
+      Turn a list of balances
+      <br /> into a direction.
+    </Fragment>
+    <p class="lead">Debt feels different when you can see a next step.</p>
+    <p>
+      Explore a payoff plan in the context of your other responsibilities and
+      goals. Personalized guidance can help you think through priorities and
+      what is realistic for your situation.
+    </p>
+    <h3>Start with the questions that matter.</h3>
+    <ul>
+      <li>Which balances are taking up the most attention?</li>
+      <li>What can your budget support consistently?</li>
+      <li>How does paying down debt fit with your other priorities?</li>
+    </ul>
+    <p>
+      You don’t need to send statements or account numbers to introduce
+      yourself.
+    </p>
+    <a class="text-link" href="/contact/?goal=debt">
+      Discuss a debt payoff plan
+    </a>
+  </Chapter>
+  <Chapter label={"03 / FINANCIAL GOALS"}>
+    <Fragment slot="title">
+      Give your goals
+      <br /> a place in the plan.
+    </Fragment>
+    <p class="lead">
+      Big ambitions become more useful when they connect to everyday choices.
+    </p>
+    <p>
+      Whether you’re preparing for a change, building savings, or looking for
+      more financial stability, coaching starts by understanding what progress
+      means to you.
+    </p>
+    <h3>A useful goal has context.</h3>
+    <p>
+      Consider what you’re working toward, why it matters, and when you would
+      like to get there. Those details help shape a conversation about practical
+      next steps.
+    </p>
+    <a class="text-link" href="/contact/?goal=goals">
+      Share what you’re working toward
+    </a>
+  </Chapter>
+  <Chapter label={"WHO IT’S FOR"}>
+    <Fragment slot="title">
+      Different lives.
+      <br /> Personal guidance.
+    </Fragment>
+    <div class="reading-cards">
+      <article>
+        <h3>Individuals</h3>
+        <p>
+          Find a starting point for your own budget, debt, or goals—even if
+          you’ve never worked with a coach.
+        </p>
+      </article>
+      <article>
+        <h3>Couples</h3>
+        <p>
+          Bring shared priorities and different perspectives into a conversation
+          about what you want your money to support.
+        </p>
+      </article>
+      <article>
+        <h3>Small-business owners</h3>
+        <p>
+          Describe the budgeting and financial planning challenges of running
+          your business. Discuss the right scope of coaching directly with Matt.
+        </p>
+      </article>
+    </div>
+  </Chapter>
+  <Faq
+    items={[
+      [
+        "Do I need to choose one service?",
+        "No. You can select several interests in the intake form, or choose “Finding a starting point.” Your priorities can overlap.",
+      ],
+      [
+        "What does coaching cost?",
+        "Discuss fees and the scope of work directly with Matt before getting started. The site does not list a fixed package or price.",
+      ],
+      [
+        "What if my situation doesn’t fit these examples?",
+        "Use the introduction form to describe what you need. The first conversation is a chance to explore whether Afin is a fit.",
+      ],
+    ]}
+  />
+  <Closing />
+</Layout>

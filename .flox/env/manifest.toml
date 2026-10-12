@@ -5,6 +5,8 @@ bun.version = "1.3.11"
 git.pkg-path = "git"
 git.outputs = "all"
 actionlint.pkg-path = "actionlint"
+nodejs.pkg-path = "nodejs"
+nodejs.version = "24"
 [hook]
 on-activate = '''
   git config core.hooksPath .githooks

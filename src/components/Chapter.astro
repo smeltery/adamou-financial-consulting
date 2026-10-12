@@ -1,0 +1,43 @@
+---
+import { uiIcon } from "../site/identity";
+interface Props {
+  label: string;
+}
+const { label } = Astro.props;
+const variants: Record<string, string> = {
+  "02 / DEBT PAYOFF PLANNING": "panel",
+  "03 / FINANCIAL GOALS": "reverse",
+  "WHO IT’S FOR": "cards",
+  "THE WORKING RELATIONSHIP": "cards",
+  "GET TO KNOW THE FIT": "panel",
+  "01 / YOUR INTRODUCTION": "panel",
+  "02 / THE FIRST CONVERSATION": "checklist",
+  "03 / AGREEING ON A DIRECTION": "statement",
+  "PREPARING WITHOUT OVERTHINKING": "cards",
+};
+const chapterIcons: Record<string, string> = {
+  "01 / PERSONALIZED BUDGETING": "wallet",
+  "02 / DEBT PAYOFF PLANNING": "debt",
+  "03 / FINANCIAL GOALS": "target",
+  "01 / YOUR INTRODUCTION": "person",
+  "02 / THE FIRST CONVERSATION": "conversation",
+  "03 / AGREEING ON A DIRECTION": "compass",
+};
+---
+
+<section class={`wrap section editorial chapter-${variants[label] || "split"}`}>
+  <div>
+    <p class="eyebrow icon-label">
+      <Fragment
+        set:html={chapterIcons[label] ? uiIcon(chapterIcons[label]) : ""}
+      />
+      {label}
+    </p>
+    <h2>
+      <slot name="title" />
+    </h2>
+  </div>
+  <div class="chapter-copy">
+    <slot />
+  </div>
+</section>
